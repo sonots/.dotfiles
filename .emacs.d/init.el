@@ -236,3 +236,9 @@
 (require 'session)
 (add-hook 'after-init-hook 'session-initialize)
 
+;; package.el
+(require 'package)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(setq package-user-dir (concat user-emacs-directory "elpa"))
+(package-initialize)
+
