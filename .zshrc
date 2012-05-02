@@ -30,6 +30,10 @@ setopt list_packed
 setopt noautoremoveslash
 setopt noautoremoveslash
 
+# plugin
+source ~/.zsh/zaw/zaw.zsh
+source ~/.zsh/incr*.zsh
+
 # keybind emacs
 bindkey -e
 
@@ -41,6 +45,7 @@ bindkey "^p" history-beginning-search-backward-end
 bindkey "^n" history-beginning-search-forward-end
 bindkey "\\ep" history-beginning-search-backward-end
 bindkey "\\en" history-beginning-search-forward-end
+bindkey '^R' zaw-history
 
 # history
 HISTFILE=~/.zsh_history
@@ -179,7 +184,6 @@ export SVN_EDITOR=/bin/vi
 PROMPT="%m%% "
 RPROMPT=' %~%1(v|%F{green}%1v%f|)'
 
-source ~/.zsh/plugin/incr*.zsh
 [[ $EMACS = t ]] && unsetopt zle
 
 export PATH=/usr/java/latest/bin:$PATH
