@@ -1,3 +1,20 @@
 [user]
 	name = nseo
 	email = sonots@gmail.com
+[color]
+    ui = true
+[alias]
+    co = checkout
+    st = status
+    ci = commit -a
+    di = diff
+    br = branch
+    wh = whatchanged
+    stat = log --stat --summary
+    logg = log --graph --decorate --pretty=format:\"%ad [%cn] %h> %n %Cgreen%d%Creset %s %n\" --name-status
+    logs = log --graph --decorate --pretty=format:\"%ad [%cn] %h> %n %Cgreen%d%Creset %s %n\" --stat
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+[core]
+    pager = lv -cOu8
+    autocrlf = input
