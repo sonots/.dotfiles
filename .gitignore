@@ -4,3 +4,5 @@ log/*.log
 tmp/
 auto-save-list/
 *~
+.session
+ac-comphist.dat
