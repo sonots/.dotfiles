@@ -1,0 +1,589 @@
+# この viminfo ファイルは Vim 7.2 によって生成されました.
+# 変更する際には十分注意してください!
+
+# このファイルが書かれた時の 'encoding' の値
+*encoding=utf-8
+
+
+# hlsearch on (H) or off (h):
+~H
+# 最後の 検索パターン:
+~MSle0~/Unable to get
+
+# 最後の Substitute 検索パターン:
+~MSle0&worker
+
+# 最後に置換された文字列:
+$borabora_worker.rb
+
+# コマンドライン 項目の履歴 (新しいものから古いものへ):
+:q!
+:wq
+:w
+:19
+:104
+:75
+:6
+:102
+:50
+:87
+:76
+:7
+:45
+:35
+:74
+:63
+:131
+:120
+:258
+:214
+:qw
+:144
+:65
+:125
+:738
+:8
+:70
+:135
+:81
+:122
+:118
+:156
+:24
+:78
+:132
+:146
+:1088
+:q!<S-Tab>
+:qall!
+:s/worker/borabora_worker.rb/
+:q
+:wq!
+:16
+:16g
+:line_number
+:num
+:line
+:58
+:71
+:706
+
+# 検索文字列 項目の履歴 (新しいものから古いものへ):
+?/Unable to get
+?/getSiteID
+?/li {
+?/li
+?/docutils
+?/table
+?/blockquote
+?/ticket_408
+?/ticket_406
+?/<<<<<
+?/OrganizationInvalid
+?/with_recursive
+?/wip
+?/inactive
+?/locked
+?/Inactive
+? worker
+? \<About\>
+?/java.util.Set
+?/new Set
+?/matchAll
+?/ouput
+?/getValidInternalSessions
+?/getValidSessions
+?/SearchResults
+?/DNtoName
+?/mode-mouse
+?/current_url
+?/status_code
+?/remove_session
+?/create_userXXXX
+?/create_karachi_users
+?/samltest
+?/organization
+?/<<<<
+?/ActiveRecord
+?/deadlock
+?/dirver
+?/set_ticket_cookie
+?/search_resource_url
+?/SessionService
+?/sessionService
+?/publice
+?/sessionTable
+?/curSession
+?/getSession
+?/pending
+?/group_with_
+?/create_user
+?/group
+
+# 式 項目の履歴 (新しいものから古いものへ):
+
+# 入力行 項目の履歴 (新しいものから古いものへ):
+
+# 入力行 項目の履歴 (新しいものから古いものへ):
+
+# レジスタ:
+""1	LINE	0
+	getSiteID(serverID));
+"2	LINE	0
+	                server = getValueFromTable
+"3	LINE	0
+	               
+"4	LINE	0
+	        }
+"5	LINE	0
+	            serverID = getSiteID(serverID);
+"6	LINE	0
+	                server = getValueFromTable(namingTable, serverID);
+"7	LINE	0
+	        if (getSiteID(serverID) != null) {
+	            serverID = getSiteID(serverID);
+	        }
+"8	LINE	0
+	
+"9	LINE	0
+	-  Boraboraレビュー記録
+"q	CHAR	0
+	:q!�kukkkkkkkkkkkkkknnnnnnnnnnnnnnnnnnnnnnnnnnnk
+"-	CHAR	0
+	)
+
+# ファイルマーク:
+'0  722  8  ~/code/openam/products/amserver/source/com/sun/identity/sm/ldap/SMSLdapObject.java
+'1  758  16  ~/code/openam/products/amserver/source/com/iplanet/services/naming/WebtopNaming.java
+'2  752  39  ~/code/openam/products/amserver/source/com/iplanet/services/naming/WebtopNaming.java
+'3  20  55  ~/code/borabora_api/config/settings.yml
+'4  16  2  ~/code/borabora_api/db/seeds.rb
+'5  13  4  ~/code/borabora_api/db/seeds.rb
+'6  1  0  ~/code/borabora_api/db/seeds.rb
+'7  31  4  /etc/rc.d/init.d/tomcat6
+'8  13  3  ~/reST/nsp-docs/Borabora.rst
+'9  42  0  ~/reST/nsp-docs/Borabora.rst
+
+# ジャンプリスト (新しいものが先):
+-'  722  8  ~/code/openam/products/amserver/source/com/sun/identity/sm/ldap/SMSLdapObject.java
+-'  724  40  ~/code/openam/products/amserver/source/com/sun/identity/sm/ldap/SMSLdapObject.java
+-'  726  12  ~/code/openam/products/amserver/source/com/sun/identity/sm/ldap/SMSLdapObject.java
+-'  172  0  ~/code/openam/products/amserver/source/com/sun/identity/sm/ldap/SMSLdapObject.java
+-'  1  0  ~/code/openam/products/amserver/source/com/sun/identity/sm/ldap/SMSLdapObject.java
+-'  758  16  ~/code/openam/products/amserver/source/com/iplanet/services/naming/WebtopNaming.java
+-'  752  16  ~/code/openam/products/amserver/source/com/iplanet/services/naming/WebtopNaming.java
+-'  1  0  ~/code/openam/products/amserver/source/com/iplanet/services/naming/WebtopNaming.java
+-'  20  55  ~/code/borabora_api/config/settings.yml
+-'  1  0  ~/code/borabora_api/config/settings.yml
+-'  16  2  ~/code/borabora_api/db/seeds.rb
+-'  13  0  ~/code/borabora_api/db/seeds.rb
+-'  1  0  ~/code/borabora_api/db/seeds.rb
+-'  31  4  /etc/rc.d/init.d/tomcat6
+-'  1  0  /etc/rc.d/init.d/tomcat6
+-'  13  3  ~/reST/nsp-docs/Borabora.rst
+-'  42  0  ~/reST/nsp-docs/Borabora.rst
+-'  33  0  ~/reST/nsp-docs/Borabora.rst
+-'  31  3  ~/reST/nsp-docs/Borabora.rst
+-'  134  0  ~/reST/nsp-docs/Borabora/ExternalDesign/API_C.rst
+-'  1  0  ~/reST/nsp-docs/Borabora/ExternalDesign/API_C.rst
+-'  1  0  ~/reST/nsp-docs/Borabora.rst
+-'  542  0  ~/reST/nsp-docs/Dubai/ExternalDesign/API.rst
+-'  1  0  ~/reST/nsp-docs/Dubai/ExternalDesign/API.rst
+-'  422  0  ~/reST/nsp-docs/Binsuke/Test/Result/0.0.1/Printing/2.rst
+-'  388  130  ~/reST/nsp-docs/Binsuke/Test/Procedure_result.rst
+-'  76  0  ~/reST/nsp-docs/Binsuke/Test/Procedure_result.rst
+-'  50  0  ~/reST/nsp-docs/Binsuke/Test/Procedure_result.rst
+-'  2087  0  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  1776  12  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  1743  18  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  1680  8  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  1669  21  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  1597  34  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  1441  30  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  1355  2  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  1351  2  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  1313  2  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  1109  0  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  1108  2  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  684  6  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  629  6  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  595  11  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  515  2  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  5  0  ~/reST/nsp-docs/_themes/bootstrap/localtoc.html
+-'  1  0  ~/reST/nsp-docs/_themes/bootstrap/localtoc.html
+-'  1  0  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap-sphinx.css_t
+-'  24  0  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap-sphinx.css_t
+-'  85  0  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  84  0  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  25  0  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  1  0  ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+-'  195  2  ~/reST/trac_to_sphinx/format.rb
+-'  1  0  ~/reST/trac_to_sphinx/format.rb
+-'  53  310  ~/reST/nsp-docs/Acapulco/Review.rst
+-'  17  0  ~/reST/nsp-docs/Acapulco/Review.rst
+-'  16  0  ~/reST/nsp-docs/Acapulco/Review.rst
+-'  1  0  ~/reST/nsp-docs/Acapulco/Review.rst
+-'  2  0  ~/reST/nsp-docs/Acapulco/Review.rst
+-'  59  0  ~/reST/nsp-docs/Acapulco/Review.rst
+-'  1  0  ~/reST/nsp-docs/Acapulco.rst
+-'  342  0  ~/reST/nsp-docs/Borabora/ExternalDesign/API.rst
+-'  247  8  ~/reST/nsp-docs/Borabora/ExternalDesign/API.rst
+-'  253  0  ~/reST/nsp-docs/Acapulco/Performance.rst
+-'  1  0  ~/reST/nsp-docs/Acapulco/Performance.rst
+-'  96  0  ~/reST/nsp-docs/Acapulco.rst
+-'  390  0  ~/reST/nsp-docs/Binsuke/Test/Procedure_result.rst
+-'  6  0  ~/reST/nsp-docs/Binsuke/Test/Procedure_result.rst
+-'  1  0  ~/reST/nsp-docs/Binsuke/Test/Procedure_result.rst
+-'  6  10  ~/reST/nsp-docs/Binsuke/Test/Procedure.rst
+-'  1  0  ~/reST/nsp-docs/Binsuke/Test/Procedure.rst
+-'  1  0  ~/reST/nsp-docs/Binsuke/Test/Result/0.0.1/Printing/2.rst
+-'  6  25  ~/reST/nsp-docs/Borabora/Deploy.rst
+-'  1  0  ~/reST/nsp-docs/Borabora/Deploy.rst
+-'  45  0  ~/reST/nsp-docs/Borabora/InternalDesign/LDAP.rst
+-'  6  0  ~/reST/nsp-docs/Borabora/InternalDesign/LDAP.rst
+-'  1  0  ~/reST/nsp-docs/Borabora/InternalDesign/LDAP.rst
+-'  6  15  ~/reST/nsp-docs/Cairns/Test/Procedure.rst
+-'  36  0  ~/reST/nsp-docs/Cairns/Test/Procedure.rst
+-'  230  0  ~/reST/nsp-docs/Cairns/Test/Result/0.0.1/Printing/1.rst
+-'  74  0  ~/reST/nsp-docs/Cairns/Test/Result/0.0.1/Printing/1.rst
+-'  1  0  ~/reST/nsp-docs/Cairns/Test/Procedure.rst
+-'  6  8  ~/reST/nsp-docs/RSearch/DesignDoc.rst
+-'  1  0  ~/reST/nsp-docs/RSearch/DesignDoc.rst
+-'  6  1  ~/reST/nsp-docs/Storage/ExternalDesign/API.rst
+-'  1  0  ~/reST/nsp-docs/Storage/ExternalDesign/API.rst
+-'  63  41  ~/reST/nsp-docs/Test/Result/0.0.1/Printing/1.rst
+-'  219  0  ~/reST/nsp-docs/Test/Result/0.0.1/Printing/1.rst
+-'  46  13  ~/reST/nsp-docs/index.rst
+-'  1  0  ~/reST/nsp-docs/index.rst
+-'  142  0  ~/reST/nsp-docs/Storage/Research/Membase.rst
+-'  1  0  ~/reST/nsp-docs/Storage/Research/Membase.rst
+-'  127  0  ~/reST/nsp-docs/Storage/Research/KyotoTycoon.rst
+-'  1  0  ~/reST/nsp-docs/Storage/Research/KyotoTycoon.rst
+
+# ファイル内マークの履歴 (新しいものから古いもの):
+
+> ~/code/openam/products/amserver/source/com/sun/identity/sm/ldap/SMSLdapObject.java
+	"	722	8
+
+> ~/code/openam/products/amserver/source/com/iplanet/services/naming/WebtopNaming.java
+	"	758	16
+	.	762	0
+	+	764	41
+	+	764	14
+	+	748	0
+	+	760	15
+	+	757	0
+	+	756	0
+	+	761	81
+	+	763	12
+	+	764	0
+	+	759	51
+	+	760	26
+	+	761	68
+	+	762	0
+
+> ~/code/borabora_api/config/settings.yml
+	"	20	55
+	^	20	69
+	.	20	68
+	+	20	68
+
+> ~/code/borabora_api/db/seeds.rb
+	"	16	2
+	^	13	12
+	.	13	11
+	+	13	15
+	+	14	42
+	+	15	14
+	+	13	27
+	+	16	2
+	+	13	11
+
+> /etc/rc.d/init.d/tomcat6
+	"	31	4
+
+> ~/reST/nsp-docs/Borabora.rst
+	"	13	3
+	^	31	11
+	.	33	0
+	+	32	0
+	+	31	10
+	+	31	90
+	+	8	0
+	+	33	0
+
+> ~/reST/nsp-docs/Borabora/ExternalDesign/API_C.rst
+	"	134	0
+	^	192	18
+	.	192	30
+	+	282	0
+	+	185	52
+	+	190	52
+	+	192	18
+	+	190	43
+	+	185	43
+	+	192	30
+
+> ~/reST/nsp-docs/Dubai/ExternalDesign/API.rst
+	"	542	0
+	.	543	0
+	+	534	0
+	+	534	0
+	+	530	0
+	+	542	0
+	+	543	0
+
+> ~/reST/nsp-docs/Binsuke/Test/Result/0.0.1/Printing/2.rst
+	"	422	0
+	^	407	130
+	.	407	2
+	+	364	0
+	+	387	0
+	+	358	0
+	+	357	0
+	+	386	0
+	+	393	0
+	+	423	0
+	+	85	0
+	+	84	0
+	+	89	92
+	+	89	0
+	+	89	0
+	+	118	92
+	+	118	0
+	+	118	0
+	+	147	0
+	+	176	0
+	+	176	163
+	+	205	96
+	+	147	0
+	+	147	0
+	+	205	0
+	+	234	0
+	+	263	0
+	+	263	144
+	+	292	0
+	+	292	145
+	+	320	189
+	+	321	0
+	+	292	0
+	+	292	0
+	+	321	0
+	+	321	0
+	+	321	0
+	+	350	0
+	+	350	93
+	+	350	0
+	+	350	0
+	+	379	0
+	+	408	0
+	+	87	2
+	+	88	2
+	+	89	0
+	+	88	131
+	+	87	116
+	+	116	116
+	+	117	131
+	+	118	0
+	+	116	2
+	+	117	2
+	+	145	2
+	+	146	2
+	+	147	0
+	+	146	130
+	+	145	115
+	+	176	0
+	+	174	2
+	+	175	2
+	+	175	130
+	+	174	115
+	+	203	115
+	+	204	130
+	+	205	0
+	+	203	2
+	+	204	2
+	+	232	2
+	+	233	2
+	+	234	0
+	+	233	131
+	+	232	116
+	+	263	0
+	+	261	2
+	+	262	2
+	+	262	131
+	+	261	116
+	+	290	116
+	+	291	131
+	+	292	0
+	+	290	2
+	+	291	2
+	+	319	2
+	+	320	2
+	+	321	0
+	+	319	108
+	+	320	129
+	+	350	0
+	+	348	2
+	+	349	2
+	+	349	130
+	+	348	115
+	+	379	0
+	+	377	2
+	+	378	2
+	+	378	129
+	+	377	114
+	+	406	114
+	+	407	129
+	+	408	0
+	+	406	2
+	+	407	2
+
+> ~/reST/nsp-docs/Binsuke/Test/Procedure_result.rst
+	"	388	130
+	^	388	131
+	.	388	130
+	+	6	22
+	+	55	0
+	+	84	0
+	+	113	0
+	+	142	0
+	+	170	0
+	+	198	0
+	+	226	0
+	+	254	0
+	+	312	0
+	+	340	0
+	+	368	0
+	+	50	0
+	+	75	2
+	+	76	2
+	+	75	93
+	+	76	131
+	+	104	2
+	+	105	2
+	+	104	116
+	+	105	131
+	+	133	116
+	+	134	131
+	+	133	2
+	+	134	2
+	+	161	2
+	+	162	2
+	+	162	131
+	+	161	115
+	+	189	115
+	+	190	130
+	+	190	2
+	+	189	2
+	+	217	2
+	+	218	2
+	+	217	115
+	+	218	130
+	+	245	115
+	+	246	130
+	+	245	2
+	+	246	2
+	+	273	2
+	+	274	2
+	+	274	130
+	+	273	115
+	+	303	114
+	+	304	130
+	+	304	2
+	+	303	2
+	+	331	2
+	+	332	2
+	+	332	129
+	+	331	114
+	+	359	114
+	+	360	130
+	+	359	2
+	+	360	2
+	+	387	2
+	+	388	2
+	+	387	115
+	+	388	130
+
+> ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap.css
+	"	2087	0
+	^	1312	12
+	.	1312	11
+	+	514	15
+	+	515	16
+	+	1147	0
+	+	1147	0
+	+	1139	0
+	+	1108	0
+	+	1317	0
+	+	1313	0
+	+	1301	0
+	+	1313	0
+	+	1313	0
+	+	1313	0
+	+	1303	0
+	+	1313	0
+	+	1313	12
+	+	1313	12
+	+	1313	0
+	+	1310	0
+	+	1307	0
+	+	1304	0
+	+	1307	13
+	+	1308	13
+	+	1309	13
+	+	1310	14
+	+	1311	14
+	+	1312	14
+	+	1313	0
+	+	1310	11
+	+	1311	11
+	+	1312	11
+
+> ~/reST/nsp-docs/_themes/bootstrap/localtoc.html
+	"	5	0
+
+> ~/reST/nsp-docs/_themes/bootstrap/static/bootstrap-sphinx.css_t
+	"	1	0
+
+> ~/reST/trac_to_sphinx/format.rb
+	"	195	2
+
+> ~/reST/nsp-docs/Acapulco/Review.rst
+	"	53	310
+	^	53	248
+	.	53	310
+	+	39	366
+	+	13	201
+	+	47	459
+	+	15	177
+	+	17	162
+	+	17	470
+	+	17	308
+	+	53	253
+	+	53	167
+	+	53	310
+
+> ~/reST/nsp-docs/Acapulco.rst
+	"	1	0
+
+> ~/reST/nsp-docs/Borabora/ExternalDesign/API.rst
+	"	342	0
+	.	343	0
+	+	343	0
+
+> ~/reST/nsp-docs/Acapulco/Performance.rst
+	"	253	0
+	.	254	0
+	+	254	0
+
+> ~/reST/nsp-docs/Binsuke/Test/Procedure.rst
+	"	6	10
+	^	6	11
+	.	6	10
+	+	6	10
+
+> ~/reST/nsp-docs/Borabora/Deploy.rst
+	"	6	25
+	^	6	26
+	.	6	25
+	+	6	25
