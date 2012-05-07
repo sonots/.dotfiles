@@ -29,11 +29,20 @@
 ;; (setq shell-command-switch "\\/c") 
 
 ;; ;;; eshell
-;; Change the default eshell prompt
-(setq eshell-prompt-function
-      (lambda ()
-         (concat
-          (eshell/pwd) "\n")))
+; Change the default eshell prompt
+;(setq eshell-prompt-function
+;      (lambda ()
+;         (concat
+;          (eshell/pwd) "\n")))
+
+;; ;;; shell
+; hide the password prompt
+(add-hook 'comint-output-filter-functions
+          'comint-watch-for-password-prompt)
+; process escape sequence
+(autoload 'ansi-color-for-comint-mode-on "ansi-color"
+          "Set `ansi-color-for-comint-mode' to t." t)
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 ;; ChangeLog
 (setq user-full-name "Naotoshi Seo")
@@ -55,7 +64,7 @@
 (setq default-tab-width 4)
 
 ;; ツールバーとメニューバーを消す
-(tool-bar-mode -1)
+;(tool-bar-mode -1)
 (menu-bar-mode -1)
 
 ;; visible bell

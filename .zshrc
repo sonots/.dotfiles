@@ -179,6 +179,7 @@ precmd () {
     LANG=en_US.UTF-8 vcs_info
     [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
+LANG=en_US.UTF-8 vcs_info
 
 export SVN_EDITOR=/bin/vi
 PROMPT="%m%% "
@@ -188,6 +189,7 @@ RPROMPT=' %~%1(v|%F{green}%1v%f|)'
 
 export PATH=/usr/java/latest/bin:$PATH
 export PATH=/usr/java/ant/bin:$PATH
+export PATH=/usr/sbin:$PATH
 export PATH=$HOME/bin:$PATH
 export JAVA_HOME=/usr/java/latest
 export ANT_HOME=/usr/java/ant
