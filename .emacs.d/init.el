@@ -256,3 +256,6 @@
 (setq package-user-dir (concat user-emacs-directory "elpa"))
 (package-initialize)
 
+;; ack.el
+(require 'ack)
+
