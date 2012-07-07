@@ -194,3 +194,4 @@ export PATH=$HOME/bin:$PATH
 export JAVA_HOME=/usr/java/latest
 export ANT_HOME=/usr/java/ant
 
+[ -f ~/.zsh/.bundler-exec.sh ] && source ~/.zsh/.bundler-exec.sh

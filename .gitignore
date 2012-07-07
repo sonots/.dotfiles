@@ -4,3 +4,6 @@ log/*.log
 tmp/
 auto-save-list/
 *~
+.emacs.d/.session
+.emacs.d/ac-comphist.dat
+
