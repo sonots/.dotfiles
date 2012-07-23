@@ -187,6 +187,7 @@
 (require 'linum)
 (global-linum-mode t) 
 
+;; windows.el
 ;; キーバインドを変更．
 ;; デフォルトは C-c C-w
 ;; 変更しない場合」は，以下の 3 行を削除する
@@ -197,7 +198,9 @@
 ;; 新規にフレームを作らない
 (setq win:use-frame nil)
 (win:startup-with-window)
-(define-key ctl-x-map "C" 'see-you-again)
+(define-key ctl-x-map "\C-c" 'see-you-again)
+(define-key ctl-x-map "C" 'save-buffers-kill-emacs)
+(resume-windows 0)
 
 ;; Move divided window using Met and the arrow keys
 (require 'windmove)                        ; to load the package
