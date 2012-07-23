@@ -193,5 +193,7 @@ export PATH=/usr/sbin:$PATH
 export PATH=$HOME/bin:$PATH
 export JAVA_HOME=/usr/java/latest
 export ANT_HOME=/usr/java/ant
+export EDITOR=/usr/bin/vim
 
 [ -f ~/.zsh/.bundler-exec.sh ] && source ~/.zsh/.bundler-exec.sh
+[[ -s /home/sonots/.tmuxinator/scripts/tmuxinator ]] && source /home/sonots/.tmuxinator/scripts/tmuxinator

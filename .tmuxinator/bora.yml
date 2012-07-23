@@ -1,0 +1,21 @@
+# ~/.tmuxinator/borabora.yml
+# you can make as many tabs as you wish...
+
+project_name: N
+project_root: ~/code/borabora_api
+socket_name: foo # Not needed.  Remove to use default socket
+#rvm: 1.9.3@borabora
+tabs:
+  - edit: emacs
+  - test:
+      layout: even-horizontal
+      panes:
+        - bundle install && bundle exec watchr spec.watchr
+        - 
+  - tig: tig
+  - console:
+      layout: even-horizontal
+      panes:
+        - tailf log/test.log
+        - rails c
+
