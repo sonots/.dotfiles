@@ -187,21 +187,6 @@
 (require 'linum)
 (global-linum-mode t) 
 
-;; windows.el
-;; キーバインドを変更．
-;; デフォルトは C-c C-w
-;; 変更しない場合」は，以下の 3 行を削除する
-(setq win:switch-prefix "\C-z")
-(define-key global-map win:switch-prefix nil)
-(define-key global-map "\C-z1" 'win-switch-to-window)
-(require 'windows)
-;; 新規にフレームを作らない
-(setq win:use-frame nil)
-(win:startup-with-window)
-(define-key ctl-x-map "\C-c" 'see-you-again)
-(define-key ctl-x-map "C" 'save-buffers-kill-emacs)
-(resume-windows 0)
-
 ;; Move divided window using Met and the arrow keys
 (require 'windmove)                        ; to load the package
 ;(windmove-default-keybindings)            ; default keybindings
@@ -220,19 +205,16 @@
 (defvar org-directory "")
 (require 'anything)
 (require 'anything-config)
-(global-set-key (kbd "C-x b") 'anything)
+;(global-set-key (kbd "C-x b") 'anything)
 (setq anything-sources
-      '(anything-c-source-buffers+
-        anything-c-source-recentf
-        anything-c-source-man-pages
-        anything-c-source-emacs-commands
-        anything-c-source-emacs-functions
+      '(anything-c-source-recentf
         anything-c-source-files-in-current-dir
         ))
 ;(require 'anything-project)
 ;(global-set-key (kbd "C-u") 'anything-project)
 (require 'anything-git-project)
-(global-set-key (kbd "C-u") 'anything-git-project)
+(global-set-key (kbd "C-x C-f") 'anything-git-project)
+(global-set-key (kbd "C-x b") 'find-file)
 (setq anything-idle-delay 0.3)	; 候補を作って描写するまでのタイムラグ。デフォルトで 0.3
 (setq anything-input-idle-delay 0.2) ; 文字列を入力してから検索するまでのタイムラグ。デフォルトで 0
 (setq anything-candidate-number-limit 100) ; 表示する最大候補数。デフォルトで 50
@@ -262,4 +244,19 @@
 ;; ack.el
 (require 'ack)
 (global-set-key (kbd "C-i") 'ack)
+
+;; windows.el
+;; キーバインドを変更．
+;; デフォルトは C-c C-w
+;; 変更しない場合」は，以下の 3 行を削除する
+(setq win:switch-prefix "\C-z")
+(define-key global-map win:switch-prefix nil)
+(define-key global-map "\C-z1" 'win-switch-to-window)
+(require 'windows)
+;; 新規にフレームを作らない
+(setq win:use-frame nil)
+(win:startup-with-window)
+(define-key ctl-x-map "\C-c" 'see-you-again)
+(define-key ctl-x-map "C" 'save-buffers-kill-emacs)
+(resume-windows 0)
 
