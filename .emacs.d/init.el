@@ -115,6 +115,9 @@
 (require 'ruby-block)
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle t)
+;; rspec-mode.el --- C-c , s
+(require 'rspec-mode)
+(custom-set-variables '(rspec-use-rake-flag nil))
 
 ;; flymake for ruby
 (require 'flymake)
