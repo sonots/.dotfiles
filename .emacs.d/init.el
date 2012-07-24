@@ -89,6 +89,9 @@
 ;\^W\^X\^Y\^Z\^[\^\\\^]\^^\^_ !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJK\
 ;LMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\^H")
 
+;; Set C-o to do C-x o
+(define-key global-map "\C-o" 'other-window)
+
 ;; Emacs Load Path
 (setq load-path (cons "~/.emacs.d" load-path))
 (setq load-path (cons "~/.emacs.d/elisp" load-path))
@@ -207,7 +210,7 @@
 (global-set-key "\C-\M-h" 'windmove-left)  ; use different keys
 (global-set-key "\C-\M-j" 'windmove-down)  ; because putty disables
 (global-set-key "\C-\M-k" 'windmove-up)    ; cursor keys
-(global-set-key "\C-\M-l" 'windmove-right)
+(global-set-key "\C-\M-l" 'windmove-right) ; Ctrl-Alt-l
 (setq windmove-wrap-around t)              ; wrap around
 
 ;; M-x shell on zsh
