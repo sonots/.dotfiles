@@ -115,9 +115,20 @@
 (require 'ruby-block)
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle t)
-;; rspec-mode.el --- C-c , s
+;; rspec-mode.el
 (require 'rspec-mode)
 (custom-set-variables '(rspec-use-rake-flag nil))
+(global-set-key [f10] 'rspec-verify-single)
+(defun my-compilation-hook ()
+  (when (not (get-buffer-window "*compilation*"))
+    (save-selected-window
+      (save-excursion
+        (let* ((w (split-window-vertically))
+               (h (window-height w)))
+          (select-window w)
+          (switch-to-buffer "*compilation*")
+          (shrink-window (- h 10)))))))
+(add-hook 'compilation-mode-hook 'my-compilation-hook)
 
 ;; flymake for ruby
 (require 'flymake)
