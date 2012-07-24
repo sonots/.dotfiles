@@ -205,6 +205,7 @@
 (defvar org-directory "")
 (require 'anything)
 (require 'anything-config)
+(require 'anything-migemo)
 ;(global-set-key (kbd "C-x b") 'anything)
 (setq anything-sources
       '(anything-c-source-recentf
