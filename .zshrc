@@ -194,6 +194,11 @@ export PATH=$HOME/bin:$PATH
 export JAVA_HOME=/usr/java/latest
 export ANT_HOME=/usr/java/ant
 export EDITOR=/usr/bin/vim
+alias dstat-full='dstat -Tclmdrn'
+alias dstat-mem='dstat -Tclm'
+alias dstat-cpu='dstat -Tclr'
+alias dstat-net='dstat -Tclnd'
+alias dstat-disk='dstat -Tcldr'
 
 [ -f ~/.zsh/.bundler-exec.sh ] && source ~/.zsh/.bundler-exec.sh
-[[ -s /home/sonots/.tmuxinator/scripts/tmuxinator ]] && source /home/sonots/.tmuxinator/scripts/tmuxinator
+[[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator

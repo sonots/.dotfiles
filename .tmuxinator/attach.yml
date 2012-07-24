@@ -10,12 +10,12 @@ tabs:
   - test:
       layout: even-horizontal
       panes:
-        - bundle install && bundle exec watchr spec.watchr
         - 
+        - bundle install && bundle exec watchr spec.watchr
   - tig: tig
   - console:
       layout: even-horizontal
       panes:
-        - tailf log/test.log
         - rails c
+        - tailf log/test.log
 
