@@ -274,7 +274,8 @@
 ;; 新規にフレームを作らない
 (setq win:use-frame nil)
 (win:startup-with-window)
-(define-key ctl-x-map "\C-c" 'see-you-again)
-(define-key ctl-x-map "C" 'save-buffers-kill-emacs)
-(resume-windows 0)
+(define-key ctl-x-map "\C-r" 'resume-windows) ; C-x C-r to resume windows
+(define-key ctl-x-map "\C-c" 'see-you-again)  ; C-x C-c to save windows
+(define-key ctl-x-map "C" 'save-buffers-kill-emacs) ; C-x C to close without save windows
+;(resume-windows 0)
 
