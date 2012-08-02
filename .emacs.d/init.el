@@ -130,7 +130,7 @@
                (h (window-height w)))
           (select-window w)
           (switch-to-buffer "*compilation*")
-          (shrink-window (- h 10)))))))
+          (shrink-window (- h 15)))))))
 (add-hook 'compilation-mode-hook 'my-compilation-hook)
 
 ;; flymake for ruby
