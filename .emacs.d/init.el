@@ -99,7 +99,7 @@
 ;; auto-install
 (require 'auto-install)
 (setq auto-install-directory "~/.emacs.d/auto-install/")
-(auto-install-update-emacswiki-package-name t)
+;(auto-install-update-emacswiki-package-name t)
 
 ;; ruby-mode.el, etc
 (autoload 'ruby-mode "ruby-mode" "Mode for editing ruby source files" t)
