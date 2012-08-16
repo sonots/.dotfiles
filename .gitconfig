@@ -1,6 +1,6 @@
 [user]
-	name = nseo
-	email = sonots@gmail.com
+    name = nseo
+    email = sonots@gmail.com
 [color]
     ui = true
 [alias]
@@ -17,4 +17,4 @@
     graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
 [core]
     pager = lv -cOu8
-    autocrlf = input
+    autocrlf = false
