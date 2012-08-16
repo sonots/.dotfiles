@@ -199,6 +199,9 @@ alias dstat-mem='dstat -Tclm'
 alias dstat-cpu='dstat -Tclr'
 alias dstat-net='dstat -Tclnd'
 alias dstat-disk='dstat -Tcldr'
+alias bundle='http_proxy= bundle'
+alias jj="ruby -rjson -e 'jj JSON[ARGF.read]'"
+alias vncstart="vncserver :1 -geometry 1920x1200"
 
 [ -f ~/.zsh/.bundler-exec.sh ] && source ~/.zsh/.bundler-exec.sh
 [[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
