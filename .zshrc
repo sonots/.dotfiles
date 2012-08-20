@@ -32,7 +32,7 @@ setopt noautoremoveslash
 
 # plugin
 source ~/.zsh/zaw/zaw.zsh
-source ~/.zsh/incr*.zsh
+#source ~/.zsh/incr*.zsh
 
 # keybind emacs
 bindkey -e
