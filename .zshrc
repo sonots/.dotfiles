@@ -73,13 +73,27 @@ zstyle ':completion:*:hosts' hosts $hosts
 ##########################
 # alias
 
-# cd
-setopt auto_cd
-function chpwd(){ls -F --color=tty}
+case "`uname`" in
+  Darwin) # OSがMacならば
+    if [ -d /Applications/MacVim.app ]; then # MacVimが存在するならば
+      alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+      alias vi='vim'
+    fi
+    setopt auto_cd
+    function chpwd(){ls -F -G}
+    alias ls='ls -G'
+    ;;
+
+  *) # OSがMac以外
+    setopt auto_cd
+    function chpwd(){ls -F --color=tty}
+    alias ls='ls --color=tty'
+    ;; 
+esac
+
 #by cd -[tab]
 setopt auto_pushd
 
-alias ls='ls --color=tty'
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
