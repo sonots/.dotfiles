@@ -60,15 +60,9 @@ autoload -U compinit
 compinit
 
 autoload zed
-
 setopt complete_aliases # aliased ls needs if file/dir completions work
-
 hosts=( ${(@)${${(M)${(s:# :)${(zj:# :)${(Lf)"$([[ -f ~/.ssh/config ]] && < ~/.ssh/config)"}%%\#*}}##host(|name) *}#host(|name) }/\*} )
-
-# .ssh/configa≪aﾅ秩Rﾅ｡a窶蚤ﾅｸaﾆ停ｺa窶・aﾆ塚・窶噤fsshaaacaRe￡ﾅ殿Rﾅ誕竄ｬ邃｢e￡ﾅ殿≪
 zstyle ':completion:*:hosts' hosts $hosts
-## scpaRaﾆ誕aﾆ秩疎ﾆ陳ｼaﾆ塚・ﾆ停｢a窶・a窶堋､aﾆ秩畭窶噤fe￡ﾅ殿Rﾅ誕窶蚤aa窶杪竄ｬ窶啾ﾆ秩ea窶・aﾆ秩Paﾆ陳ｼaﾆ秩ﾅｾa窶ｹa窶塲誕窶壺ｹaRa§a竄ｬ窶・#zstyle ':completion:*:complete:scp:*:files' command command -
-
 
 ##########################
 # alias
