@@ -1,4 +1,5 @@
 export LANG=ja_JP.UTF-8
+uname=`uname`
 
 # color
 autoload colors
@@ -31,7 +32,9 @@ setopt noautoremoveslash
 setopt noautoremoveslash
 
 # plugin
-source ~/.zsh/zaw/zaw.zsh
+if [ "$uname" != "Darwin" ]; then
+  source ~/.zsh/zaw/zaw.zsh
+fi
 #source ~/.zsh/incr*.zsh
 
 # keybind emacs
