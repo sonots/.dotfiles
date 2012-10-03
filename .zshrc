@@ -34,6 +34,7 @@ setopt noautoremoveslash
 # plugin
 if [ "$uname" != "Darwin" ]; then
   source ~/.zsh/zaw/zaw.zsh
+  bindkey '^R' zaw-history
 fi
 #source ~/.zsh/incr*.zsh
 
@@ -48,7 +49,6 @@ bindkey "^p" history-beginning-search-backward-end
 bindkey "^n" history-beginning-search-forward-end
 bindkey "\\ep" history-beginning-search-backward-end
 bindkey "\\en" history-beginning-search-forward-end
-bindkey '^R' zaw-history
 
 # history
 HISTFILE=~/.zsh_history
