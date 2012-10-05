@@ -73,6 +73,7 @@ zstyle ':completion:*:hosts' hosts $hosts
 case "`uname`" in
   Darwin) # OSがMacならば
     if [ -d /Applications/MacVim.app ]; then # MacVimが存在するならば
+      export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
       alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
       alias vi='vim'
     fi
