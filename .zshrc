@@ -202,6 +202,8 @@ RPROMPT=' %~%1(v|%F{green}%1v%f|)'
 export PATH=/usr/java/latest/bin:$PATH
 export PATH=/usr/java/ant/bin:$PATH
 export PATH=/usr/sbin:$PATH
+export PATH=/usr/local/sbin:$PATH
+export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export JAVA_HOME=/usr/java/latest
 export ANT_HOME=/usr/java/ant
@@ -211,12 +213,13 @@ alias dstat-mem='dstat -Tclm'
 alias dstat-cpu='dstat -Tclr'
 alias dstat-net='dstat -Tclnd'
 alias dstat-disk='dstat -Tcldr'
-alias bundle='http_proxy= bundle'
+#alias bundle='http_proxy= bundle'
 alias jj="ruby -rjson -e 'jj JSON[ARGF.read]'"
 alias vncstart="vncserver :1 -geometry 1920x1200"
 
 [ -f ~/.zsh/.bundler-exec.sh ] && source ~/.zsh/.bundler-exec.sh
 [[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # for screen, tmux, iterm2
 preexec() {
