@@ -2,6 +2,7 @@ set nocompatible
 set nu
 set hlsearch
 set paste
+set nobackup
 syntax on
 filetype on
 filetype indent on
