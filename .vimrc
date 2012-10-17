@@ -29,6 +29,7 @@ Bundle 'thinca/vim-quickrun'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'mileszs/ack.vim'
 Bundle "git://git.wincent.com/command-t.git"
    
 filetype plugin indent on " required!
