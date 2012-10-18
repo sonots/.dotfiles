@@ -13,6 +13,7 @@ let g:netrw_liststyle=3 " :e . shows directories in tree
 set softtabstop=2
 set shiftwidth=2
 set expandtab
+set autoindent
 "set list "visualize tab and return
 
 " search
