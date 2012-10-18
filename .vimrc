@@ -7,6 +7,7 @@ syntax on
 filetype on
 filetype indent on
 filetype plugin on
+let g:netrw_liststyle=3 " :e . shows directories in tree
 
 " tab indent for ruby
 set softtabstop=2
@@ -34,7 +35,6 @@ Bundle 'mileszs/ack.vim'
 Bundle "git://git.wincent.com/command-t.git"
    
 filetype plugin indent on " required!
-imap <C-Space> <C-x><C-o>
 
 " ruby
 let g:rubycomplete_buffer_loading = 1
