@@ -3,6 +3,7 @@ set nu
 set hlsearch
 set paste
 set nobackup
+set clipboard=unnamed,autoselect
 syntax on
 filetype on
 filetype indent on
