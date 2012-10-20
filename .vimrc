@@ -1,27 +1,29 @@
 set nocompatible
 set nu
 set hlsearch
-set paste
 set nobackup
 set clipboard=unnamed,autoselect
 syntax on
 filetype on
 filetype indent on
 filetype plugin on
-let g:netrw_liststyle=3 " :e . shows directories in tree
+filetype plugin indent on " required!
 
 " tab indent for ruby
 set softtabstop=2
 set shiftwidth=2
 set expandtab
 set autoindent
-"set list "visualize tab and return
+set smartindent
 
 " search
 set history=50
 set incsearch
 set ignorecase
 set smartcase
+
+" :e
+let g:netrw_liststyle=3 " shows directory tree by e .
 
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
@@ -36,9 +38,8 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'mileszs/ack.vim'
 Bundle 'Sixeight/unite-grep'
 Bundle 'kien/ctrlp.vim'
+Bundle 'vim-scripts/AutoComplPop'
 Bundle "git://git.wincent.com/command-t.git"
-   
-filetype plugin indent on " required!
 
 " ruby
 let g:rubycomplete_buffer_loading = 1
@@ -73,7 +74,6 @@ nnoremap <silent> ,ug :Unite grep:%:-iHRn<CR>
 
 " ctrlp.vim
 let g:ctrlp_max_height          = &lines " 目一杯に一覧
-let g:ctrlp_by_filename         = 1 " フルパスではなくファイル名のみで絞込み
 let g:ctrlp_jump_to_buffer      = 2 " タブで開かれていた場合はそのタブに切り替える
 let g:ctrlp_clear_cache_on_exit = 0 " 終了時キャッシュをクリアしない
 let g:ctrlp_mruf_max            = 500 " MRUの最大記録数
@@ -114,4 +114,42 @@ let g:ctrlp_prompt_mappings = {
   \ 'OpenMulti()':          ['<c-o>'],
   \ 'PrtExit()':            ['<esc>', '<c-c>', '<c-g>'],
   \ }
+
+" Save a file by C-s (Normal mode)
+nnoremap <silent> <C-S> :if expand("%") == ""<CR>browse confirm w<CR>else<CR>confirm w<CR>endif<CR>
+" Ctrl-a goes to the beggining of line (Insert mode)
+imap <C-a> <esc>0i
+" Ctrl-e goes to the end of line (Insert mode)
+imap <C-e> <esc>$i<right>
+" Go to normal mode from insert mode (Insert mode)
+imap <C-i> <C-[>
+
+"------------------------------------
+" autocmplpopup
+"------------------------------------
+" color
+highlight Pmenu ctermbg=4
+highlight PmenuSel ctermbg=2
+highlight PmenuSel ctermfg=0
+"highlight PMenuSbar ctermbg=3
+"<TAB>で補完
+" Autocompletion using the TAB key
+" This function determines, wether we are on the start of the line text (then tab indents) or
+" if we want to try autocompletion
+function! InsertTabWrapper()
+        let col = col('.') - 1
+        if !col || getline('.')[col - 1] !~ '\k'
+                return "\<TAB>"
+        else
+                if pumvisible()
+                        return "\<C-N>"
+                else
+                        return "\<C-N>\<C-P>"
+                end
+        endif
+endfunction
+" Remap the tab key to select action with InsertTabWrapper
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+" Do not feed line by return
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
