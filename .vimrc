@@ -9,8 +9,8 @@ filetype indent on
 filetype plugin on
 filetype plugin indent on " required!
 
-" tab indent for ruby
-set softtabstop=2
+" indent
+set softtabstop=2 " ruby
 set shiftwidth=2
 set expandtab
 set autoindent
@@ -121,8 +121,6 @@ nnoremap <silent> <C-S> :if expand("%") == ""<CR>browse confirm w<CR>else<CR>con
 imap <C-a> <esc>0i
 " Ctrl-e goes to the end of line (Insert mode)
 imap <C-e> <esc>$i<right>
-" Go to normal mode from insert mode (Insert mode)
-imap <C-i> <C-[>
 
 "------------------------------------
 " autocmplpopup
@@ -132,24 +130,27 @@ highlight Pmenu ctermbg=4
 highlight PmenuSel ctermbg=2
 highlight PmenuSel ctermfg=0
 "highlight PMenuSbar ctermbg=3
-"<TAB>で補完
-" Autocompletion using the TAB key
-" This function determines, wether we are on the start of the line text (then tab indents) or
-" if we want to try autocompletion
-function! InsertTabWrapper()
-        let col = col('.') - 1
-        if !col || getline('.')[col - 1] !~ '\k'
-                return "\<TAB>"
-        else
-                if pumvisible()
-                        return "\<C-N>"
-                else
-                        return "\<C-N>\<C-P>"
-                end
-        endif
-endfunction
-" Remap the tab key to select action with InsertTabWrapper
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+""<TAB>で補完
+"" Autocompletion using the TAB key
+"" This function determines, wether we are on the start of the line text (then tab indents) or
+"" if we want to try autocompletion
+"function! InsertTabWrapper()
+"        let col = col('.') - 1
+"        if !col || getline('.')[col - 1] !~ '\k'
+"                return "\<TAB>"
+"        else
+"                if pumvisible()
+"                        return "\<C-N>"
+"                else
+"                        return "\<C-N>\<C-P>"
+"                end
+"        endif
+"endfunction
+"" Remap the tab key to select action with InsertTabWrapper
+"inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 " Do not feed line by return
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+
+" Use <tab> to indent
+inoremap <tab> <esc>==i
 
