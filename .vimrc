@@ -12,8 +12,6 @@ filetype plugin indent on " required!
 set number
 set ruler
 set cmdheight=1
-set laststatus=2
-set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 set title
 set linespace=0
 set wildmenu
@@ -21,6 +19,16 @@ set showcmd
 "set textwidth=78
 "set columns=100
 "set lines=150
+" バッファタブにパスを省略してファイル名のみ表示する
+let g:buftabs_only_basename=1
+" バッファタブをステータスライン内に表示する
+let g:buftabs_in_statusline=1
+" 現在のバッファをハイライト
+let g:buftabs_active_highlight_group="Visual"
+" ステータスライン
+set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=\[%04l,%04v][%02p%%]
+" ステータスラインを常に表示
+set laststatus=2
 
 " indent
 set softtabstop=2 " ruby
