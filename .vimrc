@@ -117,10 +117,6 @@ let g:ctrlp_prompt_mappings = {
 
 " Save a file by C-s (Normal mode)
 nnoremap <silent> <C-S> :if expand("%") == ""<CR>browse confirm w<CR>else<CR>confirm w<CR>endif<CR>
-" Ctrl-a goes to the beggining of line (Insert mode)
-imap <C-a> <esc>0i
-" Ctrl-e goes to the end of line (Insert mode)
-imap <C-e> <esc>$i<right>
 
 "------------------------------------
 " autocmplpopup
@@ -151,6 +147,41 @@ highlight PmenuSel ctermfg=0
 " Do not feed line by return
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
+
+"------------------------------------
+" Insert mode like emacs
+"------------------------------------
 " Use <tab> to indent
-inoremap <tab> <esc>==i
+inoremap <tab> <C-o>==
+inoremap <C-p> <Up>
+inoremap <C-n> <Down>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap <C-e> <End>
+inoremap <C-a> <Home>
+inoremap <C-h> <Backspace>
+inoremap <C-d> <Del>
+" カーソル位置の行をウィンドウの中央に来るようにスルロール
+inoremap <C-l> <C-o>zz
+" カーソル以降の文字を削除
+inoremap <C-k> <C-o>D
+" カーソル以前の文字を削除
+inoremap <C-u> <C-o>d0
+" アンドゥ
+inoremap <C-x>u <C-o>u
+" 貼りつけ
+inoremap <C-y> <C-o>P
+" カーソルから単語末尾まで削除
+inoremap <F1>d <C-o>dw
+" ファイルの先頭に移動
+inoremap <F1>< <Esc>ggI
+" ファイルの末尾に移動
+inoremap <F1>> <Esc>GA
+" 下にスクロール
+inoremap <C-v> <C-o><C-f>
+" 上にスクロール
+inoremap <F1>v <C-o><C-b>
+" Ctrl-Space で補完
+" Windowsは <Nul>でなく <C-Space> とする
+inoremap <Nul> <C-n>
 
