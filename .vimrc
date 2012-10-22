@@ -1,5 +1,4 @@
 set nocompatible
-set nu
 set hlsearch
 set nobackup
 set clipboard=unnamed,autoselect
@@ -8,6 +7,20 @@ filetype on
 filetype indent on
 filetype plugin on
 filetype plugin indent on " required!
+
+" status bar
+set number
+set ruler
+set cmdheight=1
+set laststatus=2
+set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
+set title
+set linespace=0
+set wildmenu
+set showcmd
+"set textwidth=78
+"set columns=100
+"set lines=150
 
 " indent
 set softtabstop=2 " ruby
