@@ -1,6 +1,7 @@
 set nocompatible
-set hlsearch
+set number
 set nobackup
+set noswapfile
 set clipboard=unnamed,autoselect
 syntax on
 filetype on
@@ -8,8 +9,9 @@ filetype indent on
 filetype plugin on
 filetype plugin indent on " required!
 
+"------------------------------------
 " status bar
-set number
+"------------------------------------
 set ruler
 set cmdheight=1
 set title
@@ -30,28 +32,32 @@ set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=\[%04l,
 " ステータスラインを常に表示
 set laststatus=2
 
+"------------------------------------
 " indent
+"------------------------------------
 set softtabstop=2 " ruby
 set shiftwidth=2
 set expandtab
 set autoindent
 set smartindent
 
+"------------------------------------
 " search
+"------------------------------------
+" highlight all search matches
+set hlsearch
 set history=50
 set incsearch
 set ignorecase
 set smartcase
 
-" shorten split window move
-noremap <C-h> <C-w>h
-noremap <C-l> <C-w>l
-noremap <C-k> <C-w>k
-noremap <C-j> <C-w>j
-
 " :e
 let g:netrw_liststyle=3 " shows directory tree by e .
 
+" ctags
+set tags=~/.tags
+
+" vundle
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
@@ -68,13 +74,12 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/AutoComplPop'
 Bundle "git://git.wincent.com/command-t.git"
 
-" ruby
+"------------------------------------
+" vim-ruby
+"------------------------------------
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
-
-" ctags
-set tags=~/.tags
 
 "------------------------------------
 " unite.vim
@@ -99,7 +104,9 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 " Unite-grep
 nnoremap <silent> ,ug :Unite grep:%:-iHRn<CR>
 
+"------------------------------------
 " ctrlp.vim
+"------------------------------------
 let g:ctrlp_max_height          = &lines " 目一杯に一覧
 let g:ctrlp_jump_to_buffer      = 2 " タブで開かれていた場合はそのタブに切り替える
 let g:ctrlp_clear_cache_on_exit = 0 " 終了時キャッシュをクリアしない
@@ -174,7 +181,6 @@ highlight PmenuSel ctermfg=0
 " Do not feed line by return
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
-
 "------------------------------------
 " Insert mode like emacs
 "------------------------------------
@@ -211,4 +217,13 @@ inoremap <F1>v <C-o><C-b>
 " Ctrl-Space で補完
 " Windowsは <Nul>でなく <C-Space> とする
 inoremap <Nul> <C-n>
+
+"------------------------------------
+" Shorten split window move
+"------------------------------------
+noremap <C-h> <C-w>h
+noremap <C-l> <C-w>l
+noremap <C-k> <C-w>k
+noremap <C-j> <C-w>j
+
 
