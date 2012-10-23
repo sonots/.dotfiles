@@ -57,22 +57,26 @@ let g:netrw_liststyle=3 " shows directory tree by e .
 " ctags
 set tags=~/.tags
 
-" vundle
+"------------------------------------
+" Vundle
+"------------------------------------
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
-
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
 Bundle 'thinca/vim-ref'
 Bundle 'thinca/vim-quickrun'
 Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-rails'
-Bundle 'vim-ruby/vim-ruby'
 Bundle 'mileszs/ack.vim'
 Bundle 'Sixeight/unite-grep'
 Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/AutoComplPop'
 Bundle "git://git.wincent.com/command-t.git"
+" ruby
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rake'
+Bundle 'tpope/vim-bundler'
+Bundle 'vim-ruby/vim-ruby'
 
 "------------------------------------
 " vim-ruby
