@@ -2,6 +2,7 @@ set nocompatible
 set number
 set nobackup
 set noswapfile
+set hidden
 set clipboard=unnamed,autoselect
 syntax on
 filetype on
