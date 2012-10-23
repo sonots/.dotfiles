@@ -43,6 +43,12 @@ set incsearch
 set ignorecase
 set smartcase
 
+" shorten split window move
+noremap <C-h> <C-w>h
+noremap <C-l> <C-w>l
+noremap <C-k> <C-w>k
+noremap <C-j> <C-w>j
+
 " :e
 let g:netrw_liststyle=3 " shows directory tree by e .
 
