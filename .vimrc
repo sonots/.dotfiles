@@ -148,9 +148,9 @@ let g:ctrlp_prompt_mappings = {
   \ 'OpenMulti()':          ['<c-o>'],
   \ 'PrtExit()':            ['<esc>', '<c-c>', '<c-g>'],
   \ }
-
-" Save a file by C-s (Normal mode)
-nnoremap <silent> <C-S> :if expand("%") == ""<CR>browse confirm w<CR>else<CR>confirm w<CR>endif<CR>
+" RSense
+let g:rsenseHome = $HOME . "/opt/rsense"
+setlocal completefunc=RSenseComplete
 
 "------------------------------------
 " autocmplpopup
@@ -225,5 +225,4 @@ noremap <C-h> <C-w>h
 noremap <C-l> <C-w>l
 noremap <C-k> <C-w>k
 noremap <C-j> <C-w>j
-
 
