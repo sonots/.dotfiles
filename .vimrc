@@ -63,7 +63,6 @@ set tags=~/.tags
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/unite.vim'
 Bundle 'thinca/vim-ref'
 Bundle 'thinca/vim-quickrun'
 Bundle 'tpope/vim-fugitive'
@@ -72,6 +71,7 @@ Bundle 'Sixeight/unite-grep'
 Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/AutoComplPop'
 Bundle "git://git.wincent.com/command-t.git"
+Bundle 'vim-scripts/YankRing.vim'
 " ruby
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rake'
