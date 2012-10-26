@@ -190,7 +190,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 " Insert mode like emacs
 "------------------------------------
 " Use <tab> to indent
-inoremap <tab> <C-o>==
+inoremap <tab> <C-o>==<End>
 inoremap <C-p> <Up>
 inoremap <C-n> <Down>
 inoremap <C-b> <Left>
