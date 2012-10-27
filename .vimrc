@@ -72,9 +72,8 @@ Bundle 'Sixeight/unite-grep'
 Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/AutoComplPop'
 Bundle "git://git.wincent.com/command-t.git"
-Bundle 'vim-scripts/YankRing.vim'
+"Bundle 'vim-scripts/YankRing.vim'
 Bundle 'Shougo/unite.vim'
-Bundle 'kien/ctrlp.vim'
 " ruby
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rake'
@@ -121,7 +120,7 @@ let g:ctrlp_mruf_max            = 500 " MRUの最大記録数
 let g:ctrlp_highlight_match     = [1, 'IncSearch'] " 絞り込みで一致した部分のハイライト
 let g:ctrlp_open_new_file       = 1 " 新規ファイル作成時にタブで開く
 let g:ctrlp_open_multi          = '10t' " 複数ファイルを開く時にタブで最大10まで開く
-let g:ctrlp_map = '<c-l>'
+let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_prompt_mappings = {
   \ 'PrtBS()':              ['<c-h>', '<bs>', '<c-]>'],
@@ -188,7 +187,7 @@ highlight PmenuSel ctermfg=0
 "" Remap the tab key to select action with InsertTabWrapper
 "inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 " Do not feed line by return
-inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<CR>" : "\<CR>"
 
 "------------------------------------
 " Insert mode like emacs
