@@ -119,7 +119,7 @@ let g:ctrlp_mruf_max            = 500 " MRUの最大記録数
 let g:ctrlp_highlight_match     = [1, 'IncSearch'] " 絞り込みで一致した部分のハイライト
 let g:ctrlp_open_new_file       = 1 " 新規ファイル作成時にタブで開く
 let g:ctrlp_open_multi          = '10t' " 複数ファイルを開く時にタブで最大10まで開く
-let g:ctrlp_map = '<c-p>'
+let g:ctrlp_map = '<c-u><c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_prompt_mappings = {
   \ 'PrtBS()':              ['<c-h>', '<bs>', '<c-]>'],
@@ -284,4 +284,12 @@ noremap <C-h> <C-w>h
 noremap <C-l> <C-w>l
 noremap <C-k> <C-w>k
 noremap <C-j> <C-w>j
+
+"コマンドラインをEmacs風に移動
+:cnoremap <C-A> <Home>
+:cnoremap <C-F> <Right>
+:cnoremap <C-B> <Left>
+
+" grep後にcwinを表示
+autocmd QuickFixCmdPost make,grep,grepadd,vimgrep,vimgrepadd cwin
 
