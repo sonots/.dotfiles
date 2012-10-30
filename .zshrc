@@ -30,8 +30,8 @@ setopt correct
 setopt list_packed
 setopt noautoremoveslash
 setopt noautoremoveslash
-autoload predict-on
-predict-on
+#autoload predict-on
+#predict-on
 
 # plugin
 if [ "$uname" != "Darwin" ]; then
@@ -109,7 +109,7 @@ alias df="df -h"
 alias su="su -l"
 
 alias grep='grep -E --color=tty'
-alias top='top -d 1'
+#alias top='top -d 1'
 #alias xqbiff='xqbiff -mode=pop -pt 0 -na -sort=new'
 
 alias ltime='/usr/bin/time --format="\n----\nr %e/u %U/s %S sec"'
