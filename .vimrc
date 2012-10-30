@@ -56,7 +56,7 @@ set smartcase
 let g:netrw_liststyle=3 " shows directory tree by e .
 
 " ctags
-" set tags=~/.tags " now, I'm using vim-indexer
+" set tags=~/.tags
 
 "------------------------------------
 " Vundle
@@ -81,6 +81,9 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-bundler'
 Bundle 'vim-ruby/vim-ruby'
+
+" vim-indexer (had to modify to call /usr/local/bin/ctags)
+let g:indexer_disableCtagsWarning=1
 
 "------------------------------------
 " vim-ruby
