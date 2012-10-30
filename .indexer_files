@@ -1,0 +1,4 @@
+[proj]
+#option:ctags_params = "--languages=c++"
+~/proj
+

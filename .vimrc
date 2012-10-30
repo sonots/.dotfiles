@@ -56,7 +56,7 @@ set smartcase
 let g:netrw_liststyle=3 " shows directory tree by e .
 
 " ctags
-set tags=~/.tags
+" set tags=~/.tags " now, I'm using vim-indexer
 
 "------------------------------------
 " Vundle
@@ -73,6 +73,9 @@ Bundle 'Shougo/neocomplcache'
 Bundle "git://git.wincent.com/command-t.git"
 "Bundle 'vim-scripts/YankRing.vim'
 Bundle 'Shougo/unite.vim'
+Bundle 'vim-scripts/DfrankUtil'
+Bundle 'vim-scripts/vimprj'
+Bundle 'vim-scripts/indexer.tar.gz'
 " ruby
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rake'
