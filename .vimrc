@@ -73,17 +73,11 @@ Bundle 'Shougo/neocomplcache'
 Bundle "git://git.wincent.com/command-t.git"
 "Bundle 'vim-scripts/YankRing.vim'
 Bundle 'Shougo/unite.vim'
-Bundle 'vim-scripts/DfrankUtil'
-Bundle 'vim-scripts/vimprj'
-Bundle 'vim-scripts/indexer.tar.gz'
 " ruby
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-bundler'
 Bundle 'vim-ruby/vim-ruby'
-
-" vim-indexer (had to modify to call /usr/local/bin/ctags)
-let g:indexer_disableCtagsWarning=1
 
 "------------------------------------
 " vim-ruby
