@@ -276,6 +276,9 @@ inoremap <F1>v <C-o><C-b>
 " Ctrl-Space で補完
 " Windowsは <Nul>でなく <C-Space> とする
 inoremap <Nul> <C-n>
+" 保存
+inoremap <C-x>s <Esc>:w<CR>a
+inoremap <C-x>c <Esc>:wq<CR>
 
 "------------------------------------
 " Shorten split window move
@@ -286,9 +289,9 @@ noremap <C-k> <C-w>k
 noremap <C-j> <C-w>j
 
 "コマンドラインをEmacs風に移動
-:cnoremap <C-A> <Home>
-:cnoremap <C-F> <Right>
-:cnoremap <C-B> <Left>
+cnoremap <C-A> <Home>
+cnoremap <C-F> <Right>
+cnoremap <C-B> <Left>
 
 " grep後にcwinを表示
 autocmd QuickFixCmdPost make,grep,grepadd,vimgrep,vimgrepadd cwin
