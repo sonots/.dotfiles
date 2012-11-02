@@ -56,7 +56,7 @@ set smartcase
 let g:netrw_liststyle=3 " shows directory tree by e .
 
 " ctags
-" set tags=~/.tags
+set tags=~/.tags
 
 "------------------------------------
 " Vundle
@@ -157,9 +157,10 @@ let g:ctrlp_prompt_mappings = {
   \ 'OpenMulti()':          ['<c-o>'],
   \ 'PrtExit()':            ['<esc>', '<c-c>', '<c-g>'],
   \ }
-" RSense
-let g:rsenseHome = $HOME . "/opt/rsense"
-setlocal completefunc=RSenseComplete
+
+" RSense (Get rsense.vim)
+"let g:rsenseHome = $HOME . "/opt/rsense"
+"setlocal completefunc=RSenseComplete
 
 "------------------------------------
 " neocmplcache

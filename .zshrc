@@ -31,7 +31,7 @@ setopt list_packed
 setopt noautoremoveslash
 setopt noautoremoveslash
 autoload predict-on
-predict-on
+#predict-on
 
 # plugin
 if [ "$uname" != "Darwin" ]; then
