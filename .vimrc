@@ -214,7 +214,7 @@ inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 
 " Custom key-mappings
 inoremap <expr><CR>  pumvisible() ? neocomplcache#smart_close_popup() : "\<CR>"
-inoremap <expr><C-[>  pumvisible() ? neocomplcache#cancel_popup() : "\<ESC>"
+"inoremap <expr><C-[>  pumvisible() ? neocomplcache#cancel_popup() : "\<ESC>"
 
 " AutoComplPop like behavior.
 "let g:neocomplcache_enable_auto_select = 1
