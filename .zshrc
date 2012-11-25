@@ -1,6 +1,11 @@
 export LANG=ja_JP.UTF-8
 uname=`uname`
 
+# oh-my-zsh
+ZSH=$HOME/.oh-my-zsh
+plugins=(git osx ruby gem)
+source $ZSH/oh-my-zsh.sh
+
 # color
 autoload colors
 colors
