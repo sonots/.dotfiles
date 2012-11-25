@@ -7,22 +7,22 @@ colors
 
 # prompt
 case ${UID} in
-0)
-        #PROMPT="[%n@%m]$ "
-        #RPROMPT="%~"
-        #PROMPT2="%_%% "
-        #SPROMPT="%r is correct? [n,y,a,e]: "
-        PROMPT="%B%{${fg[red]}%}%n@%m %/#%{${reset_color}%}%b "
-        PROMPT2="%B%{${fg[red]}%}%_#%{${reset_color}%}%b "
-        SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-        ;;
-*)
-        #PROMPT="%{${fg[cyan]}%}[%n@%m %~]%{${reset_color}%}$ "
-        PROMPT="%{${fg[cyan]}%}[%n@%m]%{${reset_color}%}$ "
-        RPROMPT="%{${fg[cyan]}%}%~%{${reset_color}%}"
-        PROMPT2="%{${fg[cyan]}%}%_%%%{${reset_color}%} "
-        SPROMPT="%{${fg[cyan]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
-        ;;
+  0)
+    #PROMPT="[%n@%m]$ "
+    #RPROMPT="%~"
+    #PROMPT2="%_%% "
+    #SPROMPT="%r is correct? [n,y,a,e]: "
+    PROMPT="%B%{${fg[red]}%}%n@%m %/#%{${reset_color}%}%b "
+    PROMPT2="%B%{${fg[red]}%}%_#%{${reset_color}%}%b "
+    SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
+    ;;
+  *)
+    #PROMPT="%{${fg[cyan]}%}[%n@%m %~]%{${reset_color}%}$ "
+    PROMPT="%{${fg[cyan]}%}[%n@%m]%{${reset_color}%}$ "
+    RPROMPT="%{${fg[cyan]}%}%~%{${reset_color}%}"
+    PROMPT2="%{${fg[cyan]}%}%_%%%{${reset_color}%} "
+    SPROMPT="%{${fg[cyan]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
+    ;;
 esac
 
 # autocorrect
@@ -185,22 +185,22 @@ setopt RC_EXPAND_PARAM
 # autoload -U colors
 #colors
 
+# for screen, tmux, iterm2
+preexec() {
+  mycmd=(${(s: :)${1}})
+  echo -ne "\ek$(hostname|awk 'BEGIN{FS="."}{print $1}'):$mycmd[1]\e\\"
+}
 # vcs_info
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' formats '(%b)'
 zstyle ':vcs_info:*' actionformats '(%b|%a)'
-preexec() {
-    # for screen, tmux, iterm2
-    mycmd=(${(s: :)${1}})
-    echo -ne "\ek$(hostname|awk 'BEGIN{FS="."}{print $1}'):$mycmd[1]\e\\"
-}
 precmd () {
-    # vcs_info
-    psvar=()
-    LANG=en_US.UTF-8 vcs_info
-    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-    # for screen, tmux, itemr2
-    echo -ne "\ek$(hostname|awk 'BEGIN{FS="."}{print $1}'):idle\e\\"
+  # vcs_info
+  psvar=()
+  LANG=en_US.UTF-8 vcs_info
+  [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+  # for screen, tmux, itemr2
+  echo -ne "\ek$(hostname|awk 'BEGIN{FS="."}{print $1}'):idle\e\\"
 }
 LANG=en_US.UTF-8 vcs_info
 export SVN_EDITOR=/bin/vi
