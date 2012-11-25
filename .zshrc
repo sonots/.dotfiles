@@ -185,16 +185,24 @@ setopt RC_EXPAND_PARAM
 # autoload -U colors
 #colors
 
+# vcs_info
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' formats '(%b)'
 zstyle ':vcs_info:*' actionformats '(%b|%a)'
+preexec() {
+    # for screen, tmux, iterm2
+    mycmd=(${(s: :)${1}})
+    echo -ne "\ek$(hostname|awk 'BEGIN{FS="."}{print $1}'):$mycmd[1]\e\\"
+}
 precmd () {
+    # vcs_info
     psvar=()
     LANG=en_US.UTF-8 vcs_info
     [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+    # for screen, tmux, itemr2
+    echo -ne "\ek$(hostname|awk 'BEGIN{FS="."}{print $1}'):idle\e\\"
 }
 LANG=en_US.UTF-8 vcs_info
-
 export SVN_EDITOR=/bin/vi
 PROMPT="%m%% "
 RPROMPT=' %~%1(v|%F{green}%1v%f|)'
@@ -223,11 +231,3 @@ alias vncstart="vncserver :1 -geometry 1920x1200"
 [[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
 if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
 
-# for screen, tmux, iterm2
-preexec() {
-    mycmd=(${(s: :)${1}})
-    echo -ne "\ek$(hostname|awk 'BEGIN{FS="."}{print $1}'):$mycmd[1]\e\\"
-}
-precmd() {
-    echo -ne "\ek$(hostname|awk 'BEGIN{FS="."}{print $1}'):idle\e\\"
-}
