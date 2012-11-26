@@ -236,3 +236,4 @@ alias vncstart="vncserver :1 -geometry 1920x1200"
 [[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
 if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
 
+export PATH=/Applications/adt-bundle-mac/sdk/platform-tools:$PATH
