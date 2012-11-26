@@ -10,3 +10,4 @@ do
   [ $i = "ln.sh" ] && continue
   ln -s ~/.dotfiles/$i ~/
 done
+vim -c ':BundleInstall!' -c ':q!' -c ':q!'
