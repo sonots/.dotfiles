@@ -3,4 +3,4 @@
 	url = http://github.com/gmarik/vundle.git
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
-	url = git@github.com:robbyrussell/oh-my-zsh.git
+	url = git@github.com:sonots/oh-my-zsh.git
