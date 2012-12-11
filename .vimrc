@@ -126,7 +126,7 @@ let g:ctrlp_max_height          = &lines " 目一杯に一覧
 let g:ctrlp_jump_to_buffer      = 2 " タブで開かれていた場合はそのタブに切り替える
 let g:ctrlp_clear_cache_on_exit = 0 " 終了時キャッシュをクリアしない
 let g:ctrlp_mruf_max            = 500 " MRUの最大記録数
-let g:ctrlp_highlight_match     = [1, 'IncSearch'] " 絞り込みで一致した部分のハイライト
+"let g:ctrlp_highlight_match     = [1, 'IncSearch'] " 絞り込みで一致した部分のハイライト
 let g:ctrlp_open_new_file       = 1 " 新規ファイル作成時にタブで開く
 let g:ctrlp_open_multi          = '10t' " 複数ファイルを開く時にタブで最大10まで開く
 let g:ctrlp_match_window_reversed = 0 " Change the listing order of the files in the match window.
@@ -138,10 +138,10 @@ let g:ctrlp_prompt_mappings = {
   \ 'PrtDelete()':          ['<del>'],
   \ 'PrtDeleteWord()':      ['<c-w>'],
   \ 'PrtClear()':           ['<c-u>'],
-  \ 'PrtSelectMove("j")':   ['<c-n>', '<down>'],
-  \ 'PrtSelectMove("k")':   ['<c-p>', '<up>'],
-  \ 'PrtHistory(-1)':       ['<c-k>'],
-  \ 'PrtHistory(1)':        ['<c-j>'],
+  \ 'PrtSelectMove("j")':   ['<c-n>', '<c-j>', '<down>'],
+  \ 'PrtSelectMove("k")':   ['<c-p>', '<c-k>', '<up>'],
+  \ 'PrtHistory(-1)':       [],
+  \ 'PrtHistory(1)':        [],
   \ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
   \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
   \ 'AcceptSelection("t")': ['<c-t>', '<MiddleMouse>'],
