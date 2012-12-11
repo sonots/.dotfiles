@@ -68,7 +68,7 @@ Bundle 'thinca/vim-quickrun'
 Bundle 'tpope/vim-fugitive'
 Bundle 'mileszs/ack.vim'
 Bundle 'Sixeight/unite-grep'
-Bundle 'kien/ctrlp.vim'
+"Bundle 'kien/ctrlp.vim'
 Bundle 'Shougo/neocomplcache'
 Bundle "git://git.wincent.com/command-t.git"
 "Bundle 'vim-scripts/YankRing.vim'
@@ -112,6 +112,7 @@ nnoremap <silent> ,ug :Unite grep:%:-iHRn<CR>
 "------------------------------------
 " ctrlp.vim
 "------------------------------------
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_max_height          = &lines " 目一杯に一覧
 let g:ctrlp_jump_to_buffer      = 2 " タブで開かれていた場合はそのタブに切り替える
 let g:ctrlp_clear_cache_on_exit = 0 " 終了時キャッシュをクリアしない
@@ -121,7 +122,7 @@ let g:ctrlp_open_new_file       = 1 " 新規ファイル作成時にタブで開
 let g:ctrlp_open_multi          = '10t' " 複数ファイルを開く時にタブで最大10まで開く
 let g:ctrlp_match_window_reversed = 0 " Change the listing order of the files in the match window.
 let g:ctrlp_mruf_default_order = 0 " Set this to 1 to disable sorting when searching in MRU mode:
-let g:ctrlp_map = '<c-u>p'
+let g:ctrlp_map = '<c-k>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_prompt_mappings = {
   \ 'PrtBS()':              ['<c-h>', '<bs>', '<c-]>'],
