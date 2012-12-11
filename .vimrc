@@ -34,6 +34,15 @@ set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=\[%04l,
 set laststatus=2
 
 "------------------------------------
+" Highlight the current line of the active buffer
+"------------------------------------
+augroup vimrc_set_cursorline_only_active_window
+  autocmd!
+  autocmd VimEnter,BufWinEnter,WinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
+
+"------------------------------------
 " indent
 "------------------------------------
 set softtabstop=2 " ruby
