@@ -84,6 +84,8 @@ Bundle 'Shougo/neocomplcache'
 Bundle "git://git.wincent.com/command-t.git"
 "Bundle 'vim-scripts/YankRing.vim'
 Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/vimproc.git'
+Bundle 'Shougo/vimshell.git'
 " ruby
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rake'
