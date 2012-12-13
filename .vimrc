@@ -32,6 +32,8 @@ let g:buftabs_active_highlight_group="Visual"
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=\[%04l,%04v][%02p%%]
 " ステータスラインを常に表示
 set laststatus=2
+" No paren match
+let loaded_matchparen = 1
 
 "------------------------------------
 " Highlight the current line of the active buffer
