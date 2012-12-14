@@ -1,7 +1,13 @@
+" No vi compatibility
 set nocompatible
+" 行数を表示
 set number
+" ~ファイルを作らない
 set nobackup
+" swpファイルを作らない
 set noswapfile
+" スクロール時の余白確保
+set scrolloff=10
 set hidden
 set clipboard=unnamed,autoselect
 syntax on
