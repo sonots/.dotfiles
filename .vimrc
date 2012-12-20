@@ -44,11 +44,12 @@ let loaded_matchparen = 1
 "------------------------------------
 " Highlight the current line of the active buffer
 "------------------------------------
-augroup vimrc_set_cursorline_only_active_window
-  autocmd!
-  autocmd VimEnter,BufWinEnter,WinEnter * setlocal cursorline
-  autocmd WinLeave * setlocal nocursorline
-augroup END
+" This made cursor move slow. I disable this.
+"augroup vimrc_set_cursorline_only_active_window
+"  autocmd!
+"  autocmd VimEnter,BufWinEnter,WinEnter * setlocal cursorline
+"  autocmd WinLeave * setlocal nocursorline
+"augroup END
 
 "------------------------------------
 " indent
