@@ -239,4 +239,4 @@ if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
 
 export PATH=/Applications/adt-bundle-mac/sdk/platform-tools:$PATH
 export LC_CTYPE=en_US.UTF-8
-
+alias 'rbenv_install'='CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline --with-openssl-dir=/usr/local/opt/openssl" rbenv install'
