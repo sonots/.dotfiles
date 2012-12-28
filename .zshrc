@@ -208,6 +208,7 @@ precmd () {
   echo -ne "\ek$(hostname|awk 'BEGIN{FS="."}{print $1}'):idle\e\\"
 }
 LANG=en_US.UTF-8 vcs_info
+export LC_CTYPE=en_US.UTF-8
 export SVN_EDITOR=/bin/vi
 PROMPT="%{$fg_bold[red]%}➜ %{$reset_color%}%m%% "
 RPROMPT=' %~%1(v|%F{green}%1v%f|)'
@@ -228,15 +229,12 @@ alias dstat-mem='dstat -Tclm'
 alias dstat-cpu='dstat -Tclr'
 alias dstat-net='dstat -Tclnd'
 alias dstat-disk='dstat -Tcldr'
-#alias bundle='http_proxy= bundle'
 alias jj="ruby -rjson -e 'jj JSON[ARGF.read]'"
 alias vncstart="vncserver :1 -geometry 1920x1200"
-alias gtpull="gco master; git pull team master"
+alias 'rbenv_install'='CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline --with-openssl-dir=/usr/local/opt/openssl" rbenv install'
 
 [ -f ~/.zsh/.bundler-exec.sh ] && source ~/.zsh/.bundler-exec.sh
 [[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
 if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
+[ -f ~/.zshrc.office ] && source ~/.zshrc.office
 
-export PATH=/Applications/adt-bundle-mac/sdk/platform-tools:$PATH
-export LC_CTYPE=en_US.UTF-8
-alias 'rbenv_install'='CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline --with-openssl-dir=/usr/local/opt/openssl" rbenv install'
