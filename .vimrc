@@ -85,7 +85,7 @@ Bundle 'thinca/vim-ref'
 Bundle 'thinca/vim-quickrun'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Sixeight/unite-grep'
-Bundle 'kien/ctrlp.vim'
+"Bundle 'kien/ctrlp.vim'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimproc.git'
@@ -93,17 +93,17 @@ Bundle 'Shougo/vimshell.git'
 "Bundle 'vim-scripts/YankRing.vim'
 " ruby
 Bundle 'mileszs/ack.vim'
-"Bundle 'tpope/vim-rails'
-"Bundle 'tpope/vim-rake'
-"Bundle 'tpope/vim-bundler'
-"Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rake'
+Bundle 'tpope/vim-bundler'
+Bundle 'vim-ruby/vim-ruby'
 
 "------------------------------------
 " vim-ruby
 "------------------------------------
-"let g:rubycomplete_buffer_loading = 1
-"let g:rubycomplete_classes_in_global = 1
-"let g:rubycomplete_rails = 1
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails = 1
 
 "------------------------------------
 " unite.vim
