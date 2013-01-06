@@ -86,17 +86,18 @@ Bundle 'thinca/vim-quickrun'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Sixeight/unite-grep'
 "Bundle 'kien/ctrlp.vim'
+Bundle 'sonots/ctrlp.vim'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimproc.git'
 Bundle 'Shougo/vimshell.git'
-"Bundle 'vim-scripts/YankRing.vim'
 " ruby
 Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-bundler'
 Bundle 'vim-ruby/vim-ruby'
+"Bundle 'vim-scripts/YankRing.vim'
 
 "------------------------------------
 " vim-ruby
