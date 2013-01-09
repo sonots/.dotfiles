@@ -74,7 +74,7 @@ set smartcase
 let g:netrw_liststyle=3 " shows directory tree by e .
 
 " ctags
-set tags=./tags;
+set tags=~/.tags
 
 "------------------------------------
 " Vundle
@@ -133,7 +133,7 @@ nnoremap <silent> ,ug :Unite grep:%:-iHRn<CR>
 " ctrlp.vim
 "------------------------------------
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_max_height          = &lines " 目一杯に一覧
+let g:ctrlp_max_height          = 10 " 10行
 let g:ctrlp_jump_to_buffer      = 2 " タブで開かれていた場合はそのタブに切り替える
 let g:ctrlp_clear_cache_on_exit = 0 " 終了時キャッシュをクリアしない
 let g:ctrlp_mruf_max            = 500 " MRUの最大記録数
