@@ -17,6 +17,24 @@ filetype plugin on
 filetype plugin indent on " required!
 
 "------------------------------------
+" Buffer
+"------------------------------------
+" バッファ切り替え
+nmap ,n :<C-U>bnext<CR>
+nmap ,p :<C-U>bprevious<CR>
+nnoremap ,1   :e #1<CR>
+nnoremap ,2   :e #2<CR>
+nnoremap ,3   :e #3<CR>
+nnoremap ,4   :e #4<CR>
+nnoremap ,5   :e #5<CR>
+nnoremap ,6   :e #6<CR>
+nnoremap ,7   :e #7<CR>
+nnoremap ,8   :e #8<CR>
+nnoremap ,9   :e #9<CR>
+" バッファ一覧
+nmap ,b :buffers<CR>
+
+"------------------------------------
 " status bar
 "------------------------------------
 set ruler
@@ -96,6 +114,7 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimproc.git'
 Bundle 'Shougo/vimshell.git'
+Bundle 'scrooloose/nerdtree'
 " ruby
 Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-rails'
@@ -308,6 +327,12 @@ inoremap <Nul> <C-n>
 " 保存
 inoremap <C-x>s <Esc>:w<CR>a
 inoremap <C-x>c <Esc>:wq<CR>
+
+"------------------------------------
+" NERD Tree
+"------------------------------------
+" ntでトグル
+noremap nt :NERDTreeToggle<CR>
 
 "------------------------------------
 " Shorten split window move
