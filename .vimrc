@@ -54,10 +54,15 @@ let loaded_matchparen = 1
 "------------------------------------
 " indent
 "------------------------------------
-set softtabstop=2 " ruby
-set shiftwidth=2
+" Tab 文字を空白文字に置き換える (:set noet to off)
 set expandtab
+" Tab 入力時に挿入する空白文字の数
+set softtabstop=2 " ruby
+" Indent 時に挿入する空白文字の数
+set shiftwidth=2
+" 改行時にオートインデント
 set autoindent
+" スマートインデント
 set smartindent
 
 "------------------------------------
