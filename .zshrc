@@ -233,6 +233,7 @@ alias jj="ruby -rjson -e 'jj JSON[ARGF.read]'"
 alias vncstart="vncserver :1 -geometry 1920x1200"
 alias 'rbenv_install'='CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline --with-openssl-dir=/usr/local/opt/openssl" rbenv install'
 
+[ -f `brew --prefix`/etc/profile.d/z.sh ] && . `brew --prefix`/etc/profile.d/z.sh
 [ -f ~/.zsh/.bundler-exec.sh ] && source ~/.zsh/.bundler-exec.sh
 [[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
 if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
