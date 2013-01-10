@@ -347,6 +347,8 @@ cnoremap <C-A> <Home>
 cnoremap <C-F> <Right>
 cnoremap <C-B> <Left>
 
-" grep後にcwinを表示
+" vimgrep後にcwinを表示
 autocmd QuickFixCmdPost make,grep,grepadd,vimgrep,vimgrepadd cwin
+" alias grep to vimgrep
+set grepprg=internal
 
