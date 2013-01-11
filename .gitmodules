@@ -6,4 +6,4 @@
 	url = git@github.com:sonots/oh-my-zsh.git
 [submodule ".zsh/zaw"]
 	path = .zsh/zaw
-	url = git://github.com/zsh-users/zaw.git
+	url = git@github.com:zsh-users/zaw.git
