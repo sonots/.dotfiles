@@ -2,9 +2,11 @@ export LANG=ja_JP.UTF-8
 uname=`uname`
 
 # oh-my-zsh
-ZSH=$HOME/.oh-my-zsh
-plugins=(git osx ruby gem)
-source $ZSH/oh-my-zsh.sh
+if [ -f $HOME/.oh-my-zsh -o -L $HOME/.oh-my-zsh ]; then
+  ZSH=$HOME/.oh-my-zsh
+  plugins=(git osx ruby gem)
+  source $ZSH/oh-my-zsh.sh
+fi
 
 # color
 autoload colors
@@ -233,9 +235,11 @@ alias jj="ruby -rjson -e 'jj JSON[ARGF.read]'"
 alias vncstart="vncserver :1 -geometry 1920x1200"
 alias 'rbenv_install'='CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline --with-openssl-dir=/usr/local/opt/openssl" rbenv install'
 
-[ -f `brew --prefix`/etc/profile.d/z.sh ] && . `brew --prefix`/etc/profile.d/z.sh
+if [ "$uname" = "Darwin" ]; then
+  [ -f `brew --prefix`/etc/profile.d/z.sh ] && . `brew --prefix`/etc/profile.d/z.sh
+fi  
 [ -f ~/.zsh/.bundler-exec.sh ] && source ~/.zsh/.bundler-exec.sh
 [[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
-if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
-[ -f ~/.zshrc.office ] && source ~/.zshrc.office
+if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
+[ -f ~/.zshrc.office -o -L ~/.zsh.office ] && source ~/.zshrc.office
 
