@@ -241,6 +241,7 @@ if [ "$uname" = "Darwin" ]; then
 fi  
 [ -f ~/.zsh/.bundler-exec.sh ] && source ~/.zsh/.bundler-exec.sh
 [[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
+[[ -d ~/.rbenv/bin ]] && export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 [ -f ~/.zshrc.office -o -L ~/.zsh.office ] && source ~/.zshrc.office
 
