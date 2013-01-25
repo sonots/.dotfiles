@@ -166,7 +166,7 @@ let g:ctrlp_open_new_file       = 1 " 新規ファイル作成時にタブで開
 let g:ctrlp_open_multi          = '10t' " 複数ファイルを開く時にタブで最大10まで開く
 let g:ctrlp_match_window_reversed = 0 " Change the listing order of the files in the match window.
 let g:ctrlp_mruf_default_order = 0 " Set this to 1 to disable sorting when searching in MRU mode:
-let g:ctrlp_map = '<c-m>'
+let g:ctrlp_map = '<c-j>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_prompt_mappings = {
   \ 'PrtBS()':              ['<c-h>', '<bs>', '<c-]>'],
