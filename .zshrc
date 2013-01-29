@@ -236,6 +236,7 @@ alias jj="ruby -rjson -e 'jj JSON[ARGF.read]'"
 alias vncstart="vncserver :1 -geometry 1920x1200"
 alias be='bundle exec'
 alias 'rbenv_install'='CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline --with-openssl-dir=/usr/local/opt/openssl" rbenv install'
+if which ack > /dev/null 2>&1; then; else; alias ack="find * -type f | xargs grep"; fi
 
 if [ "$uname" = "Darwin" ]; then
   [ -f `brew --prefix`/etc/profile.d/z.sh ] && . `brew --prefix`/etc/profile.d/z.sh
