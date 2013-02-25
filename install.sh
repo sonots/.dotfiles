@@ -11,7 +11,7 @@ if [ `uname` = "Darwin" ]; then
   make -f make_mac.mak
   popd
 
-  ln -s ~/.dotfiles/.tmux.conf.mac ~/.tmux.conf
+  ln -s ~/.dotfiles/.tmux.conf.osx ~/.tmux.conf
 fi
 
 for i in `ls -a`
