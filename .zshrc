@@ -245,5 +245,10 @@ fi
 [[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
 [[ -d ~/.rbenv/bin ]] && export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
+
+if [ $SHLVL = 1 ]; then
+  tmux attach || tmux -f $HOME/.tmux.conf
+fi
+
 [ -f ~/.zshrc.office -o -L ~/.zsh.office ] && source ~/.zshrc.office
 
