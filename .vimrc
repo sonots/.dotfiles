@@ -10,6 +10,8 @@ set noswapfile
 set scrolloff=10
 set hidden
 set clipboard=autoselect
+" 前行へのバックスペース許可など
+set backspace=indent,eol,start
 syntax on
 filetype on
 filetype indent on
