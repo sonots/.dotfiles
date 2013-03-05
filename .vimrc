@@ -9,7 +9,7 @@ set noswapfile
 " スクロール時の余白確保
 set scrolloff=10
 set hidden
-set clipboard=unnamed,autoselect
+set clipboard=autoselect
 syntax on
 filetype on
 filetype indent on
