@@ -46,6 +46,7 @@ if [ "$uname" != "Darwin" ]; then
   source ~/.zsh/zaw/zaw.zsh
   bindkey '^R' zaw-history
 fi
+source ~/.zsh/z/z.sh
 #source ~/.zsh/incr*.zsh
 
 # keybind emacs
