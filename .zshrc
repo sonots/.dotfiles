@@ -47,6 +47,8 @@ if [ "$uname" != "Darwin" ]; then
   bindkey '^R' zaw-history
 fi
 source ~/.zsh/z/z.sh
+compctl -U -K _z_zsh_tab_completion z # enable tab completion for z, not only for _z
+# too slow ...
 #source ~/.zsh/incr*.zsh
 
 # keybind emacs
