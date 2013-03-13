@@ -8,6 +8,8 @@ set nobackup
 set noswapfile
 " スクロール時の余白確保
 set scrolloff=10
+" No beep sound
+set visualbell t_vb=
 set hidden
 set clipboard=autoselect
 " 前行へのバックスペース許可など
