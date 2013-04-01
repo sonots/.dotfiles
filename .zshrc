@@ -6,6 +6,7 @@ if [ -f $HOME/.oh-my-zsh -o -L $HOME/.oh-my-zsh ]; then
   ZSH=$HOME/.oh-my-zsh
   plugins=(git osx ruby gem)
   source $ZSH/oh-my-zsh.sh
+  export DISABLE_AUTO_UPDATE="true"
 fi
 
 # color
