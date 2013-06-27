@@ -240,6 +240,7 @@ alias jj="ruby -rjson -e 'jj JSON[ARGF.read]'"
 alias vncstart="vncserver :1 -geometry 1920x1200"
 alias be='bundle exec'
 alias fs='foreman start'
+alias git=$HOME/.dotfiles/.bin/hub
 alias 'rbenv_install'='CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline --with-openssl-dir=/usr/local/opt/openssl" rbenv install'
 if which ack > /dev/null 2>&1; then; else; alias ack="find * -type f | xargs grep"; fi
 
@@ -257,5 +258,7 @@ if [ $SHLVL = 1 ]; then
 fi
 fi
 
+export DISABLE_UPDATE_PROMPT="true"
 [ -f ~/.zshrc.office -o -L ~/.zsh.office ] && source ~/.zshrc.office
 [[ -f "$HOME/perl5/perlbrew/etc/bashrc" ]] && source "$HOME/perl5/perlbrew/etc/bashrc"
+export PATH=$HOME/.nodebrew/current/bin:$PATH
