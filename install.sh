@@ -20,6 +20,7 @@ do
   [ $i = ".." ] && continue
   [ $i = ".git" ] && continue
   [ $i = "README.md" ] && continue
+  [ $i = "install.sh" ] && continue
   ln -s ~/.dotfiles/$i ~/
 done
 vim -c ':BundleInstall!' -c ':q!' -c ':q!'
