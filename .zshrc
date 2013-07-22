@@ -9,6 +9,9 @@ if [ -f $HOME/.oh-my-zsh -o -L $HOME/.oh-my-zsh ]; then
   export DISABLE_AUTO_UPDATE="true"
 fi
 
+# Disable Ctrl-d logout
+set -o ignoreeof
+
 # color
 autoload colors
 colors
