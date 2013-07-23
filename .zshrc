@@ -94,6 +94,9 @@ case "`uname`" in
       alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
       alias vi='vim'
     fi
+    if [ -d /Applications/Sublime\ Text.app ]; then
+      alias st='/Applications/Sublime\ Text.app/Contents/MacOS/Sublime\ Text'
+    fi
     setopt auto_cd
     function chpwd(){ls -F -G}
     alias ls='ls -G'
