@@ -20,6 +20,7 @@
 [alias]
   # http://oli.jp/2012/git-powerup/
   # http://blog.blindgaenger.net/advanced_git_aliases.html
+  pull-dry-run  = !"git fetch origin; git diff --stat --summary master..origin/master"
   alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
   b = branch -a
   br = browse-remote
@@ -47,3 +48,7 @@
   brlcl = !git branch --merged | grep -v '*' | xargs -I % git branch -d % 
   brrcl = !git branch -a --merged | grep -v master | grep -v HEAD | grep 'remotes/origin' | sed 's!remotes/origin/!!' | xargs -I % git push origin :%
 
+[hub]
+	host = github.dena.jp
+	host = github.dena.jp
+	host = github.dena.jp
