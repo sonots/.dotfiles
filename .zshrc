@@ -7,6 +7,7 @@ if [ -f $HOME/.oh-my-zsh -o -L $HOME/.oh-my-zsh ]; then
   plugins=(git osx ruby gem)
   source $ZSH/oh-my-zsh.sh
   export DISABLE_AUTO_UPDATE="true"
+  export DISABLE_UPDATE_PROMPT="true"
 fi
 
 # Disable Ctrl-d logout
@@ -227,6 +228,7 @@ RPROMPT=' %~%1(v|%F{green}%1v%f|)'
 
 [[ $EMACS = t ]] && unsetopt zle
 
+export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cert.pem
 export PATH=/usr/java/latest/bin:$PATH
 export PATH=/usr/java/ant/bin:$PATH
 export PATH=/usr/sbin:$PATH
@@ -251,8 +253,8 @@ if which ack > /dev/null 2>&1; then; else; alias ack="find * -type f | xargs gre
 
 if [ "$uname" = "Darwin" ]; then
   [ -f `brew --prefix`/etc/profile.d/z.sh ] && . `brew --prefix`/etc/profile.d/z.sh
+  alias ctags="`brew --prefix`/bin/ctags"
 fi  
-[ -f ~/.zsh/.bundler-exec.sh ] && source ~/.zsh/.bundler-exec.sh
 [[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
 [[ -d ~/.rbenv/bin ]] && export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
@@ -263,7 +265,6 @@ if [ $SHLVL = 1 ]; then
 fi
 fi
 
-export DISABLE_UPDATE_PROMPT="true"
 [ -f ~/.zshrc.office -o -L ~/.zsh.office ] && source ~/.zshrc.office
 [[ -f "$HOME/perl5/perlbrew/etc/bashrc" ]] && source "$HOME/perl5/perlbrew/etc/bashrc"
-export PATH=$HOME/.nodebrew/current/bin:$PATH
+[[ -d "$HOME/.nodebrew/current/bin" ]] && export PATH=$HOME/.nodebrew/current/bin:$PATH
