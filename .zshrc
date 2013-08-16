@@ -97,6 +97,7 @@ case "`uname`" in
     fi
     alias sub='/Applications/Sublime\ Text.app/Contents/MacOS/Sublime\ Text'
     alias marked='/Applications/Marked.app/Contents/MacOS/Marked'
+    alias text='/Applications/TextMate.app/Contents/MacOS/TextMate'
     setopt auto_cd
     function chpwd(){ls -F -G}
     alias ls='ls -G'
