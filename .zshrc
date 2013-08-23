@@ -46,10 +46,16 @@ autoload predict-on
 #predict-on
 
 # plugin
-if [ "$uname" != "Darwin" ]; then
-  source ~/.zsh/zaw/zaw.zsh
-  bindkey '^R' zaw-history
-fi
+case "`uname`" in
+  Darwin) # Mac
+    [ -f `brew --prefix`/etc/profile.d/z.sh ] && . `brew --prefix`/etc/profile.d/z.sh
+    ;;
+
+  *) # else
+    source ~/.zsh/zaw/zaw.zsh
+    bindkey '^R' zaw-history
+    ;; 
+esac
 source ~/.zsh/z/z.sh
 compctl -U -K _z_zsh_tab_completion z # enable tab completion for z, not only for _z
 # too slow ...
@@ -88,8 +94,8 @@ zstyle ':completion:*:hosts' hosts $hosts
 # alias
 
 case "`uname`" in
-  Darwin) # OSがMacならば
-    if [ -d /Applications/MacVim.app ]; then # MacVimが存在するならば
+  Darwin) # Mac
+    if [ -d /Applications/MacVim.app ]; then
       export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
       alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
       alias vi='vim'
@@ -97,9 +103,10 @@ case "`uname`" in
     setopt auto_cd
     function chpwd(){ls -F -G}
     alias ls='ls -G'
+    [ -f `brew --prefix`/etc/profile.d/z.sh ] && . `brew --prefix`/etc/profile.d/z.sh
     ;;
 
-  *) # OSがMac以外
+  *) # else
     setopt auto_cd
     function chpwd(){ls -F --color=tty}
     alias ls='ls --color=tty'
@@ -243,14 +250,12 @@ alias jj="ruby -rjson -e 'jj JSON[ARGF.read]'"
 alias vncstart="vncserver :1 -geometry 1920x1200"
 alias be='bundle exec'
 alias fs='foreman start'
-alias git=$HOME/.dotfiles/.bin/hub
+alias gru='git remote update'
 alias 'rbenv_install'='CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline --with-openssl-dir=/usr/local/opt/openssl" rbenv install'
 if which ack > /dev/null 2>&1; then; else; alias ack="find * -type f | xargs grep"; fi
 
-if [ "$uname" = "Darwin" ]; then
-  [ -f `brew --prefix`/etc/profile.d/z.sh ] && . `brew --prefix`/etc/profile.d/z.sh
-fi  
-[ -f ~/.zsh/.bundler-exec.sh ] && source ~/.zsh/.bundler-exec.sh
+# alias git=$HOME/.dotfiles/.bin/hub
+# [ -f ~/.zsh/.bundler-exec.sh ] && source ~/.zsh/.bundler-exec.sh
 [[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
 [[ -d ~/.rbenv/bin ]] && export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
@@ -265,3 +270,5 @@ export DISABLE_UPDATE_PROMPT="true"
 [ -f ~/.zshrc.office -o -L ~/.zsh.office ] && source ~/.zshrc.office
 [[ -f "$HOME/perl5/perlbrew/etc/bashrc" ]] && source "$HOME/perl5/perlbrew/etc/bashrc"
 export PATH=$HOME/.nodebrew/current/bin:$PATH
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
