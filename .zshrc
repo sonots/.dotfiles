@@ -5,8 +5,9 @@ uname=`uname`
 if [ -f $HOME/.oh-my-zsh -o -L $HOME/.oh-my-zsh ]; then
   ZSH=$HOME/.oh-my-zsh
   plugins=(git osx ruby gem)
-  source $ZSH/oh-my-zsh.sh
   export DISABLE_AUTO_UPDATE="true"
+  export DISABLE_UPDATE_PROMPT="true"
+  source $ZSH/oh-my-zsh.sh
 fi
 
 # Disable Ctrl-d logout
@@ -100,10 +101,14 @@ case "`uname`" in
       alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
       alias vi='vim'
     fi
+    alias sub='/Applications/Sublime\ Text.app/Contents/MacOS/Sublime\ Text'
+    alias marked='/Applications/Marked.app/Contents/MacOS/Marked'
+    alias text='/Applications/TextMate.app/Contents/MacOS/TextMate'
     setopt auto_cd
     function chpwd(){ls -F -G}
     alias ls='ls -G'
     [ -f `brew --prefix`/etc/profile.d/z.sh ] && . `brew --prefix`/etc/profile.d/z.sh
+    alias ctags="`brew --prefix`/bin/ctags"
     ;;
 
   *) # else
@@ -232,6 +237,7 @@ RPROMPT=' %~%1(v|%F{green}%1v%f|)'
 
 [[ $EMACS = t ]] && unsetopt zle
 
+export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cert.pem
 export PATH=/usr/java/latest/bin:$PATH
 export PATH=/usr/java/ant/bin:$PATH
 export PATH=/usr/sbin:$PATH
@@ -259,16 +265,13 @@ if which ack > /dev/null 2>&1; then; else; alias ack="find * -type f | xargs gre
 [[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
 [[ -d ~/.rbenv/bin ]] && export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
-
-if [ "$uname" != "Darwin" ]; then # let me off on my local machine
-if [ $SHLVL = 1 ]; then
-  tmux attach || tmux -f $HOME/.tmux.conf
-fi
-fi
-
-export DISABLE_UPDATE_PROMPT="true"
 [ -f ~/.zshrc.office -o -L ~/.zsh.office ] && source ~/.zshrc.office
 [[ -f "$HOME/perl5/perlbrew/etc/bashrc" ]] && source "$HOME/perl5/perlbrew/etc/bashrc"
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
+[[ -d "$HOME/.nodebrew/current/bin" ]] && export PATH=$HOME/.nodebrew/current/bin:$PATH
+[[ -d "$HOME/.pyenv/bin" ]] && export PATH="$HOME/.pyenv/bin:$PATH" && eval "$(pyenv init -)"
+
+if [ "$uname" != "Darwin" ]; then # let me off on my local machine
+  if [ $SHLVL = 1 ]; then
+    tmux attach || tmux -f $HOME/.tmux.conf
+  fi
+fi
