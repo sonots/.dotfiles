@@ -257,6 +257,7 @@ alias vncstart="vncserver :1 -geometry 1920x1200"
 alias be='bundle exec'
 alias fs='foreman start'
 alias gru='git remote update'
+alias gupull='git pull --rebase upstream `git current-branch`'
 alias 'rbenv_install'='CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline --with-openssl-dir=/usr/local/opt/openssl" rbenv install'
 if which ack > /dev/null 2>&1; then; else; alias ack="find * -type f | xargs grep"; fi
 
