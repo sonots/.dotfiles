@@ -296,7 +296,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " Insert mode like emacs
 "------------------------------------
 " Use <tab> to indent
-inoremap <tab> <C-o>==<End>
+"inoremap <tab> <C-o>==<End>
 inoremap <C-p> <Up>
 inoremap <C-n> <Down>
 inoremap <C-b> <Left>
