@@ -336,7 +336,7 @@ inoremap <C-x>c <Esc>:wq<CR>
 " NERD Tree
 "------------------------------------
 " ntでトグル
-noremap nt :NERDTreeToggle<CR>
+noremap <C-n> :NERDTreeToggle<CR>
 
 "------------------------------------
 " Shorten split window move
