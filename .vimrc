@@ -101,7 +101,7 @@ set smartcase
 let g:netrw_liststyle=3 " shows directory tree by e .
 
 " ctags
-set tags=~/.tags
+set tags=.tags
 
 "------------------------------------
 " Vundle

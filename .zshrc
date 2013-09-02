@@ -101,7 +101,8 @@ case "`uname`" in
       alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
       alias vi='vim'
     fi
-    alias sublime='/Applications/Sublime\ Text.app/Contents/MacOS/Sublime\ Text'
+    [ -d /Applications/Sublime\ Text\ 2.app ] && alias sublime='/Applications/Sublime\ Text\ 2.app/Contents/MacOS/Sublime\ Text\ 2'
+    [ -d /Applications/Sublime\ Text.app ] && alias sublime='/Applications/Sublime\ Text.app/Contents/MacOS/Sublime\ Text'
     alias marked='/Applications/Marked.app/Contents/MacOS/Marked'
     alias mate='/Applications/TextMate.app/Contents/MacOS/TextMate'
     setopt auto_cd
@@ -258,6 +259,7 @@ alias be='bundle exec'
 alias fs='foreman start'
 alias gru='git remote update'
 alias gupull='git pull --rebase upstream `git current-branch`'
+alias ctags="ctags -f .tags -R ."
 alias 'rbenv_install'='CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline --with-openssl-dir=/usr/local/opt/openssl" rbenv install'
 if which ack > /dev/null 2>&1; then; else; alias ack="find * -type f | xargs grep"; fi
 
