@@ -10,10 +10,11 @@ set noswapfile
 set scrolloff=10
 " No beep sound
 set visualbell t_vb=
-set hidden
-set clipboard=autoselect
 " 前行へのバックスペース許可など
 set backspace=indent,eol,start
+
+set hidden
+set clipboard=autoselect
 syntax on
 filetype on
 filetype indent on
@@ -161,6 +162,7 @@ nnoremap <silent> ,ug :Unite grep:%:-iHRn<CR>
 " ctrlp.vim
 "------------------------------------
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+" let g:ctrlp_max_height          = &lines " 目一杯に一覧
 let g:ctrlp_max_height          = 10 " 10行
 let g:ctrlp_jump_to_buffer      = 2 " タブで開かれていた場合はそのタブに切り替える
 let g:ctrlp_clear_cache_on_exit = 1 " 終了時キャッシュをクリアする
@@ -170,7 +172,7 @@ let g:ctrlp_open_new_file       = 1 " 新規ファイル作成時にタブで開
 let g:ctrlp_open_multi          = '10t' " 複数ファイルを開く時にタブで最大10まで開く
 let g:ctrlp_match_window_reversed = 0 " Change the listing order of the files in the match window.
 let g:ctrlp_mruf_default_order = 0 " Set this to 1 to disable sorting when searching in MRU mode:
-let g:ctrlp_map = '<c-k>'
+let g:ctrlp_map = '<c-k>' " Start CtrlP by Ctrl-k :p
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_prompt_mappings = {
   \ 'PrtBS()':              ['<c-h>', '<bs>', '<c-]>'],
@@ -295,8 +297,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 "------------------------------------
 " Insert mode like emacs
 "------------------------------------
-" Use <tab> to indent
-"inoremap <tab> <C-o>==<End>
+"inoremap <tab> <C-o>==<End> " Use <tab> to indent
 inoremap <C-p> <Up>
 inoremap <C-n> <Down>
 inoremap <C-b> <Left>
@@ -335,7 +336,7 @@ inoremap <C-x>c <Esc>:wq<CR>
 "------------------------------------
 " NERD Tree
 "------------------------------------
-" ntでトグル
+" Ctrl-n でトグル
 noremap <C-n> :NERDTreeToggle<CR>
 
 "------------------------------------
