@@ -80,13 +80,22 @@ let loaded_matchparen = 1
 " Tab 文字を空白文字に置き換える (:set noet to off)
 set expandtab
 " Tab 入力時に挿入する空白文字の数
-set softtabstop=2 " ruby
+set softtabstop=2
 " Indent 時に挿入する空白文字の数
 set shiftwidth=2
+" Tab 文字の見た目上の幅
+set tabstop=2
 " 改行時にオートインデント
 set autoindent
 " スマートインデント
 set smartindent
+
+autocmd Syntax perl set softtabstop=4 | set shiftwidth=4 | set tabstop=4
+autocmd Syntax ruby set softtabstop=2 | set shiftwidth=2 | set tabstop=2
+autocmd Syntax javascript set softtabstop=2 | set shiftwidth=2 | set tabstop=2
+autocmd Syntax yaml set softtabstop=2 | set shiftwidth=2 | set tabstop=2
+autocmd BufNewFile,BufRead *.tt set softtabstop=2 | set shiftwidth=2 | set tabstop=2
+autocmd Syntax html,xhtml set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 
 "------------------------------------
 " search
