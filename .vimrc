@@ -12,9 +12,12 @@ set scrolloff=10
 set visualbell t_vb=
 " 前行へのバックスペース許可など
 set backspace=indent,eol,start
-
+" Copy to clipboard. NOTE: You need reattach-to-user-namespace on tmux on Mac.
+" See http://qiita.com/yuku_t/items/bea95b1bc6e6ca8a495b
+set clipboard+=unnamed
+" Make a copy by selection like X
+set clipboard+=autoselect
 set hidden
-set clipboard=autoselect
 syntax on
 filetype on
 filetype indent on
