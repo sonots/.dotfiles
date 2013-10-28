@@ -1,5 +1,5 @@
 export LANG=ja_JP.UTF-8
-uname=`uname`
+uname=`uname | tr A-Z a-z`
 
 # oh-my-zsh
 if [ -f $HOME/.oh-my-zsh -o -L $HOME/.oh-my-zsh ]; then
@@ -19,7 +19,7 @@ colors
 
 # prompt
 case ${UID} in
-  0)
+  0) # root user
     #PROMPT="[%n@%m]$ "
     #RPROMPT="%~"
     #PROMPT2="%_%% "
@@ -46,22 +46,6 @@ setopt noautoremoveslash
 autoload predict-on
 #predict-on
 
-# plugin
-case "`uname`" in
-  Darwin) # Mac
-    [ -f `brew --prefix`/etc/profile.d/z.sh ] && . `brew --prefix`/etc/profile.d/z.sh
-    ;;
-
-  *) # else
-    source ~/.zsh/zaw/zaw.zsh
-    bindkey '^R' zaw-history
-    ;; 
-esac
-source ~/.zsh/z/z.sh
-compctl -U -K _z_zsh_tab_completion z # enable tab completion for z, not only for _z
-# too slow ...
-#source ~/.zsh/incr*.zsh
-
 # keybind emacs
 bindkey -e
 
@@ -86,66 +70,10 @@ fpath=(~/.zsh/functions/Completion ${fpath})
 autoload -U compinit
 compinit
 
-autoload zed
+autoload zed # zsh editor
 setopt complete_aliases # aliased ls needs if file/dir completions work
 hosts=( ${(@)${${(M)${(s:# :)${(zj:# :)${(Lf)"$([[ -f ~/.ssh/config ]] && < ~/.ssh/config)"}%%\#*}}##host(|name) *}#host(|name) }/\*} )
 zstyle ':completion:*:hosts' hosts $hosts
-
-##########################
-# alias
-
-case "`uname`" in
-  Darwin) # Mac
-    if [ -d /Applications/MacVim.app ]; then
-      export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
-      alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-      alias vi='vim'
-    fi
-    [ -d /Applications/Sublime\ Text\ 2.app ] && alias sublime='/Applications/Sublime\ Text\ 2.app/Contents/MacOS/Sublime\ Text\ 2'
-    [ -d /Applications/Sublime\ Text.app ] && alias sublime='/Applications/Sublime\ Text.app/Contents/MacOS/Sublime\ Text'
-    [ -d /Applications/CotEditor.app ] && alias cot='/Applications/CotEditor.app/Contents/MacOS/CotEditor'
-    [ -d /Applications/Marked.app ] && alias marked='/Applications/Marked.app/Contents/MacOS/Marked'
-    [ -d /Applications/TextMate.app ] && alias mate='/Applications/TextMate.app/Contents/MacOS/TextMate'
-    setopt auto_cd
-    function chpwd(){ls -F -G}
-    alias ls='ls -G'
-    [ -f `brew --prefix`/etc/profile.d/z.sh ] && . `brew --prefix`/etc/profile.d/z.sh
-    alias ctags="`brew --prefix`/bin/ctags"
-    ;;
-
-  *) # else
-    setopt auto_cd
-    function chpwd(){ls -F --color=tty}
-    alias ls='ls --color=tty'
-    ;; 
-esac
-
-#by cd -[tab]
-setopt auto_pushd
-
-alias ll='ls -l'
-alias la='ls -a'
-alias lla='ls -la'
-alias lld='ls -ld'
-alias sl=ls
-
-alias du="du -h"
-alias df="df -h"
-
-alias du="du -h"
-alias df="df -h"
-
-alias su="su -l"
-
-alias grep='grep -E --color=tty'
-#alias top='top -d 1'
-#alias xqbiff='xqbiff -mode=pop -pt 0 -na -sort=new'
-
-alias ltime='/usr/bin/time --format="\n----\nr %e/u %U/s %S sec"'
-
-alias where="command -v"
-alias j="jobs -l"
-
 
 # terminal
 unset LSCOLORS
@@ -239,6 +167,45 @@ RPROMPT=' %~%1(v|%F{green}%1v%f|)'
 
 [[ $EMACS = t ]] && unsetopt zle
 
+#### plugins ####
+# z - jump around https://github.com/rupa/z
+source ~/.zsh/z/z.sh
+compctl -U -K _z_zsh_tab_completion z # enable tab completion for z, not only for _z
+
+# zsh incremental completion. too slow... let me disabled
+#source ~/.zsh/incr*.zsh
+
+#### alias ####
+#by cd -[tab]
+setopt auto_pushd
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lld='ls -ld'
+alias du="du -h"
+alias df="df -h"
+alias du="du -h"
+alias df="df -h"
+alias su="su -l"
+alias grep='grep -E --color=tty'
+alias where="command -v"
+alias j="jobs -l"
+
+alias dstat-full='dstat -Tclmdrn'
+alias dstat-mem='dstat -Tclm'
+alias dstat-cpu='dstat -Tclr'
+alias dstat-net='dstat -Tclnd'
+alias dstat-disk='dstat -Tcldr'
+alias jj="ruby -rjson -e 'jj JSON[ARGF.read]'"
+alias be='bundle exec'
+alias fs='foreman start'
+alias gru='git remote update'
+alias gupull='git pull --rebase upstream `git current-branch`'
+alias ctags="ctags -f .tags -R ."
+if which ack > /dev/null 2>&1; then; else; alias ack="find * -type f | xargs grep"; fi
+# alias git=$HOME/.dotfiles/.bin/hub # hub is useful, but made me puzzled once. disabled.
+
+#### export ####
 export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cert.pem
 export PATH=/usr/java/latest/bin:$PATH
 export PATH=/usr/java/ant/bin:$PATH
@@ -249,33 +216,15 @@ export PATH=$HOME/bin:$PATH
 export JAVA_HOME=/usr/java/latest
 export ANT_HOME=/usr/java/ant
 export EDITOR=/usr/bin/vim
-alias dstat-full='dstat -Tclmdrn'
-alias dstat-mem='dstat -Tclm'
-alias dstat-cpu='dstat -Tclr'
-alias dstat-net='dstat -Tclnd'
-alias dstat-disk='dstat -Tcldr'
-alias jj="ruby -rjson -e 'jj JSON[ARGF.read]'"
-alias vncstart="vncserver :1 -geometry 1920x1200"
-alias be='bundle exec'
-alias fs='foreman start'
-alias gru='git remote update'
-alias gupull='git pull --rebase upstream `git current-branch`'
-alias ctags="ctags -f .tags -R ."
-alias 'rbenv_install'='CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline --with-openssl-dir=/usr/local/opt/openssl" rbenv install'
-if which ack > /dev/null 2>&1; then; else; alias ack="find * -type f | xargs grep"; fi
-
-# alias git=$HOME/.dotfiles/.bin/hub
-# [ -f ~/.zsh/.bundler-exec.sh ] && source ~/.zsh/.bundler-exec.sh
 [[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
 [[ -d ~/.rbenv/bin ]] && export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
-[ -f ~/.zshrc.office -o -L ~/.zsh.office ] && source ~/.zshrc.office
 [[ -f "$HOME/perl5/perlbrew/etc/bashrc" ]] && source "$HOME/perl5/perlbrew/etc/bashrc"
 [[ -d "$HOME/.nodebrew/current/bin" ]] && export PATH=$HOME/.nodebrew/current/bin:$PATH
 [[ -d "$HOME/.pyenv/bin" ]] && export PATH="$HOME/.pyenv/bin:$PATH" && eval "$(pyenv init -)"
 
-if [ "$uname" != "Darwin" ]; then # let me off on my local machine
-  if [ $SHLVL = 1 ]; then
-    tmux attach || tmux -f $HOME/.tmux.conf
-  fi
-fi
+# load OS dependent zshrc
+# .zsh/.zshrc_darwin
+# .zsh/.zshrc_linux
+[ -f "~/.zsh/.zshrc_$uname" ] && . "~/.zsh/.zshrc_$uname"
+[ -f "~/.zsh/.zshrc_local" ] && . "~/.zsh/.zshrc_local"
