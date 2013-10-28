@@ -10,8 +10,6 @@ if [ `uname` = "Darwin" ]; then
   pushd ~/.dotfiles/.vim/bundle/vimproc
   make -f make_mac.mak
   popd
-
-  ln -s ~/.dotfiles/.tmux.conf.osx ~/.tmux.conf
 fi
 
 for i in `ls -a`

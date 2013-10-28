@@ -6,3 +6,4 @@
 setopt auto_cd
 function chpwd(){ls -F --color=tty}
 alias ls='ls --color=tty'
+alias tmux='tmux -f ~/.tmux.conf.osx'

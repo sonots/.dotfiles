@@ -224,7 +224,7 @@ if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 [[ -d "$HOME/.pyenv/bin" ]] && export PATH="$HOME/.pyenv/bin:$PATH" && eval "$(pyenv init -)"
 
 # load OS dependent zshrc
-# .zsh/.zshrc_darwin
-# .zsh/.zshrc_linux
-[ -f "~/.zsh/.zshrc_$uname" ] && . "~/.zsh/.zshrc_$uname"
-[ -f "~/.zsh/.zshrc_local" ] && . "~/.zsh/.zshrc_local"
+# .zshrc_darwin
+# .zshrc_linux
+[ -f "$HOME/.zshrc_$uname" ] && source "$HOME/.zshrc_$uname"
+[ -f "$HOME/.zshrc_local" ] && source "$HOME/.zshrc_local"
