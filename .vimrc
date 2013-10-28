@@ -119,26 +119,39 @@ set tags=.tags
 "------------------------------------
 " Vundle
 "------------------------------------
-set rtp+=~/.vim/vundle.git/
-call vundle#rc()
-Bundle 'thinca/vim-ref'
-Bundle 'thinca/vim-quickrun'
-Bundle 'tpope/vim-fugitive'
-Bundle 'Sixeight/unite-grep'
-"Bundle 'kien/ctrlp.vim'
-Bundle 'sonots/ctrlp.vim'
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimproc.git'
-Bundle 'Shougo/vimshell.git'
-Bundle 'scrooloose/nerdtree'
+if has('vim_starting')
+  set nocompatible               " Be iMproved
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'Sixeight/unite-grep'
+"NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'sonots/ctrlp.vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'echo "Sorry, cannot update vimproc binary file in Windows."',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
+NeoBundle 'Shougo/vimshell.git'
+NeoBundle 'scrooloose/nerdtree'
 " ruby
-Bundle 'mileszs/ack.vim'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-rake'
-Bundle 'tpope/vim-bundler'
-Bundle 'vim-ruby/vim-ruby'
-"Bundle 'vim-scripts/YankRing.vim'
+NeoBundle 'mileszs/ack.vim'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-rake'
+NeoBundle 'tpope/vim-bundler'
+NeoBundle 'vim-ruby/vim-ruby'
+"NeoBundle 'vim-scripts/YankRing.vim'
 
 ""------------------------------------
 "" vim-colors-solarized
