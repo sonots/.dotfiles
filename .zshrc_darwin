@@ -1,9 +1,10 @@
+#### options ####
+setopt auto_cd
+function chpwd(){ls}
+
 #### plugins ####
 # z - jump around https://github.com/rupa/z
 [ -f `brew --prefix`/etc/profile.d/z.sh ] && . `brew --prefix`/etc/profile.d/z.sh
 
 #### alias ####
-setopt auto_cd
-function chpwd(){ls -F --color=tty}
-alias ls='ls --color=tty'
 alias tmux='tmux -f ~/.tmux.conf.osx'
