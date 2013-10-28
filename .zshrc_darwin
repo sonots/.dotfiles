@@ -7,4 +7,4 @@ function chpwd(){ls}
 [ -f `brew --prefix`/etc/profile.d/z.sh ] && . `brew --prefix`/etc/profile.d/z.sh
 
 #### alias ####
-alias tmux='tmux -f ~/.tmux.conf.osx'
+alias tmux='tmux -f ~/.tmux.conf_darwin'
