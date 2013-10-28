@@ -140,6 +140,15 @@ Bundle 'tpope/vim-bundler'
 Bundle 'vim-ruby/vim-ruby'
 "Bundle 'vim-scripts/YankRing.vim'
 
+""------------------------------------
+"" vim-colors-solarized
+""------------------------------------
+"Bundle "altercation/vim-colors-solarized"
+"syntax enable
+"set background=dark
+"colorscheme solarized
+"let g:solarized_termcolors=256
+
 "------------------------------------
 " vim-ruby
 "------------------------------------
