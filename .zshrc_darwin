@@ -1,10 +1,25 @@
 #### options ####
 setopt auto_cd
-function chpwd(){ls}
+function chpwd(){ls -F -G}
 
 #### plugins ####
 # z - jump around https://github.com/rupa/z
 [ -f `brew --prefix`/etc/profile.d/z.sh ] && . `brew --prefix`/etc/profile.d/z.sh
 
 #### alias ####
+alias ls='ls -G'
 alias tmux='tmux -f ~/.tmux.conf_darwin'
+alias ctags="`brew --prefix`/bin/ctags"
+
+#### alias ####
+if [ -d /Applications/MacVim.app ]; then
+  export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+  alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+  alias vi='vim'
+fi
+[ -d /Applications/Sublime\ Text\ 2.app ] && alias sublime='/Applications/Sublime\ Text\ 2.app/Contents/MacOS/Sublime\ Text\ 2'
+[ -d /Applications/Sublime\ Text.app ] && alias sublime='/Applications/Sublime\ Text.app/Contents/MacOS/Sublime\ Text'
+[ -d /Applications/CotEditor.app ] && alias cot='/Applications/CotEditor.app/Contents/MacOS/CotEditor'
+[ -d /Applications/Marked.app ] && alias marked='/Applications/Marked.app/Contents/MacOS/Marked'
+[ -d /Applications/TextMate.app ] && alias mate='/Applications/TextMate.app/Contents/MacOS/TextMate'
+
