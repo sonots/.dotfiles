@@ -1,3 +1,5 @@
+export PATH=/Users/seo.naotoshi/.rbenv/shims:$PATH
+
 #### options ####
 setopt auto_cd
 function chpwd(){ls -F -G}
@@ -11,7 +13,6 @@ alias ls='ls -G'
 alias tmux='tmux -f ~/.tmux.conf_darwin'
 alias ctags="`brew --prefix`/bin/ctags"
 
-#### alias ####
 if [ -d /Applications/MacVim.app ]; then
   export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
   alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
