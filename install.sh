@@ -15,13 +15,11 @@ do
   [ $i = "install.sh" ] && continue
   ln -s ~/.dotfiles/$i ~/
 done
-vim -c ':NeoBundleInstall!' -c ':q!' -c ':q!'
 
-# Now, NeoBundle does it
-#if [ `uname` = "Darwin" ]; then
-#  pushd ~/.dotfiles/.vim/bundle/vimproc
-#  make -f make_mac.mak
-#  popd
-#fi
+if [ `uname` = "Darwin" ]; then
+  brew bundle
+fi
+
+vim -c ':NeoBundleInstall!' -c ':q!' -c ':q!'
 
 popd
