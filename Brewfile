@@ -41,12 +41,19 @@ install brew-cask
 
 # .dmg with homebrew-cask
 cask install google-chrome
+cask install firefox
 cask install evernote
+cask install skype
 cask install iterm2
+cask install limechat
+cask install sublime-text
+#cask install xquartz
+#cask install wireshark
 cask install kobito
 cask install virtualbox
 cask install vagrant
-cask install echofon
+cask install echofon # mycask
+cask install cot-editor # mycask
 
 # Remove outdated versions
 cleanup
