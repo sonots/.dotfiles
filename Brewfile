@@ -54,6 +54,7 @@ cask install virtualbox
 cask install vagrant
 cask install echofon # mycask
 cask install cot-editor # mycask
+cask install macvim-kaoriya # mycask
 
 # Remove outdated versions
 cleanup
