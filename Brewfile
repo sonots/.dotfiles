@@ -8,6 +8,7 @@ update
 tap homebrew/versions || true
 tap phinze/homebrew-cask || true
 tap homebrew/binary || true
+tap sonots/mycask || true
 
 # Packages
 
@@ -37,13 +38,14 @@ install markdown
 #install packer
 install brew-cask
 
-# .dmg with brew-cask
+# .dmg
 cask install google-chrome
 cask install evernote
 cask install iterm2
 cask install kobito
 cask install virtualbox
 cask install vagrant
+cask install echofon
 
 # Remove outdated versions
 cleanup
