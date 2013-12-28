@@ -47,6 +47,7 @@ cask install skype
 cask install iterm2
 cask install limechat
 cask install sublime-text
+cask install marked2
 #cask install xquartz
 #cask install wireshark
 cask install kobito
@@ -55,6 +56,7 @@ cask install vagrant
 cask install echofon # mycask
 cask install cot-editor # mycask
 cask install macvim-kaoriya # mycask
+cask install gyazo # mycask
 
 # Remove outdated versions
 cleanup
