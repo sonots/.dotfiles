@@ -212,7 +212,7 @@ export PATH=/usr/java/ant/bin:$PATH
 export PATH=/usr/sbin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$HOME/gitrepos/bin:$PATH
 export JAVA_HOME=/usr/java/latest
 export ANT_HOME=/usr/java/ant
 export EDITOR=/usr/bin/vim
@@ -228,3 +228,8 @@ if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 # .zshrc_linux
 [ -f "$HOME/.zshrc_$uname" ] && source "$HOME/.zshrc_$uname"
 [ -f "$HOME/.zshrc_local" ] && source "$HOME/.zshrc_local"
+export GOENVTARGET=$HOME/.goenvtarget
+export PATH=$GOENVTARGET:$PATH
+export GOENVGOROOT=$HOME/.goenvs
+export GOENVTARGET=$HOME/bin
+export GOENVHOME=$HOME/workspace
