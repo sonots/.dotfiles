@@ -18,6 +18,10 @@ done
 
 if [ `uname` = "Darwin" ]; then
   brew bundle
+  brew tap sanemat/font
+  brew install ricty
+  cp -f /usr/local/Cellar/ricty/3.2.2/share/fonts/Ricty*.ttf ~/Library/Fonts/
+  fc-cache -vf
 fi
 
 vim -c ':NeoBundleInstall!' -c ':q!' -c ':q!'
