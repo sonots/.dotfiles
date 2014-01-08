@@ -34,6 +34,8 @@ NeoBundle 'tpope/vim-rake'
 NeoBundle 'tpope/vim-bundler'
 NeoBundle 'vim-ruby/vim-ruby'
 "NeoBundle 'vim-scripts/YankRing.vim'
+"NeoBundle 'jnwhiteh/vim-golang'
+"NeoBundle 'Blackrush/vim-gocode'
 
 "------------------------------------
 " Vim
@@ -139,6 +141,8 @@ autocmd Syntax javascript set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd Syntax yaml set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd BufNewFile,BufRead *.tt set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd Syntax html,xhtml set softtabstop=2 | set shiftwidth=2 | set tabstop=2
+autocmd BufNewFile,BufReadPost *.go set filetype=go
+autocmd FileType go setlocal noexpandtab tabstop=2 shiftwidth=2
 
 "------------------------------------
 " search
