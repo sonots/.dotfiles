@@ -229,6 +229,7 @@ if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 [ -f "$HOME/.zshrc_$uname" ] && source "$HOME/.zshrc_$uname"
 [ -f "$HOME/.zshrc_local" ] && source "$HOME/.zshrc_local"
 # go
+export GOROOT=$HOME/go
 export GOPATH=$HOME/.go
 export PATH=$GOPATH/bin:$PATH
 # goenv
