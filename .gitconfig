@@ -49,4 +49,5 @@
   branch-remote-clean = !git branch -a --merged | grep -v master | grep -v HEAD | grep 'remotes/origin' | sed 's!remotes/origin/!!' | xargs -I % git push origin :%
   current-branch = rev-parse --abbrev-ref HEAD
   pull-dry-run  = !"git fetch origin; git diff --stat --summary master..origin/master"
+  fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
   
