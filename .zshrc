@@ -208,6 +208,9 @@ alias ctags="ctags -f .tags -R ."
 if which ack > /dev/null 2>&1; then; else; alias ack="find * -type f | xargs grep"; fi
 # alias git=$HOME/.dotfiles/.bin/hub # hub is useful, but made me puzzled once. disabled.
 
+# noautocorrect
+alias grep="nocorrect grep"
+
 #### export ####
 export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cert.pem
 export PATH=/usr/java/latest/bin:$PATH
