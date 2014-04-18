@@ -13,6 +13,9 @@ fi
 # Disable Ctrl-d logout
 set -o ignoreeof
 
+# Disable autocorrect
+#unsetopt correct_all
+
 # color
 autoload colors
 colors
@@ -197,8 +200,8 @@ alias dstat-cpu='dstat -Tclr'
 alias dstat-net='dstat -Tclnd'
 alias dstat-disk='dstat -Tcldr'
 alias jj="ruby -rjson -e 'jj JSON[ARGF.read]'"
-alias be='bundle exec'
-alias fs='foreman start'
+alias be='nocorrect bundle exec'
+alias fs='nocorrect foreman start'
 alias gru='git remote update'
 alias gupull='git pull --rebase upstream `git current-branch`'
 alias ctags="ctags -f .tags -R ."
