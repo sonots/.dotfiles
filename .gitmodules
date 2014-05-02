@@ -1,6 +1,6 @@
 [submodule ".zsh/zaw"]
 	path = .zsh/zaw
-	url = git@github.com:zsh-users/zaw.git
+	url = https://github.com/zsh-users/zaw.git
 [submodule ".zsh/z"]
 	path = .zsh/z
 	url = https://github.com/rupa/z.git
