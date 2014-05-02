@@ -7,3 +7,5 @@ auto-save-list/
 .emacs.d/.session
 .emacs.d/ac-comphist.dat
 .vim/bundle
+.vim/undo
+.vim/.netrwhist
