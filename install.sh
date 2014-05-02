@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[[ -e ~/.dotfiles ]] || git clone git@github.com:sonots/.dotfiles.git ~/.dotfiles
+[[ -e ~/.dotfiles ]] || git clone https://github.com/sonots/.dotfiles.git ~/.dotfiles
 pushd ~/.dotfiles
 
 git submodule init
