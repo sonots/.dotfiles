@@ -1,9 +1,6 @@
 [submodule ".vim/vundle.git"]
 	path = .vim/vundle.git
 	url = http://github.com/gmarik/vundle.git
-[submodule ".oh-my-zsh"]
-	path = .oh-my-zsh
-	url = git@github.com:sonots/oh-my-zsh.git
 [submodule ".zsh/zaw"]
 	path = .zsh/zaw
 	url = git@github.com:zsh-users/zaw.git
@@ -13,3 +10,6 @@
 [submodule ".vim/bundle/neobundle.vim"]
 	path = .vim/bundle/neobundle.vim
 	url = https://github.com/Shougo/neobundle.vim.git
+[submodule ".oh-my-zsh"]
+	path = .oh-my-zsh
+	url = https://github.com/sonots/oh-my-zsh.git
