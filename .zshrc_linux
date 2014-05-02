@@ -4,5 +4,7 @@ function chpwd(){ls}
 
 #### plugins ####
 # anything.el (or unite.vim). Enables to list history and search and go, etc.
-source ~/.zsh/zaw/zaw.zsh
-bindkey '^R' zaw-history
+if [ -f ~/.zsh/zaw/zaw.zsh ]; then
+  source ~/.zsh/zaw/zaw.zsh
+  bindkey '^R' zaw-history
+fi
