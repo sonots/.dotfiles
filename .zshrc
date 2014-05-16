@@ -219,6 +219,7 @@ export PATH=/usr/sbin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/bin:$HOME/bin/local:$HOME/gitrepos/bin:$PATH
+export PATH="/usr/local/heroku/bin:$PATH" ### Added by the Heroku Toolbelt
 export JAVA_HOME=/usr/java/latest
 export ANT_HOME=/usr/java/ant
 export EDITOR=/usr/bin/vim
