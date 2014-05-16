@@ -213,7 +213,7 @@ let g:ctrlp_open_new_file       = 1 " 新規ファイル作成時にタブで開
 let g:ctrlp_open_multi          = '10t' " 複数ファイルを開く時にタブで最大10まで開く
 let g:ctrlp_match_window_reversed = 0 " Change the listing order of the files in the match window.
 let g:ctrlp_mruf_default_order = 0 " Set this to 1 to disable sorting when searching in MRU mode:
-let g:ctrlp_map = '<c-k>' " Start CtrlP by Ctrl-k :p
+let g:ctrlp_map = '<c-p>' " Start CtrlP by Ctrl-p
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_prompt_mappings = {
   \ 'PrtBS()':              ['<c-h>', '<bs>', '<c-]>'],
@@ -343,39 +343,63 @@ highlight PmenuSbar ctermbg=4
 "------------------------------------
 " Insert mode like emacs
 "------------------------------------
-"inoremap <tab> <C-o>==<End> " Use <tab> to indent
-inoremap <C-p> <Up>
-inoremap <C-n> <Down>
-inoremap <C-b> <Left>
-inoremap <C-f> <Right>
-inoremap <C-e> <End>
-inoremap <C-a> <Home>
-inoremap <C-h> <Backspace>
-inoremap <C-d> <Del>
-" カーソル位置の行をウィンドウの中央に来るようにスルロール
-inoremap <C-l> <C-o>zz
-" カーソル以降の文字を削除
-inoremap <C-k> <C-o>D
-" カーソル以前の文字を削除
-inoremap <C-u> <C-o>d0
-" アンドゥ
-inoremap <C-x>u <C-o>u
-" 貼りつけ
-inoremap <C-y> <C-o>P
-" カーソルから単語末尾まで削除
-inoremap <F1>d <C-o>dw
-" ファイルの先頭に移動
-inoremap <F1>< <Esc>ggI
-" ファイルの末尾に移動
-inoremap <F1>> <Esc>GA
-" 下にスクロール
-inoremap <C-v> <C-o><C-f>
-" 上にスクロール
-inoremap <F1>v <C-o><C-b>
-" Ctrl-Space で補完
-" Windowsは <Nul>でなく <C-Space> とする
-inoremap <Nul> <C-n>
-" 保存
+""inoremap <tab> <C-o>==<End> " Use <tab> to indent
+"inoremap <C-p> <Up>
+"inoremap <C-n> <Down>
+"inoremap <C-b> <Left>
+"inoremap <C-f> <Right>
+"inoremap <C-e> <End>
+"inoremap <C-a> <Home>
+"inoremap <C-h> <Backspace>
+"inoremap <C-d> <Del>
+"" カーソル位置の行をウィンドウの中央に来るようにスルロール
+"inoremap <C-l> <C-o>zz
+"" カーソル以降の文字を削除
+"inoremap <C-k> <C-o>D
+"" カーソル以前の文字を削除
+"inoremap <C-u> <C-o>d0
+"" アンドゥ
+"inoremap <C-x>u <C-o>u
+"" 貼りつけ
+"inoremap <C-y> <C-o>P
+"" カーソルから単語末尾まで削除
+"inoremap <F1>d <C-o>dw
+"" ファイルの先頭に移動
+"inoremap <F1>< <Esc>ggI
+"" ファイルの末尾に移動
+"inoremap <F1>> <Esc>GA
+"" 下にスクロール
+"inoremap <C-v> <C-o><C-f>
+"" 上にスクロール
+"inoremap <F1>v <C-o><C-b>
+"" Ctrl-Space で補完
+"" Windowsは <Nul>でなく <C-Space> とする
+"inoremap <Nul> <C-n>
+"" 保存
+
+"------------------------------------
+" Command-line mode keymappings like emacs
+"------------------------------------
+" <C-a>, A: move to head.
+cnoremap <C-a>          <Home>
+" <C-b>: previous char.
+cnoremap <C-b>          <Left>
+" <C-d>: delete char.
+cnoremap <C-d>          <Del>
+" <C-e>, E: move to end.
+cnoremap <C-e>          <End>
+" <C-f>: next char.
+cnoremap <C-f>          <Right>
+" <C-n>: next history.
+cnoremap <C-n>          <Down>
+" <C-p>: previous history.
+cnoremap <C-p>          <Up>
+" <C-k>, K: delete to end.
+cnoremap <C-k> <C-\>e getcmdpos() == 1 ?
+      \ '' : getcmdline()[:getcmdpos()-2]<CR>
+" <C-y>: paste.
+cnoremap <C-y>          <C-r>*
+"}}}
 
 "------------------------------------
 " SkeltonAu
@@ -402,35 +426,28 @@ noremap <C-n> :NERDTreeToggle<CR>
 "------------------------------------
 " Shorten split window move
 "------------------------------------
+" C-w h ではなく C-h だけで、左の split ウィンドウに移動できるように
 noremap <C-h> <C-w>h
 noremap <C-l> <C-w>l
 noremap <C-k> <C-w>k
 noremap <C-j> <C-w>j
 
-" Command-line mode keymappings like emacs:"{{{
-" <C-a>, A: move to head.
-cnoremap <C-a>          <Home>
-" <C-b>: previous char.
-cnoremap <C-b>          <Left>
-" <C-d>: delete char.
-cnoremap <C-d>          <Del>
-" <C-e>, E: move to end.
-cnoremap <C-e>          <End>
-" <C-f>: next char.
-cnoremap <C-f>          <Right>
-" <C-n>: next history.
-cnoremap <C-n>          <Down>
-" <C-p>: previous history.
-cnoremap <C-p>          <Up>
-" <C-k>, K: delete to end.
-cnoremap <C-k> <C-\>e getcmdpos() == 1 ?
-      \ '' : getcmdline()[:getcmdpos()-2]<CR>
-" <C-y>: paste.
-cnoremap <C-y>          <C-r>*
-"}}}
+"------------------------------------
+" Additional Hotkeys
+"------------------------------------
+" C-n: Syntax check for a perl/ruby script
+" C-e: Execute a perl/ruby script
+autocmd FileType perl :map <C-n> <ESC>:!perl -cw %<CR>
+autocmd FileType perl :map <C-e> <ESC>:!perl %<CR>
+autocmd FileType ruby :map <C-n> <ESC>:!ruby -cW %<CR>
+autocmd FileType ruby :map <C-e> <ESC>:!ruby %<CR>
+" Exit insert mode with C-j
+imap <C-j> <C-[>
 
 " vimgrep後にcwinを表示
 autocmd QuickFixCmdPost make,grep,grepadd,vimgrep,vimgrepadd cwin
 " alias grep to vimgrep
 set grepprg=internal
+
+
 
