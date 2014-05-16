@@ -335,6 +335,11 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 "let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 "let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
+" Popup color
+highlight Pmenu ctermbg=4
+highlight PmenuSel ctermbg=1
+highlight PmenuSbar ctermbg=4
+
 "------------------------------------
 " Insert mode like emacs
 "------------------------------------
