@@ -200,8 +200,7 @@ alias dstat-cpu='dstat -Tclr'
 alias dstat-net='dstat -Tclnd'
 alias dstat-disk='dstat -Tcldr'
 alias jj="ruby -rjson -e 'jj JSON[ARGF.read]'"
-alias be='nocorrect bundle exec'
-alias fs='nocorrect bundle exec foreman start'
+alias fs='nocorrect be foreman start'
 alias gru='git remote update'
 alias gupull='git pull --rebase upstream `git current-branch`'
 alias ctags="ctags -f .tags -R ."
@@ -250,7 +249,13 @@ bundol () {
   sed -e "s|gemspec.*|gemspec path: \"$(pwd)\"|" Gemfile > /tmp/Gemfile
   echo 'gem "pry"' >> /tmp/Gemfile
   echo 'gem "pry-nav"' >> /tmp/Gemfile
-  echo 'gem "byebug"' >> /tmp/Gemfile
   bundle --gemfile=/tmp/Gemfile
-  cp /tmp/Gemfile.lock Gemfile.lock
+}
+
+be () {
+  if [ -e /tmp/Gemfile ]; then
+    BUNDLE_GEMFILE=/tmp/Gemfile RUBYOPT="-r pry" bundle exec $@
+  else
+    bundle exec $@
+  fi
 }
