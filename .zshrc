@@ -245,3 +245,12 @@ export PATH=$GOENVTARGET:$PATH
 export GOENVGOROOT=$HOME/.goenvs
 export GOENVTARGET=$HOME/bin
 export GOENVHOME=$HOME/workspace
+
+bundol () {
+  sed -e "s|gemspec.*|gemspec path: \"$(pwd)\"|" Gemfile > /tmp/Gemfile
+  echo 'gem "pry"' >> /tmp/Gemfile
+  echo 'gem "pry-nav"' >> /tmp/Gemfile
+  echo 'gem "byebug"' >> /tmp/Gemfile
+  bundle --gemfile=/tmp/Gemfile
+  cp /tmp/Gemfile.lock Gemfile.lock
+}
