@@ -259,3 +259,4 @@ be () {
     bundle exec $@
   fi
 }
+alias be="nocorrect be"
