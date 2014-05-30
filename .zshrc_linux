@@ -5,6 +5,14 @@ function chpwd(){ls}
 #### plugins ####
 # anything.el (or unite.vim). Enables to list history and search and go, etc.
 if [ -f ~/.zsh/zaw/zaw.zsh ]; then
+  autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+  add-zsh-hook chpwd chpwd_recent_dirs
+  zstyle ':chpwd:*' recent-dirs-max 5000
+  zstyle ':chpwd:*' recent-dirs-default yes
+  zstyle ':completion:*' recent-dirs-insert both
+  
   source ~/.zsh/zaw/zaw.zsh
+  zstyle ':filter-select' case-insensitive ye
+  bindkey '^@' zaw-cdr # directory
   bindkey '^R' zaw-history
 fi
