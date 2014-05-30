@@ -10,6 +10,9 @@ if [ -f $HOME/.oh-my-zsh -o -L $HOME/.oh-my-zsh ]; then
   source $ZSH/oh-my-zsh.sh
 fi
 
+# remove rprompt after executing a command
+setopt transient_rprompt
+
 # Disable Ctrl-d logout
 set -o ignoreeof
 
@@ -19,27 +22,6 @@ set -o ignoreeof
 # color
 autoload colors
 colors
-
-# prompt
-case ${UID} in
-  0) # root user
-    #PROMPT="[%n@%m]$ "
-    #RPROMPT="%~"
-    #PROMPT2="%_%% "
-    #SPROMPT="%r is correct? [n,y,a,e]: "
-    PROMPT="%B%{${fg[red]}%}%n@%m %/#%{${reset_color}%}%b "
-    PROMPT2="%B%{${fg[red]}%}%_#%{${reset_color}%}%b "
-    SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-    ;;
-  *)
-    #PROMPT="%{${fg[cyan]}%}[%n@%m %~]%{${reset_color}%}$ "
-    PROMPT="%{${fg[cyan]}%}[%n@%m]%{${reset_color}%}$ "
-    RPROMPT="%{${fg[cyan]}%}%~%{${reset_color}%}"
-    PROMPT2="%{${fg[cyan]}%}%_%%%{${reset_color}%} "
-    SPROMPT="%{${fg[cyan]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
-    ;;
-esac
-setopt transient_rprompt # remove rprompt after executing a command
 
 # autocorrect
 setopt correct
@@ -86,7 +68,6 @@ dumb*|emacs*)
   PROMPT2="%_%% "
   SPROMPT="%r is correct? [n,y,a,e]: "
   ;;
-
 xterm)
   export TERM=xterm-color
   ;;
@@ -103,9 +84,6 @@ cons25)
   zstyle ':completion:*' list-colors \
       'di=;34;1' 'ln=;35;1' 'so=;32;1' 'ex=31;1' 'bd=46;34' 'cd=43;34'
   ;;
-esac
-
-case "${TERM}" in
 kterm*|xterm*)
   precmd() {
     echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
@@ -205,7 +183,7 @@ alias gru='git remote update'
 alias gupull='git pull --rebase upstream `git current-branch`'
 alias ctags="ctags -f .tags -R ."
 if which ack > /dev/null 2>&1; then; else; alias ack="find * -type f | xargs grep"; fi
-# alias git=$HOME/.dotfiles/.bin/hub # hub is useful, but made me puzzled once. disabled.
+alias hub=$HOME/.dotfiles/.bin/hub
 
 # noautocorrect
 alias grep="nocorrect grep"
