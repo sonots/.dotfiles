@@ -165,7 +165,7 @@ precmd () {
 LANG=en_US.UTF-8 vcs_info
 export LC_CTYPE=en_US.UTF-8
 export SVN_EDITOR=/bin/vi
-PROMPT="%{$fg_bold[red]%}➜ %{$reset_color%}%m%% "
+PROMPT="%{$fg_bold[red]%}🍣  %{$reset_color%}%m%% "
 RPROMPT=' %~%1(v|%F{green}%1v%f|)'
 
 [[ $EMACS = t ]] && unsetopt zle
