@@ -50,4 +50,5 @@
   current-branch = rev-parse --abbrev-ref HEAD
   pull-dry-run  = !"git fetch origin; git diff --stat --summary master..origin/master"
   fetch-pulls = fetch origin '+refs/pull/*:refs/remotes/pull/*'
+  branch-root = merge-base master HEAD
   
