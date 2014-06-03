@@ -224,15 +224,20 @@ export GOENVTARGET=$HOME/bin
 export GOENVHOME=$HOME/workspace
 
 bundol () {
-  sed -e "s|gemspec.*|gemspec path: \"$(pwd)\"|" Gemfile > /tmp/Gemfile
-  echo 'gem "pry"' >> /tmp/Gemfile
-  echo 'gem "pry-nav"' >> /tmp/Gemfile
-  bundle --gemfile=/tmp/Gemfile
+  if [ -e Gemfile ]; then
+    mkdir -p /tmp/$(pwd)
+    sed -e "s|gemspec.*|gemspec path: \"$(pwd)\"|" Gemfile > /tmp/$(pwd)/Gemfile
+    echo 'gem "pry"' >> /tmp/Gemfile
+    echo 'gem "pry-nav"' >> /tmp/Gemfile
+    bundle --gemfile=/tmp/$(pwd)/Gemfile
+  else
+    echo 'Gemfile is not found' 1>&2
+  fi
 }
 
 be () {
-  if [ -e /tmp/Gemfile ]; then
-    BUNDLE_GEMFILE=/tmp/Gemfile RUBYOPT="-r pry" bundle exec $@
+  if [ -e /tmp/$(pwd)/Gemfile ]; then
+    BUNDLE_GEMFILE=/tmp/$(pwd)/Gemfile RUBYOPT="-r pry" bundle exec $@
   else
     bundle exec $@
   fi
