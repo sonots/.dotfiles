@@ -151,7 +151,7 @@ autocmd FileType go setlocal noexpandtab tabstop=2 shiftwidth=2
 set hlsearch
 set history=50
 set incsearch
-set ignorecase
+"set ignorecase
 set smartcase
 
 " :e
