@@ -234,11 +234,18 @@ d() {
     ghq list -p | p cd
   fi
 }
-b() {
+s() {
   if [ -n "$1" ]; then
     ghq list | grep $1
   else
     ghq list | peco
+  fi
+}
+b() {
+  if [ -n "$1" ]; then
+    ghq list | grep $1 | while read LINE; do open $LINE; done
+  else
+    ghq list | p open
   fi
 }
 alias godoc='\godoc $(ghq list -p | peco) | $PAGER'
