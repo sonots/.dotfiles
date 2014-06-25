@@ -226,7 +226,7 @@ export GOENVTARGET=$HOME/bin
 export GOENVHOME=$HOME/workspace
 # peco & ghq
 p() { peco | while read LINE; do $@ $LINE; done }
-alias c='ghq list -p | p cd'
+alias d='ghq list -p | p cd'
 alias godoc='\godoc $(ghq list -p | peco) | $PAGER'
 
 bundol () {
