@@ -213,8 +213,9 @@ if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 [ -f "$HOME/.zshrc_$uname" ] && source "$HOME/.zshrc_$uname"
 [ -f "$HOME/.zshrc_local" ] && source "$HOME/.zshrc_local"
 # go
-export GOROOT=$HOME/go
-export GOPATH=$HOME/.go
+export GOROOT=/usr/local/go
+export PATH=/usr/local/go/bin:$PATH
+export GOPATH=$HOME
 export PATH=$GOPATH/bin:$PATH
 # goenv
 export GOENVTARGET=$HOME/.goenvtarget
@@ -222,6 +223,9 @@ export PATH=$GOENVTARGET:$PATH
 export GOENVGOROOT=$HOME/.goenvs
 export GOENVTARGET=$HOME/bin
 export GOENVHOME=$HOME/workspace
+# peco & ghq
+p() { peco | while read LINE; do $@ $LINE; done }
+alias c='ghq list -p | p cd'
 
 bundol () {
   if [ -e Gemfile ]; then
@@ -243,3 +247,7 @@ be () {
   fi
 }
 alias be="nocorrect be"
+
+run_httpd() {
+ ruby -run -e httpd -- -p 8080 .
+}
