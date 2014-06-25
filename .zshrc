@@ -234,6 +234,13 @@ d() {
     ghq list -p | p cd
   fi
 }
+b() {
+  if [ -n "$1" ]; then
+    ghq list | grep $1
+  else
+    ghq list | peco
+  fi
+}
 alias godoc='\godoc $(ghq list -p | peco) | $PAGER'
 
 bundol () {
