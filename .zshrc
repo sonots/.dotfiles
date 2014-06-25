@@ -145,6 +145,7 @@ export LC_CTYPE=en_US.UTF-8
 export SVN_EDITOR=/bin/vi
 PROMPT="%{$fg_bold[red]%}🍣  %{$reset_color%}%m%% "
 RPROMPT=' %~%1(v|%F{green}%1v%f|)'
+export PAGER=lv
 
 [[ $EMACS = t ]] && unsetopt zle
 
@@ -226,6 +227,7 @@ export GOENVHOME=$HOME/workspace
 # peco & ghq
 p() { peco | while read LINE; do $@ $LINE; done }
 alias c='ghq list -p | p cd'
+alias godoc='\godoc $(ghq list -p | peco) | $PAGER'
 
 bundol () {
   if [ -e Gemfile ]; then
