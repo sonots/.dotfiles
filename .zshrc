@@ -9,6 +9,7 @@ if [ -f $HOME/.oh-my-zsh -o -L $HOME/.oh-my-zsh ]; then
   export DISABLE_UPDATE_PROMPT="true"
   source $ZSH/oh-my-zsh.sh
 fi
+unalias d
 
 # remove rprompt after executing a command
 setopt transient_rprompt
@@ -226,15 +227,21 @@ export GOENVTARGET=$HOME/bin
 export GOENVHOME=$HOME/workspace
 # peco & ghq
 p() { peco | while read LINE; do $@ $LINE; done }
-alias d='ghq list -p | p cd'
+d() {
+  if [ -n "$1" ]; then
+    ghq look $1
+  else
+    ghq list -p | p cd
+  fi
+}
 alias godoc='\godoc $(ghq list -p | peco) | $PAGER'
 
 bundol () {
   if [ -e Gemfile ]; then
     mkdir -p /tmp/$(pwd)
     sed -e "s|gemspec.*|gemspec path: \"$(pwd)\"|" Gemfile > /tmp/$(pwd)/Gemfile
-    echo 'gem "pry"' >> /tmp/Gemfile
-    echo 'gem "pry-nav"' >> /tmp/Gemfile
+    echo 'gem "pry"' >> /tmp/$(pwd)/Gemfile
+    echo 'gem "pry-nav"' >> /tmp/$(pwd)/Gemfile
     bundle --gemfile=/tmp/$(pwd)/Gemfile
   else
     echo 'Gemfile is not found' 1>&2
