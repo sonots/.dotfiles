@@ -243,9 +243,9 @@ s() {
 }
 b() {
   if [ -n "$1" ]; then
-    ghq list | grep $1 | while read LINE; do open $LINE; done
+    ghq list | grep $1 | while read LINE; do open https://$LINE; done
   else
-    ghq list | p open
+    ghq list | peco | xargs -I{} open https://\{\}
   fi
 }
 alias godoc='\godoc $(ghq list -p | peco) | $PAGER'
