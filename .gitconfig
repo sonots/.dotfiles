@@ -60,4 +60,4 @@
 #  tree = B @hub browse --tree/%(commit)/%(directory)
 #  blog = B @hub browse --tree/%(commit)/%(file)
 [ghq]
-	root = /home/seo.naotoshi/src
+	root = ~/src
