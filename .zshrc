@@ -226,21 +226,21 @@ export GOENVGOROOT=$HOME/.goenvs
 export GOENVTARGET=$HOME/bin
 export GOENVHOME=$HOME/workspace
 # ghq & peco
-function d() {
+d() {
   if [ -n "$1" ]; then
     ghq look $1
   else
     cd $(ghq list -p | peco)
   fi
 }
-function p() {
+p() {
   if [ -n "$1" ]; then
     ghq list -p | grep $1
   else
     ghq list -p | peco
   fi
 }
-function b() {
+b() {
   if [ -n "$1" ]; then
     open "https://$(ghq list | grep $1 | head -1)"
   else
@@ -248,7 +248,7 @@ function b() {
   fi
 }
 # bundler & peco
-function cdgem() {
+cdgem() {
   if [ -n "$1" ]; then
     cd $(bundle show $1)
   else
@@ -280,5 +280,5 @@ be () {
 alias be="nocorrect be"
 
 run_httpd() {
- ruby -run -e httpd -- -p 8080 .
+  ruby -run -e httpd -- -p 8080 .
 }
