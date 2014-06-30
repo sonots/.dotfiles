@@ -230,7 +230,7 @@ d() {
   if [ -n "$1" ]; then
     ghq look $1
   else
-    cd $(ghq list -p | peco)
+    builtin cd $(ghq list -p | peco)
   fi
 }
 p() {
@@ -250,14 +250,22 @@ b() {
 # bundler & peco
 cdgem() {
   if [ -n "$1" ]; then
-    cd $(bundle show $1)
+    builtin cd $(bundle show $1)
   else
-    cd $(bundle show --paths | peco)
+    builtin cd $(bundle show --paths | peco)
   fi
 }
 # golang & peco
 alias godoc='\godoc $(ghq list -p | peco) | $PAGER'
-
+# build-in command & peco
+function cd() {
+  if [ -n "$1" ]; then
+    builtin cd $1
+  else
+    builtin cd $(\ls -F | grep / | peco)
+  fi
+}
+  
 bundol () {
   if [ -e Gemfile ]; then
     mkdir -p /tmp/$(pwd)
