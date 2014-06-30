@@ -226,26 +226,25 @@ export GOENVGOROOT=$HOME/.goenvs
 export GOENVTARGET=$HOME/bin
 export GOENVHOME=$HOME/workspace
 # peco & ghq
-p() { peco | while read LINE; do $@ $LINE; done }
 d() {
   if [ -n "$1" ]; then
     ghq look $1
   else
-    ghq list -p | p cd
+    cd $(ghq list -p | peco)
   fi
 }
-s() {
+p() {
   if [ -n "$1" ]; then
-    ghq list | grep $1
+    ghq list -p | grep $1
   else
-    ghq list | peco
+    ghq list -p | peco
   fi
 }
 b() {
   if [ -n "$1" ]; then
-    ghq list | grep $1 | while read LINE; do open https://$LINE; done
+    open "https://$(ghq list | grep $1 | head -1)"
   else
-    ghq list | peco | xargs -I{} open https://\{\}
+    open "https://$(ghq list | peco)"
   fi
 }
 alias godoc='\godoc $(ghq list -p | peco) | $PAGER'
