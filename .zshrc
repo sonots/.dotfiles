@@ -225,28 +225,37 @@ export PATH=$GOENVTARGET:$PATH
 export GOENVGOROOT=$HOME/.goenvs
 export GOENVTARGET=$HOME/bin
 export GOENVHOME=$HOME/workspace
-# peco & ghq
-d() {
+# ghq & peco
+function d() {
   if [ -n "$1" ]; then
     ghq look $1
   else
     cd $(ghq list -p | peco)
   fi
 }
-p() {
+function p() {
   if [ -n "$1" ]; then
     ghq list -p | grep $1
   else
     ghq list -p | peco
   fi
 }
-b() {
+function b() {
   if [ -n "$1" ]; then
     open "https://$(ghq list | grep $1 | head -1)"
   else
     open "https://$(ghq list | peco)"
   fi
 }
+# bundler & peco
+function cdgem() {
+  if [ -n "$1" ]; then
+    cd $(bundle show $1)
+  else
+    cd $(bundle show --paths | peco)
+  fi
+}
+# golang & peco
 alias godoc='\godoc $(ghq list -p | peco) | $PAGER'
 
 bundol () {
