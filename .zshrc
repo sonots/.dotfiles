@@ -228,7 +228,8 @@ export GOENVHOME=$HOME/workspace
 # ghq & peco
 d() {
   if [ -n "$1" ]; then
-    ghq look $1
+    # ghq look $1
+    builtin cd $(ghq list -p | grep $1 | head -1)
   else
     builtin cd $(ghq list -p | peco)
   fi
