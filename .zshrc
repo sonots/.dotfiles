@@ -236,4 +236,4 @@ if [ ! -z `which tmux` ]; then
     fi
   fi
 fi
-[ -f "$HOME/.zsh/functionzsh/function.zsh" ] && source "$HOME/.zsh/function.zsh"
+[ -f "$HOME/.zsh/function.zsh" ] && source "$HOME/.zsh/function.zsh"
