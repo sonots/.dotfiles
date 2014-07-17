@@ -202,7 +202,6 @@ export PATH="/usr/local/heroku/bin:$PATH" ### Added by the Heroku Toolbelt
 export JAVA_HOME=/usr/java/latest
 export ANT_HOME=/usr/java/ant
 export EDITOR=/usr/bin/vim
-[[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
 [[ -d ~/.rbenv/bin ]] && export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 [[ -f "$HOME/perl5/perlbrew/etc/bashrc" ]] && source "$HOME/perl5/perlbrew/etc/bashrc"
@@ -225,69 +224,16 @@ export PATH=$GOENVTARGET:$PATH
 export GOENVGOROOT=$HOME/.goenvs
 export GOENVTARGET=$HOME/bin
 export GOENVHOME=$HOME/workspace
-# ghq & peco
-d() {
-  if [ -n "$1" ]; then
-    # ghq look $1
-    builtin cd $(ghq list -p | grep $1 | head -1)
-  else
-    builtin cd $(ghq list -p | peco)
-  fi
-}
-p() {
-  if [ -n "$1" ]; then
-    ghq list -p | grep $1
-  else
-    ghq list -p | peco
-  fi
-}
-b() {
-  if [ -n "$1" ]; then
-    open "https://$(ghq list | grep $1 | head -1)"
-  else
-    open "https://$(ghq list | peco)"
-  fi
-}
-# bundler & peco
-cdgem() {
-  if [ -n "$1" ]; then
-    builtin cd $(bundle show $1)
-  else
-    builtin cd $(bundle show --paths | peco)
-  fi
-}
-# golang & peco
-alias godoc='\godoc $(ghq list -p | peco) | $PAGER'
-# build-in command & peco
-function cd() {
-  if [ -n "$1" ]; then
-    builtin cd $1
-  else
-    builtin cd $(\ls -F | grep / | peco)
-  fi
-}
-  
-bundol () {
-  if [ -e Gemfile ]; then
-    mkdir -p /tmp/$(pwd)
-    sed -e "s|gemspec.*|gemspec path: \"$(pwd)\"|" Gemfile > /tmp/$(pwd)/Gemfile
-    echo 'gem "pry"' >> /tmp/$(pwd)/Gemfile
-    echo 'gem "pry-nav"' >> /tmp/$(pwd)/Gemfile
-    bundle --gemfile=/tmp/$(pwd)/Gemfile
-  else
-    echo 'Gemfile is not found' 1>&2
-  fi
-}
 
-be () {
-  if [ -e /tmp/$(pwd)/Gemfile ]; then
-    BUNDLE_GEMFILE=/tmp/$(pwd)/Gemfile RUBYOPT="-r pry" bundle exec $@
-  else
-    bundle exec $@
+# auto tmux attach
+if [ ! -z `which tmux` ]; then
+  if [ $SHLVL = 1 ]; then
+    if [ $(( `ps aux | grep tmux | grep $USER | grep -v grep | wc -l` )) != 0 ]; then
+      echo -n 'Attach tmux session? [Y/n]'
+      read YN
+      [[ $YN = '' ]] && YN=y
+      [[ $YN = y ]] && tmux attach -d
+    fi
   fi
-}
-alias be="nocorrect be"
-
-run_httpd() {
-  ruby -run -e httpd -- -p 8080 .
-}
+fi
+[ -f "$HOME/.zsh/functionzsh/function.zsh" ] && source "$HOME/.zsh/function.zsh"
