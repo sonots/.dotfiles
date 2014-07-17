@@ -52,6 +52,14 @@ function p() {
 
 function b() {
   if [ -n "$1" ]; then
+    echo "https://$(ghq list | grep $1 | head -1)"
+  else
+    echo "https://$(ghq list | peco)"
+  fi
+}
+
+function o() {
+  if [ -n "$1" ]; then
     open "https://$(ghq list | grep $1 | head -1)"
   else
     open "https://$(ghq list | peco)"
