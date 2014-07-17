@@ -226,7 +226,7 @@ export GOENVTARGET=$HOME/bin
 export GOENVHOME=$HOME/workspace
 
 # auto tmux attach
-if [ ! -z `which tmux` ]; then
+if [ -n "$(which tmux)" ]; then
   if [ $SHLVL = 1 ]; then
     if [ $(( `ps aux | grep tmux | grep $USER | grep -v grep | wc -l` )) != 0 ]; then
       echo -n 'Attach tmux session? [Y/n]'
