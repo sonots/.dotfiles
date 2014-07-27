@@ -160,6 +160,15 @@ let g:netrw_liststyle=3 " shows directory tree by e .
 " ctags
 set tags=.tags
 
+" paste
+nnoremap ,i :<C-u>set paste<Return>i
+autocmd InsertLeave * set nopaste
+
+"" Vim起動時に前回のセッションを復元する
+"source
+"" Vim終了時に現在のセッションを保存する
+"au VimLeave * mks!  < file>
+
 ""------------------------------------
 "" vim-colors-solarized
 ""------------------------------------
