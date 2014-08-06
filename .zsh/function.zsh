@@ -36,7 +36,7 @@ bindkey '^r' peco-select-history
 function d() {
   if [ -n "$1" ]; then
     # ghq look $1
-    builtin cd $(ghq list -p | grep $1 | head -1)
+    builtin cd $(ghq list -p | grep -i $1 | head -1)
   else
     builtin cd $(ghq list -p | peco)
   fi
@@ -44,7 +44,7 @@ function d() {
 
 function p() {
   if [ -n "$1" ]; then
-    ghq list -p | grep $1
+    ghq list -p | grep -i $1
   else
     ghq list -p | peco
   fi
@@ -52,7 +52,7 @@ function p() {
 
 function b() {
   if [ -n "$1" ]; then
-    echo "https://$(ghq list | grep $1 | head -1)"
+    echo "https://$(ghq list | grep -i $1 | head -1)"
   else
     echo "https://$(ghq list | peco)"
   fi
@@ -60,7 +60,7 @@ function b() {
 
 function o() {
   if [ -n "$1" ]; then
-    open "https://$(ghq list | grep $1 | head -1)"
+    open "https://$(ghq list | grep -i $1 | head -1)"
   else
     open "https://$(ghq list | peco)"
   fi
