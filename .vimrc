@@ -35,7 +35,9 @@ NeoBundle 'tpope/vim-bundler'
 NeoBundle 'vim-ruby/vim-ruby'
 "NeoBundle 'vim-scripts/YankRing.vim'
 "NeoBundle 'jnwhiteh/vim-golang'
-"NeoBundle 'Blackrush/vim-gocode'
+" http://mattn.kaoriya.net/software/vim/20130531000559.htm
+" http://qiita.com/todogzm/items/3c281da10287f7383487
+NeoBundleLazy 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}
 
 "------------------------------------
 " Vim
@@ -142,9 +144,20 @@ autocmd Syntax yaml set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd BufNewFile,BufRead *.tt set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd Syntax html,xhtml set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd BufNewFile,BufReadPost *.go set filetype=go
+
+"------------------------------------
+" golang
+"------------------------------------
 autocmd FileType go setlocal noexpandtab tabstop=2 shiftwidth=2
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
+" Need go
+set rtp+=$GOROOT/misc/vim
+" Need $ go get github.com/nsf/gocode
+exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+set completeopt=menu,preview
+" Auto Fmt on save
+auto BufWritePre *.go Fmt
 
 "------------------------------------
 " search
