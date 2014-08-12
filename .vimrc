@@ -442,16 +442,16 @@ noremap <C-k> <C-w>k
 noremap <C-j> <C-w>j
 
 "------------------------------------
+" Exit insert mode with C-j
+"------------------------------------
+imap <C-j> <C-[>
+
+"------------------------------------
 " Additional Hotkeys
 "------------------------------------
-" C-n: Syntax check for a perl/ruby script
 " C-e: Execute a perl/ruby script
-autocmd FileType perl :map <C-n> <ESC>:!perl -cw %<CR>
-autocmd FileType perl :map <C-e> <ESC>:!perl %<CR>
-autocmd FileType ruby :map <C-n> <ESC>:!ruby -cW %<CR>
-autocmd FileType ruby :map <C-e> <ESC>:!ruby %<CR>
-" Exit insert mode with C-j
-imap <C-j> <C-[>
+autocmd FileType perl :map <C-e> <ESC>:!perl -cw %<CR>
+autocmd FileType ruby :map <C-e> <ESC>:!ruby -cW %<CR>
 
 " vimgrep後にcwinを表示
 autocmd QuickFixCmdPost make,grep,grepadd,vimgrep,vimgrepadd cwin
