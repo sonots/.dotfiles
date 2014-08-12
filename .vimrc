@@ -143,6 +143,8 @@ autocmd BufNewFile,BufRead *.tt set softtabstop=2 | set shiftwidth=2 | set tabst
 autocmd Syntax html,xhtml set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd BufNewFile,BufReadPost *.go set filetype=go
 autocmd FileType go setlocal noexpandtab tabstop=2 shiftwidth=2
+autocmd FileType go :highlight goErr cterm=bold ctermfg=214
+autocmd FileType go :match goErr /\<err\>/
 
 "------------------------------------
 " search
