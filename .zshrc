@@ -214,8 +214,13 @@ if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 [ -f "$HOME/.zshrc_$uname" ] && source "$HOME/.zshrc_$uname"
 [ -f "$HOME/.zshrc_local" ] && source "$HOME/.zshrc_local"
 # go
-export GOROOT=/usr/local/go
-export PATH=/usr/local/go/bin:$PATH
+if [ "$uname" = "darwin" ]; then
+  # brew install go
+  export GOROOT=/usr/local/opt/go/libexec
+else
+  export GOROOT=/usr/local/go
+fi
+export PATH=$GOROOT/bin:$PATH
 export GOPATH=$HOME
 export PATH=$GOPATH/bin:$PATH
 # goenv
