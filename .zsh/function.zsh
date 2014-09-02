@@ -66,6 +66,16 @@ function o() {
   fi
 }
 
+# git branch & peco
+unalias g # for the case alias g
+function g() {
+  if [ -n "$1" ]; then
+    git checkout $(git branch | grep -i $1 | head -1)
+  else
+    git checkout $(git branch | peco)
+  fi
+}
+
 # bundler & peco
 function cdgem() {
   if [ -n "$1" ]; then
@@ -78,13 +88,13 @@ function cdgem() {
 # golang & peco
 alias godoc='\godoc $(ghq list -p | peco) | $PAGER'
 # build-in command & peco
-function cd() {
-  if [ -n "$1" ]; then
-    builtin cd $1
-  else
-    builtin cd $(\ls -F | grep / | peco)
-  fi
-}
+# function cd() {
+#   if [ -n "$1" ]; then
+#     builtin cd $1
+#   else
+#     builtin cd $(\ls -F | grep / | peco)
+#   fi
+# }
   
 function bundol () {
   if [ -e Gemfile ]; then
