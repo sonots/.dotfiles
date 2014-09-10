@@ -69,9 +69,9 @@ function o() {
 # git branch & peco
 function b() {
   if [ -n "$1" ]; then
-    git checkout $(git branch | grep -i $1 | head -1)
+    git checkout $(git branch | grep -i $1 | head -1 | sed 's/^..//')
   else
-    git checkout $(git branch | peco)
+    git checkout $(git branch | peco | sed 's/^..//')
   fi
 }
 
