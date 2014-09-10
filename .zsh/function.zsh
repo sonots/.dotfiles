@@ -50,7 +50,7 @@ function p() {
   fi
 }
 
-function b() {
+function s() {
   if [ -n "$1" ]; then
     echo "https://$(ghq list | grep -i $1 | head -1)"
   else
@@ -67,8 +67,7 @@ function o() {
 }
 
 # git branch & peco
-unalias g # for the case alias g
-function g() {
+function b() {
   if [ -n "$1" ]; then
     git checkout $(git branch | grep -i $1 | head -1)
   else
