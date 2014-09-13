@@ -153,6 +153,8 @@ autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
 " Need go
 set rtp+=$GOROOT/misc/vim
+" Need $ go get github.com/golang/lint
+exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
 " Need $ go get github.com/nsf/gocode
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
