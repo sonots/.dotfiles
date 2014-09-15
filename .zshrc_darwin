@@ -11,7 +11,7 @@ function chpwd(){ls -F -G}
 #### alias ####
 alias ls='ls -G'
 alias tmux='tmux -f ~/.tmux.conf_darwin'
-alias ctags="`brew --prefix`/bin/ctags"
+# alias ctags="`brew --prefix`/bin/ctags"
 
 if [ -d /Applications/MacVim.app ]; then
   export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
