@@ -70,7 +70,7 @@ dumb*|emacs*)
   SPROMPT="%r is correct? [n,y,a,e]: "
   ;;
 xterm)
-  export TERM=xterm-color
+  export TERM=xterm-256color
   ;;
 kterm)
   export TERM=kterm-color
