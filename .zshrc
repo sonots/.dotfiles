@@ -69,6 +69,9 @@ dumb*|emacs*)
   PROMPT2="%_%% "
   SPROMPT="%r is correct? [n,y,a,e]: "
   ;;
+screen)
+  export TERM=xterm-256color
+  ;;
 xterm)
   export TERM=xterm-256color
   ;;
