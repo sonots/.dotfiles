@@ -112,6 +112,8 @@ set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=\[%04l,
 set laststatus=2
 " No paren match
 let loaded_matchparen = 1
+" see tail 5 lines for `vi: set ts=4 sw=4`
+set modelines=5
 
 "------------------------------------
 " Highlight the current line of the active buffer
