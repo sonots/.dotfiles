@@ -4,7 +4,7 @@
 [color]
   ui = true
 [core]
-  pager = lv -cOu8
+  pager = less
   autocrlf = false
 [push]
   # push only the current branch
