@@ -129,8 +129,9 @@ setopt RC_EXPAND_PARAM
 
 # for screen, tmux, iterm2
 preexec() {
-  mycmd=(${(s: :)${1}})
-  echo -ne "\ek$(hostname|awk 'BEGIN{FS="."}{print $1}'):$mycmd[1]\e\\"
+  # mycmd=(${(s: :)${1}})
+  # echo -ne "\ek$(hostname|awk 'BEGIN{FS="."}{print $1}'):$mycmd[1]\e\\"
+  echo -ne "\ek${PWD:t}\e\\"
 }
 # vcs_info
 autoload -Uz vcs_info
@@ -142,7 +143,8 @@ precmd () {
   LANG=en_US.UTF-8 vcs_info
   [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
   # for screen, tmux, itemr2
-  echo -ne "\ek$(hostname|awk 'BEGIN{FS="."}{print $1}'):idle\e\\"
+  # echo -ne "\ek$(hostname|awk 'BEGIN{FS="."}{print $1}'):idle\e\\"
+  echo -ne "\ek${PWD:t}\e\\"
 }
 LANG=en_US.UTF-8 vcs_info
 export LC_CTYPE=en_US.UTF-8
