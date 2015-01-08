@@ -73,7 +73,7 @@ screen)
   export TERM=xterm-256color
   ;;
 xterm)
-  export TERM=xterm-256color
+  export TERM=xterm-256color # for vim lightline
   ;;
 kterm)
   export TERM=kterm-color
