@@ -527,9 +527,24 @@ noremap <C-k> <C-w>k
 noremap <C-j> <C-w>j
 
 "------------------------------------
-" Exit insert mode with C-j
+" Exit insert mode with C-i
 "------------------------------------
-imap <C-j> <C-[>
+imap <C-i> <C-[>
+
+"------------------------------------
+" Save file with C-w C-w
+"------------------------------------
+noremap <C-w><C-w> :w<CR>
+inoremap <C-w><C-w> <Esc>:w<CR>li
+
+"------------------------------------
+" Auto reload .vimrc
+" :source ~/.vimrc
+"------------------------------------
+augroup source-vimrc
+  autocmd!
+  autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
+augroup END
 
 "------------------------------------
 " Additional Hotkeys
