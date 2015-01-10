@@ -213,11 +213,6 @@ if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 [[ -d "$HOME/.nodebrew/current/bin" ]] && export PATH=$HOME/.nodebrew/current/bin:$PATH
 [[ -d "$HOME/.pyenv/bin" ]] && export PATH="$HOME/.pyenv/bin:$PATH" && eval "$(pyenv init -)"
 
-# load OS dependent zshrc
-# .zshrc_darwin
-# .zshrc_linux
-[ -f "$HOME/.zshrc_$uname" ] && source "$HOME/.zshrc_$uname"
-[ -f "$HOME/.zshrc_local" ] && source "$HOME/.zshrc_local"
 # go
 if [ "$uname" = "darwin" ]; then
   # brew install go
@@ -247,3 +242,7 @@ if [ -n "$(which tmux)" ]; then
   fi
 fi
 [ -f "$HOME/.zsh/function.zsh" ] && source "$HOME/.zsh/function.zsh"
+
+# load OS dependent zshrc such as .zshrc_darwn, .zshrc_linux
+[ -f "$HOME/.zshrc_$uname" ] && source "$HOME/.zshrc_$uname"
+[ -f "$HOME/.zshrc_local" ] && source "$HOME/.zshrc_local"
