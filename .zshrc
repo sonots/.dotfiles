@@ -243,6 +243,6 @@ if [ -n "$(which tmux)" ]; then
 fi
 [ -f "$HOME/.zsh/function.zsh" ] && source "$HOME/.zsh/function.zsh"
 
-# load OS dependent zshrc such as .zshrc_darwn, .zshrc_linux
-[ -f "$HOME/.zshrc_$uname" ] && source "$HOME/.zshrc_$uname"
-[ -f "$HOME/.zshrc_local" ] && source "$HOME/.zshrc_local"
+# load OS dependent zshrc such as .zshrc.darwn, .zshrc.linux
+[ -f "$HOME/.zshrc.$uname" ] && source "$HOME/.zshrc.$uname"
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
