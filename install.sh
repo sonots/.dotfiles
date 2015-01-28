@@ -13,6 +13,7 @@ do
   [ $i = ".git" ] && continue
   [ $i = "README.md" ] && continue
   [ $i = "install.sh" ] && continue
+  [ $i = "Brewfile" ] && continue
   ln -s ~/.dotfiles/$i ~/
 done
 
