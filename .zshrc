@@ -196,7 +196,7 @@ alias hub=$HOME/.dotfiles/.bin/hub
 alias grep="nocorrect grep"
 
 #### export ####
-export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cert.pem
+# export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cert.pem
 export PATH=/usr/java/latest/bin:$PATH
 export PATH=/usr/java/ant/bin:$PATH
 export PATH=/usr/sbin:$PATH
