@@ -13,3 +13,6 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/sonots/oh-my-zsh.git
+[submodule ".tmux/tmux-resurrect"]
+	path = .tmux/tmux-resurrect
+	url = git@github.com:tmux-plugins/tmux-resurrect
