@@ -18,7 +18,7 @@ setopt transient_rprompt
 set -o ignoreeof
 
 # Disable autocorrect
-#unsetopt correct_all
+unsetopt correct_all
 
 # color
 autoload colors
@@ -202,8 +202,9 @@ export PATH=/usr/java/ant/bin:$PATH
 export PATH=/usr/sbin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
-export PATH=$HOME/bin:$HOME/bin/local:$HOME/gitrepos/bin:$PATH
+export PATH=$HOME/bin:$HOME/local/bin:$HOME/gitrepos/bin:$PATH
 export PATH="/usr/local/heroku/bin:$PATH" ### Added by the Heroku Toolbelt
+export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 export JAVA_HOME=/usr/java/latest
 export ANT_HOME=/usr/java/ant
 export EDITOR=/usr/bin/vim
@@ -230,7 +231,26 @@ export GOENVGOROOT=$HOME/.goenvs
 export GOENVTARGET=$HOME/bin
 export GOENVHOME=$HOME/workspace
 
+[ -f "$HOME/.zsh/function.zsh" ] && source "$HOME/.zsh/function.zsh"
+
+# load OS dependent zshrc such as .zshrc.darwn, .zshrc.linux
+[ -f "$HOME/.zshrc.$uname" ] && source "$HOME/.zshrc.$uname"
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
+
+# keep SSH_AUTH_SOCK on tmux
+agent="$HOME/.ssh/agent"
+if [ -S "$SSH_AUTH_SOCK" ]; then
+  case $SSH_AUTH_SOCK in
+  /tmp/*/agent.[0-9]*)
+    ln -snf "$SSH_AUTH_SOCK" $agent && export SSH_AUTH_SOCK=$agent
+  esac
+elif [ -S $agent ]; then
+  export SSH_AUTH_SOCK=$agent
+fi
+
 # auto tmux attach
+export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
+export PATH=$HOME/local/bin:$PATH
 if [ -n "$(which tmux)" ]; then
   if [ $SHLVL = 1 ]; then
     if [ $(( `ps aux | grep tmux | grep $USER | grep -v grep | wc -l` )) != 0 ]; then
@@ -241,8 +261,3 @@ if [ -n "$(which tmux)" ]; then
     fi
   fi
 fi
-[ -f "$HOME/.zsh/function.zsh" ] && source "$HOME/.zsh/function.zsh"
-
-# load OS dependent zshrc such as .zshrc.darwn, .zshrc.linux
-[ -f "$HOME/.zshrc.$uname" ] && source "$HOME/.zshrc.$uname"
-[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
