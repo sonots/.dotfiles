@@ -232,6 +232,7 @@ export GOENVTARGET=$HOME/bin
 export GOENVHOME=$HOME/workspace
 
 [ -f "$HOME/.zsh/function.zsh" ] && source "$HOME/.zsh/function.zsh"
+source $HOME/.peco/plugins/cool-peco/cool-peco
 
 # load OS dependent zshrc such as .zshrc.darwn, .zshrc.linux
 [ -f "$HOME/.zshrc.$uname" ] && source "$HOME/.zshrc.$uname"
