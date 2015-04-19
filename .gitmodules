@@ -16,3 +16,6 @@
 [submodule ".tmux/tmux-resurrect"]
 	path = .tmux/tmux-resurrect
 	url = git@github.com:tmux-plugins/tmux-resurrect
+[submodule ".peco/plugins/cool-peco"]
+	path = .peco/plugins/cool-peco
+	url = https://github.com/ryoppy/cool-peco
