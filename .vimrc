@@ -547,6 +547,29 @@ augroup source-vimrc
 augroup END
 
 "------------------------------------
+" Copy Opening File Path
+"------------------------------------
+function! CopyPath()
+  let @*=expand('%:P')
+endfunction
+
+function! CopyFullPath()
+  let @*=expand('%:p')
+endfunction
+
+function! CopyBaseName()
+  let @*=expand('%:t')
+endfunction
+
+command! CopyPath     call CopyPath()
+command! CopyFullPath call CopyFullPath()
+command! CopyBaseName call CopyBaseName()
+
+nnoremap <C-c>p :CopyPath<CR>
+nnoremap <C-c>f :CopyFullPath<CR>
+nnoremap <C-c>b :CopyBaseName<CR>
+
+"------------------------------------
 " Additional Hotkeys
 "------------------------------------
 " C-e: Execute a perl/ruby script
@@ -557,6 +580,4 @@ autocmd FileType ruby :map <C-e> <ESC>:!ruby -cW %<CR>
 autocmd QuickFixCmdPost make,grep,grepadd,vimgrep,vimgrepadd cwin
 " alias grep to vimgrep
 set grepprg=internal
-
-
 
