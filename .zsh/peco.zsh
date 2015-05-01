@@ -34,6 +34,15 @@ function p() {
   fi
 }
 
+# v [pattern] to vim a file under the current directory
+function v() {
+  if [ -n "$1" ]; then
+    vim $(find . -type f -o -name .git -prune | grep -i $1 | head -1)
+  else
+    vim $(find . -type f -o -name .git -prune | peco)
+  fi
+}
+
 # o [pattern] to open ghq git repository url (works on MacOSX)
 function o() {
   if [ -n "$1" ]; then
