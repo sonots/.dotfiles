@@ -1,5 +1,5 @@
-ABSPATH=$(cd $(dirname $0) && pwd)/$(basename $0)
-source $(dirname $ABSPATH)/peco.zsh
+ROOT_DIR=$HOME/.zsh
+source $ROOT_DIR/peco.zsh
 
 function bundol () {
   if [ -e Gemfile ]; then
