@@ -192,7 +192,7 @@ alias gupush='git push upstream `git current-branch`'
 alias gfpull='git pull --rebase fork `git current-branch`'
 alias gfpush='git push fork `git current-branch`'
 alias ctags="ctags -f .tags -R ."
-if which ack > /dev/null 2>&1; then; else; alias ack="find * -type f | xargs grep"; fi
+if which ack > /dev/null 2>&1; then; else; alias ack="find . \( -name 'vendor' -o -name '.git' \) -prune -o -type f | xargs grep"; fi
 alias hub=$HOME/.dotfiles/.bin/hub
 
 # noautocorrect
