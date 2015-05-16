@@ -64,3 +64,5 @@
 #  blog = B @hub browse --tree/%(commit)/%(file)
 [ghq]
 	root = ~/src
+[init]
+	templatedir = ~/.git_template
