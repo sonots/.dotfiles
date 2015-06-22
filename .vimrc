@@ -142,6 +142,7 @@ set autoindent
 set smartindent
 
 autocmd Syntax perl set softtabstop=4 | set shiftwidth=4 | set tabstop=4
+autocmd Syntax java set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd Syntax ruby set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd Syntax javascript set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd Syntax yaml set softtabstop=2 | set shiftwidth=2 | set tabstop=2
