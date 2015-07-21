@@ -108,3 +108,7 @@ function pssh() {
     ssh $res
   fi
 }
+
+function ackvim() {
+  vim $(ack -n $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+}
