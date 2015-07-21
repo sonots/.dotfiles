@@ -110,5 +110,5 @@ function pssh() {
 }
 
 function ackvim() {
-  vim $(ack -n $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+  vim $(ack $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
 }
