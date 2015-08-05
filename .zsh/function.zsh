@@ -25,3 +25,9 @@ alias be="nocorrect be"
 function run_httpd() {
   ruby -run -e httpd -- -p 8080 .
 }
+
+function touch_p() {
+  dir=$(dirname $1)
+  mkdir -p $dir
+  touch $1
+}
