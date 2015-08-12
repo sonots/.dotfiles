@@ -31,3 +31,7 @@ function touch_p() {
   mkdir -p $dir
   touch $1
 }
+
+function git-create-repo() {
+  curl -u sonots https://api.github.com/user/repos -d "{\"name\":\"$1\"}"
+}
