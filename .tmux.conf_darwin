@@ -1,5 +1,4 @@
-source-file ~/.tmux.conf
+source-file ~/.tmux.conf_common
 
 ## for mac osx. http://d.hatena.ne.jp/Yuzuemon/20120222/1329841466
-set-option -g default-command "reattach-to-user-namespace -l zsh"
-
+set-option -g default-command "which reattach-to-user-namespace 2>&1 >/dev/null && reattach-to-user-namespace -l zsh || zsh"
