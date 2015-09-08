@@ -1,7 +1,0 @@
-#!/bin/sh
-
-git remote -v | grep github.dena.jp > /dev/null
-if [ $? -eq 0 ]; then
-  git config --local user.name seo-naotoshi
-  git config --local user.email naotoshi.seo@dena.com
-fi
