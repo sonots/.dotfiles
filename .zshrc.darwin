@@ -15,7 +15,7 @@ alias tmux='tmux -f ~/.tmux.conf_darwin'
 
 if [ -d /Applications/MacVim.app ]; then
   export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
-  alias vim='reattach-to-user-namespace /Applications/MacVim.app/Contents/MacOS/Vim'
+  alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
   alias vi='vim'
 fi
 [ -d /Applications/Sublime\ Text\ 2.app ] && alias sublime='/Applications/Sublime\ Text\ 2.app/Contents/MacOS/Sublime\ Text\ 2'

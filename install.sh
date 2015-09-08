@@ -23,6 +23,9 @@ if [ `uname` = "Darwin" ]; then
   brew install ricty
   cp -f /usr/local/Cellar/ricty/3.2.2/share/fonts/Ricty*.ttf ~/Library/Fonts/
   fc-cache -vf
+  ln -s ~/.dotfiles/.tmux.conf.darwin ~/.tmux.conf
+else
+  ln -s ~/.dotfiles/.tmux.conf.base ~/.tmux.conf
 fi
 
 vim -c ':NeoBundleInstall!' -c ':q!' -c ':q!'
