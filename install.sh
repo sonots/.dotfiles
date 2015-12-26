@@ -28,6 +28,7 @@ else
   ln -s ~/.dotfiles/.tmux.conf.base ~/.tmux.conf
 fi
 
+[[ -e ~/.vim/bundle/neobundle.vim ]] || curl -L -s https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | bash
 vim -c ':NeoBundleInstall!' -c ':q!' -c ':q!'
 
 # install go from pkg http://golang.org/dl/
