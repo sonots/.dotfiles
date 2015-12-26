@@ -13,12 +13,12 @@ do
   [ $i = ".git" ] && continue
   [ $i = "README.md" ] && continue
   [ $i = "install.sh" ] && continue
-  [ $i = "Brewfile" ] && continue
+  [ $i = "Brewfile.sh" ] && continue
   ln -s ~/.dotfiles/$i ~/
 done
 
 if [ `uname` = "Darwin" ]; then
-  brew bundle
+  ./Brewfile.sh
   brew tap sanemat/font
   brew install ricty
   cp -f /usr/local/Cellar/ricty/3.2.2/share/fonts/Ricty*.ttf ~/Library/Fonts/
