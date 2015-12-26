@@ -35,6 +35,8 @@ brew install pidof # pidof
 brew install proctools # pkill, pgrep, pfind
 brew install rmtrash # `rmtrash` moves file to Trash
 brew install reattach-to-user-namespace # http://yuzuemon.hatenablog.com/entry/20120222/1329841466 # http://qiita.com/yuku_t/items/bea95b1bc6e6ca8a495b
+brew install rbenv ruby-build
+brew install readline
 # brew install coreutils --default-names # http://takuya-1st.hatenablog.jp/entry/20111230/1325272152
 # brew install imagemagick
 # brew install packer
