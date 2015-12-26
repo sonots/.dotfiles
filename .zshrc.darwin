@@ -10,7 +10,7 @@ function chpwd(){ls -F -G}
 
 #### alias ####
 alias ls='ls -G'
-alias tmux='tmux -f ~/.tmux.conf_darwin'
+alias tmux='tmux -f ~/.tmux.conf.darwin'
 # alias ctags="`brew --prefix`/bin/ctags"
 
 if [ -d /Applications/MacVim.app ]; then
