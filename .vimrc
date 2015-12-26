@@ -1,11 +1,21 @@
 "------------------------------------
-" Vundle
+" NeoBundle
 "------------------------------------
 if has('vim_starting')
-  set nocompatible
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
+
+  " Required:
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-call neobundle#rc(expand('~/.vim/bundle/')) " this makes `syntax off`! sucks!
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -40,6 +50,16 @@ NeoBundle 'vim-ruby/vim-ruby'
 " http://qiita.com/todogzm/items/3c281da10287f7383487
 NeoBundleLazy 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}
 NeoBundle 'itchyny/lightline.vim'
+
+" Required:
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
 
 "------------------------------------
 " Vim
