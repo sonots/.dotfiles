@@ -208,7 +208,11 @@ export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/bin:$HOME/local/bin:$HOME/gitrepos/bin:$PATH
 export PATH="/usr/local/heroku/bin:$PATH" ### Added by the Heroku Toolbelt
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
-export JAVA_HOME=/usr/java/latest
+if [ -x /usr/libexec/java_home ]; then
+  export JAVA_HOME=$(/usr/libexec/java_home)
+else
+  export JAVA_HOME=/usr/java/latest
+fi
 export ANT_HOME=/usr/java/ant
 export EDITOR=/usr/bin/vim
 [[ -d ~/.rbenv/bin ]] && export PATH="$HOME/.rbenv/bin:$PATH"
