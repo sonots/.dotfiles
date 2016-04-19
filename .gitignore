@@ -9,3 +9,5 @@ auto-save-list/
 .vim/bundle
 .vim/undo
 .vim/.netrwhist
+.tags
+ruby-head
