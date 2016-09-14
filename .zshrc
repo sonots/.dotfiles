@@ -193,7 +193,6 @@ alias gfpull='git pull --rebase fork `git current-branch`'
 alias gfpush='git push fork `git current-branch`'
 alias ctags="ctags -f .tags -R ."
 if which ack > /dev/null 2>&1; then; else; alias ack="find . \( -name 'vendor' -o -name '.git' -o -name 'log' -o -name '.tags' \) -prune -o -type f -print0 | xargs -0 grep -n"; fi
-alias hub=$HOME/.dotfiles/.bin/hub
 
 # noautocorrect
 alias grep="nocorrect grep"
@@ -205,7 +204,7 @@ export PATH=/usr/java/ant/bin:$PATH
 export PATH=/usr/sbin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
-export PATH=$HOME/bin:$HOME/local/bin:$HOME/gitrepos/bin:$PATH
+export PATH=$HOME/bin:$HOME/local/bin:$HOME/gitrepos/bin:$HOME/.dotfiles/.bin:$PATH
 export PATH="/usr/local/heroku/bin:$PATH" ### Added by the Heroku Toolbelt
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 if [ -x /usr/libexec/java_home ]; then
