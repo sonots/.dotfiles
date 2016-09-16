@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 [[ -e ~/.dotfiles ]] || git clone https://github.com/sonots/.dotfiles.git ~/.dotfiles
 pushd ~/.dotfiles
