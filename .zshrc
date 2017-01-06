@@ -264,7 +264,7 @@ if [ -n "$(which tmux)" ]; then
       echo -n 'Attach tmux session? [Y/n]'
       read YN
       [[ $YN = '' ]] && YN=y
-      [[ $YN = y ]] && tmux attach -d
+      [[ $YN = 'y' ]] || [[ $YN = 'Y' ]] && tmux attach -d
     fi
   fi
 fi
