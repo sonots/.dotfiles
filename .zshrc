@@ -11,6 +11,9 @@ if [ -f $HOME/.oh-my-zsh -o -L $HOME/.oh-my-zsh ]; then
 fi
 unalias d
 
+# turns on interactive comments; comments begin with a #.
+setopt interactivecomments
+
 # remove rprompt after executing a command
 setopt transient_rprompt
 
