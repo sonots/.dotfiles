@@ -47,6 +47,7 @@ brew install brew-cask
 # .dmg with homebrew-cask
 brew cask install google-chrome
 brew cask install firefox
+brew cask install vivaldi
 brew cask install evernote
 # brew cask install skype
 brew cask install iterm2
@@ -63,6 +64,7 @@ brew cask install echofon # mycask
 brew cask install cot-editor # mycask
 brew cask install macvim-kaoriya # mycask
 brew cask install gyazo # mycask
+brew install neovim/neovim/neovim
 
 # Remove outdated versions
 brew cleanup
