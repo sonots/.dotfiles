@@ -13,6 +13,7 @@ brew tap sonots/mycask || true
 
 # Packages
 
+brew install vim
 brew install zsh
 brew install git
 brew install gist
