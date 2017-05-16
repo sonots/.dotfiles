@@ -51,6 +51,13 @@ NeoBundle 'vim-ruby/vim-ruby'
 NeoBundleLazy 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}
 NeoBundle 'itchyny/lightline.vim'
 
+" NeoBundle 'python-mode/python-mode'
+NeoBundle 'davidhalter/jedi-vim'
+" rename用のマッピングを無効にしたため、代わりにコマンドを定義
+command! -nargs=0 JediRename :call jedi#rename()
+" pythonのrename用のマッピングがquickrunとかぶるため回避させる
+let g:jedi#rename_command = ""
+
 " Required:
 call neobundle#end()
 
@@ -167,6 +174,7 @@ autocmd Syntax c set softtabstop=4 | set shiftwidth=4 | set tabstop=8
 autocmd Syntax perl set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd Syntax java set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd Syntax ruby set softtabstop=2 | set shiftwidth=2 | set tabstop=2
+autocmd Syntax python set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd Syntax javascript set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd Syntax yaml set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd BufNewFile,BufRead *.tt set softtabstop=2 | set shiftwidth=2 | set tabstop=2
@@ -440,7 +448,7 @@ inoremap <expr><CR>  pumvisible() ? neocomplcache#smart_close_popup() : "\<CR>"
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
