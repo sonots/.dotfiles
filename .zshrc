@@ -152,7 +152,11 @@ precmd () {
 LANG=en_US.UTF-8 vcs_info
 export LC_CTYPE=en_US.UTF-8
 export SVN_EDITOR=/bin/vi
-PROMPT="%{$fg_bold[green]%}%m%{$reset_color%}$ "
+if [ "$uname" = "darwin" ]; then
+  PROMPT="%{$fg_bold[red]%}🍣  %{$reset_color%}$ "
+else
+  PROMPT="%{$fg_bold[green]%}%m%{$reset_color%}$ "
+fi
 RPROMPT=' %~%1(v|%F{green}%1v%f|)'
 export PAGER="less -c"
 
@@ -222,6 +226,8 @@ if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 [[ -f "$HOME/perl5/perlbrew/etc/bashrc" ]] && source "$HOME/perl5/perlbrew/etc/bashrc"
 [[ -d "$HOME/.nodebrew/current/bin" ]] && export PATH=$HOME/.nodebrew/current/bin:$PATH
 [[ -d "$HOME/.pyenv/bin" ]] && export PATH="$HOME/.pyenv/bin:$PATH" && eval "$(pyenv init -)"
+[[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
+[[ -d "/usr/local/opt/mysql@5.6/bin" ]] && export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 
 # go
 if [ "$uname" = "darwin" ]; then
