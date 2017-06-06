@@ -106,6 +106,9 @@ esac
 setopt NO_BEEP
 setopt RC_EXPAND_PARAM
 
+export LANG="en_US.UTF-8"
+export LANGUAGE="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
 
 ## keep background processes at full speed
 #setopt NOBGNICE
