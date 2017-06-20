@@ -280,3 +280,23 @@ if [ -n "$(which tmux)" ]; then
     fi
   fi
 fi
+
+# for chainer
+if [ -d /usr/local/cuda ]; then
+  export PATH="/usr/local/cuda/bin:$PATH"
+fi
+if [ -d "$HOME/.cudnn" ]; then
+  export LD_LIBRARY_PATH="$HOME/.cudnn/active/cuda/lib64:$LD_LIBRARY_PATH"
+  export LIBRARY_PATH="$HOME/.cudnn/active/cuda/lib64:$LIBRARY_PATH"
+  export CPATH="$HOME/.cudnn/active/cuda/include:$CPATH"
+  export LDFLAGS="-L $HOME/.cudnn/active/cuda/lib64"
+  export CFLAGS="-I $HOME/.cudnn/active/cuda/include"
+fi
+if [ -d "$HOME/nccl" ]; then
+  export LD_LIBRARY_PATH="$HOME/nccl/build/lib:$LD_LIBRARY_PATH"
+  export LDFLAGS="-L $HOME/nccl/build/lib $CFLAGS"
+  export CFLAGS="-I $HOME/nccl/build/include $CFLAGS"
+fi
+if [ -d "/usr/lib/ccache" ]; then
+  export PATH="/usr/lib/ccache:$PATH"
+fi
