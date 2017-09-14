@@ -254,7 +254,6 @@ export GOENVHOME=$HOME/workspace
 [[ -d $HOME/opt/cmake/bin ]] && export PATH=$HOME/opt/cmake/bin:$PATH
 
 [ -f "$HOME/.zsh/function.zsh" ] && source "$HOME/.zsh/function.zsh"
-source $HOME/.peco/plugins/cool-peco/cool-peco
 
 # load OS dependent zshrc such as .zshrc.darwn, .zshrc.linux
 [ -f "$HOME/.zshrc.$uname" ] && source "$HOME/.zshrc.$uname"
