@@ -249,6 +249,10 @@ export GOENVGOROOT=$HOME/.goenvs
 export GOENVTARGET=$HOME/bin
 export GOENVHOME=$HOME/workspace
 
+# llvm and cmake
+[[ -d $HOME/opt/llvm/bin ]] && export PATH=$HOME/opt/llvm/bin:$PATH
+[[ -d $HOME/opt/cmake/bin ]] && export PATH=$HOME/opt/cmake/bin:$PATH
+
 [ -f "$HOME/.zsh/function.zsh" ] && source "$HOME/.zsh/function.zsh"
 source $HOME/.peco/plugins/cool-peco/cool-peco
 
