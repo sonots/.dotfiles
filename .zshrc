@@ -185,7 +185,6 @@ alias df="df -h"
 alias du="du -h"
 alias df="df -h"
 alias su="su -l"
-alias grep='grep -E --color=tty'
 alias where="command -v"
 alias j="jobs -l"
 
@@ -205,6 +204,8 @@ alias ctags="ctags -f .tags -R ."
 if which ack > /dev/null 2>&1; then; else; alias ack="find . \( -name 'vendor' -o -name '.git' -o -name 'log' -o -name '.tags' \) -prune -o -type f -print0 | xargs -0 grep -n"; fi
 
 # noautocorrect
+unset GREP_OPTIONS
+alias grep='grep -E --color=tty'
 alias grep="nocorrect grep"
 
 #### export ####
@@ -286,11 +287,13 @@ fi
 
 # for chainer
 if [ -d /usr/local/cuda ]; then
-  export PATH="/usr/local/cuda/bin:$PATH"
+  export CUDA_PATH="/usr/local/cuda"
+  export PATH="$CUDA_PATH/bin:$PATH"
+  export LD_LIBRARY_PATH="$CUDA_PATH/lib64:$CUDA_PATH/lib:$LD_LIBRARY_PATH"
 fi
 if [ -d "$HOME/.cudnn" ]; then
-  export LD_LIBRARY_PATH="$HOME/.cudnn/active/cuda/lib64:$LD_LIBRARY_PATH"
-  export LIBRARY_PATH="$HOME/.cudnn/active/cuda/lib64:$LIBRARY_PATH"
+  export LD_LIBRARY_PATH="$HOME/.cudnn/active/cuda/lib64:/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"
+  export LIBRARY_PATH="$HOME/.cudnn/active/cuda/lib64:/usr/lib/x86_64-linux-gnu:$LIBRARY_PATH"
   export CPATH="$HOME/.cudnn/active/cuda/include:$CPATH"
   export LDFLAGS="-L $HOME/.cudnn/active/cuda/lib64"
   export CFLAGS="-I $HOME/.cudnn/active/cuda/include"
@@ -300,6 +303,11 @@ if [ -d "$HOME/nccl" ]; then
   export LDFLAGS="-L $HOME/nccl/build/lib $CFLAGS"
   export CFLAGS="-I $HOME/nccl/build/include $CFLAGS"
 fi
-if [ -d "/usr/lib/ccache" ]; then
-  export PATH="/usr/lib/ccache:$PATH"
+
+# ccache
+if [ -d "$HOME/opt/ccache" ]; then
+  export PATH="$HOME/opt/ccache/bin:$PATH"
+  ln -sf "$HOME/opt/ccache/bin/ccache" "$HOME/opt/ccache/bin/gcc"
+  ln -sf "$HOME/opt/ccache/bin/ccache" "$HOME/opt/ccache/bin/g++"
+  ln -sf "$HOME/opt/ccache/bin/ccache" "$HOME/opt/ccache/bin/nvcc"
 fi
