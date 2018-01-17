@@ -200,6 +200,8 @@ alias gupull='git pull --rebase upstream `git current-branch`'
 alias gupush='git push upstream `git current-branch`'
 alias gfpull='git pull --rebase fork `git current-branch`'
 alias gfpush='git push fork `git current-branch`'
+alias gsts='git stash save'
+alias gstp='git stash pop'
 alias ctags="ctags -f .tags -R ."
 if which ack > /dev/null 2>&1; then; else; alias ack="find . \( -name 'vendor' -o -name '.git' -o -name 'log' -o -name '.tags' \) -prune -o -type f -print0 | xargs -0 grep -n"; fi
 
@@ -288,8 +290,10 @@ fi
 # for chainer
 if [ -d /usr/local/cuda ]; then
   export CUDA_PATH="/usr/local/cuda"
-  export PATH="$CUDA_PATH/bin:$PATH"
+  export CPATH="$CUDA_PATH/include:$CPATH"
   export LD_LIBRARY_PATH="$CUDA_PATH/lib64:$CUDA_PATH/lib:$LD_LIBRARY_PATH"
+  export PATH="$CUDA_PATH/bin:$PATH"
+  export LIBRARY_PATH="$CUDA_PATH/lib64:$CUDA_PATH/lib:$LIBRARY_PATH"
 fi
 if [ -d "$HOME/.cudnn" ]; then
   export LD_LIBRARY_PATH="$HOME/.cudnn/active/cuda/lib64:/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"
@@ -310,4 +314,5 @@ if [ -d "$HOME/opt/ccache" ]; then
   ln -sf "$HOME/opt/ccache/bin/ccache" "$HOME/opt/ccache/bin/gcc"
   ln -sf "$HOME/opt/ccache/bin/ccache" "$HOME/opt/ccache/bin/g++"
   ln -sf "$HOME/opt/ccache/bin/ccache" "$HOME/opt/ccache/bin/nvcc"
+  export NVCC="ccache nvcc"
 fi
