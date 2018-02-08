@@ -174,6 +174,7 @@ autocmd Syntax c set softtabstop=4 | set shiftwidth=4 | set tabstop=8
 autocmd Syntax perl set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd Syntax java set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd Syntax ruby set softtabstop=2 | set shiftwidth=2 | set tabstop=2
+autocmd BufNewFile,BufRead *.rb,*cr set filetype=ruby
 autocmd Syntax python set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd BufNewFile,BufRead *.pxd,*.pxi,*.pyx set filetype=python
 autocmd Syntax javascript set softtabstop=2 | set shiftwidth=2 | set tabstop=2
@@ -614,3 +615,4 @@ autocmd QuickFixCmdPost make,grep,grepadd,vimgrep,vimgrepadd cwin
 " alias grep to vimgrep
 set grepprg=internal
 
+nnoremap <C-]> g<C-]>
