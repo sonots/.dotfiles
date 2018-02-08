@@ -170,6 +170,8 @@ set autoindent
 set smartindent
 
 "autocmd Syntax c set softtabstop=8 | set shiftwidth=8 | set tabstop=8
+autocmd BufNewFile,BufRead *.cc,*.cu,*.cuh set filetype=cpp
+autocmd Syntax cpp set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd Syntax c set softtabstop=4 | set shiftwidth=4 | set tabstop=8
 autocmd Syntax perl set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd Syntax java set softtabstop=4 | set shiftwidth=4 | set tabstop=4
