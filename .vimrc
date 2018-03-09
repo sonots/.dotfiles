@@ -1,3 +1,5 @@
+let mapleader = "\<Space>"
+
 "------------------------------------
 " NeoBundle
 "------------------------------------
@@ -50,6 +52,7 @@ NeoBundle 'vim-ruby/vim-ruby'
 " http://qiita.com/todogzm/items/3c281da10287f7383487
 NeoBundleLazy 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}
 NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'rhysd/vim-clang-format'
 
 " NeoBundle 'python-mode/python-mode'
 NeoBundle 'davidhalter/jedi-vim'
@@ -185,6 +188,24 @@ autocmd BufNewFile,BufRead *.tt set softtabstop=2 | set shiftwidth=2 | set tabst
 autocmd Syntax html,xhtml set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd BufNewFile,BufReadPost *.go set filetype=go
 autocmd BufWritePost  ~/.vimrc source ~/.vimrc
+
+"------------------------------------
+" C++ clang-format
+"------------------------------------
+let g:clang_format#style_options = {
+            \ "BasedOnStyle" : "Google",
+            \ "AccessModifierOffset" : -4,
+            \ "ColumnLimit" : 140,
+            \ "IndentWidth" : 4,
+            \ "DerivePointerAlignment": "false",
+            \ "PointerAlignment" : "Left"}
+
+" map to <Leader>cf in C++ code
+" autocmd FileType cc,cu,cuh nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+" autocmd FileType cc,cu,cuh vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
+autocmd FileType cc,cu,cuh ClangFormatAutoEnable
 
 "------------------------------------
 " golang
