@@ -12,3 +12,4 @@ auto-save-list/
 .tags
 ruby-head
 .kernel_cache
+.tmux/resurrect
