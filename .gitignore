@@ -11,3 +11,4 @@ auto-save-list/
 .vim/.netrwhist
 .tags
 ruby-head
+.kernel_cache
