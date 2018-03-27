@@ -205,7 +205,7 @@ let g:clang_format#style_options = {
 " autocmd FileType cc,cu,cuh vnoremap <buffer><Leader>cf :ClangFormat<CR>
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
-autocmd FileType cc,cu,cuh ClangFormatAutoEnable
+autocmd BufNewFile,BufRead *.cc,*cu,*h,*cuh :ClangFormatAutoEnable
 
 "------------------------------------
 " golang
