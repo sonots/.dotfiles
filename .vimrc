@@ -574,7 +574,7 @@ augroup END
 " NERD Tree
 "------------------------------------
 " Ctrl-n でトグル
-noremap <C-n> :NERDTreeToggle<CR>
+" noremap <C-n> :NERDTreeToggle<CR>
 
 "------------------------------------
 " Shorten split window move
