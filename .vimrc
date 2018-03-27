@@ -53,6 +53,7 @@ NeoBundle 'vim-ruby/vim-ruby'
 NeoBundleLazy 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'rhysd/vim-clang-format'
+NeoBundle 'rking/ag.vim'
 
 " NeoBundle 'python-mode/python-mode'
 NeoBundle 'davidhalter/jedi-vim'
