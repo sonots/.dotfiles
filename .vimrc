@@ -201,12 +201,16 @@ let g:clang_format#style_options = {
             \ "DerivePointerAlignment": "false",
             \ "PointerAlignment" : "Left"}
 
-" map to <Leader>cf in C++ code
-" autocmd FileType cc,cu,cuh nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-" autocmd FileType cc,cu,cuh vnoremap <buffer><Leader>cf :ClangFormat<CR>
-" Toggle auto formatting:
+" map to Space-cf in C++ code
+"autocmd FileType cc,cu,cuh nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+"autocmd FileType cc,cu,cuh vnoremap <buffer><Leader>cf :ClangFormat<CR>
+
+" Toggle auto formatting by Space-C
 nmap <Leader>C :ClangFormatAutoToggle<CR>
-autocmd BufNewFile,BufRead *.cc,*cu,*h,*cuh :ClangFormatAutoEnable
+
+if stridx(getcwd(), 'xchainer') != -1
+  autocmd BufNewFile,BufRead *.cc,*cu,*cuh :ClangFormatAutoEnable
+endif
 
 "------------------------------------
 " golang
@@ -358,7 +362,7 @@ endfunction
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 " let g:ctrlp_max_height          = &lines " 目一杯に一覧
 let g:ctrlp_max_height          = 10 " 10行
-let g:ctrlp_jump_to_buffer      = 2 " タブで開かれていた場合はそのタブに切り替える
+let g:ctrlp_jump_to_buffer      = 0 " タブで開かれていた場合はそのタブに切り替える. 0 is to off
 let g:ctrlp_clear_cache_on_exit = 1 " 終了時キャッシュをクリアする
 let g:ctrlp_mruf_max            = 500 " MRUの最大記録数
 "let g:ctrlp_highlight_match     = [1, 'IncSearch'] " 絞り込みで一致した部分のハイライト
@@ -368,6 +372,7 @@ let g:ctrlp_match_window_reversed = 0 " Change the listing order of the files in
 let g:ctrlp_mruf_default_order = 0 " Set this to 1 to disable sorting when searching in MRU mode:
 let g:ctrlp_map = '<c-p>' " Start CtrlP by Ctrl-p
 let g:ctrlp_cmd = 'CtrlP'
+" Refresh cache: F5 while ctrlp
 let g:ctrlp_prompt_mappings = {
   \ 'PrtBS()':              ['<c-h>', '<bs>', '<c-]>'],
   \ 'PrtDelete()':          ['<del>'],
