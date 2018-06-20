@@ -299,13 +299,14 @@ if [ -d "$HOME/.cudnn" ]; then
   export LD_LIBRARY_PATH="$HOME/.cudnn/active/cuda/lib64:/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"
   export LIBRARY_PATH="$HOME/.cudnn/active/cuda/lib64:/usr/lib/x86_64-linux-gnu:$LIBRARY_PATH"
   export CPATH="$HOME/.cudnn/active/cuda/include:$CPATH"
-  export LDFLAGS="-L $HOME/.cudnn/active/cuda/lib64"
-  export CFLAGS="-I $HOME/.cudnn/active/cuda/include"
+  export LDFLAGS="-L$HOME/.cudnn/active/cuda/lib64"
+  export CFLAGS="-I$HOME/.cudnn/active/cuda/include"
+  export CUDNN_ROOT_DIR="$HOME/.cudnn/active/cuda"
 fi
 if [ -d "$HOME/nccl" ]; then
   export LD_LIBRARY_PATH="$HOME/nccl/build/lib:$LD_LIBRARY_PATH"
-  export LDFLAGS="-L $HOME/nccl/build/lib $CFLAGS"
-  export CFLAGS="-I $HOME/nccl/build/include $CFLAGS"
+  export LDFLAGS="-L$HOME/nccl/build/lib $CFLAGS"
+  export CFLAGS="-I$HOME/nccl/build/include $CFLAGS"
 fi
 
 # ccache
