@@ -24,8 +24,9 @@ bind -r C-p previous-window
 #bind h select-layout even-horizontal
 #bind v select-layout even-vertical
 bind f select-layout active-only
-bind | split-window -h
-bind - split-window -v
+bind c new-window -c "#{pane_current_path}"
+bind | split-window -hc "#{pane_current_path}"
+bind - split-window -vc "#{pane_current_path}"
 bind q kill-pane
 bind C-q kill-window
 
