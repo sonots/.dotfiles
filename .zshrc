@@ -204,6 +204,7 @@ alias gfpush='git push fork `git current-branch`'
 alias gsts='git stash save'
 alias gstp='git stash pop'
 alias ctags="ctags -f .tags -R ."
+alias gotags="gotags -f .tags -R ."
 if which ack > /dev/null 2>&1; then; else; alias ack="find . \( -name 'vendor' -o -name '.git' -o -name 'log' -o -name '.tags' \) -prune -o -type f -print0 | xargs -0 grep -n"; fi
 
 # noautocorrect
