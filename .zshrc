@@ -234,8 +234,10 @@ if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 [[ -f "$HOME/perl5/perlbrew/etc/bashrc" ]] && source "$HOME/perl5/perlbrew/etc/bashrc"
 [[ -d "$HOME/.nodebrew/current/bin" ]] && export PATH=$HOME/.nodebrew/current/bin:$PATH
 [[ -d "$HOME/.pyenv/bin" ]] && export PATH="$HOME/.pyenv/bin:$PATH" && eval "$(pyenv init -)"
+[[ -d "$HOME/.plenv/bin" ]] && export PATH="$HOME/.plenv/bin:$PATH" && eval "$(plenv init - zsh)"
 [[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
 [[ -d "/usr/local/opt/mysql@5.6/bin" ]] && export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
+[[ -d "$HOME/google-cloud-sdk/bin" ]] && export PATH="$HOME/google-cloud-sdk/bin:$PATH"
 
 # go
 if [ "$uname" = "darwin" ]; then
