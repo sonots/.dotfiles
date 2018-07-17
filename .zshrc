@@ -10,6 +10,7 @@ if [ -f $HOME/.oh-my-zsh -o -L $HOME/.oh-my-zsh ]; then
   source $ZSH/oh-my-zsh.sh
 fi
 unalias d
+unalias gb # conflict with golang build tool
 
 # turns on interactive comments; comments begin with a #.
 setopt interactivecomments
