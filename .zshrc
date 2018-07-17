@@ -247,7 +247,7 @@ else
   export GOROOT=/usr/local/go
 fi
 export PATH=$GOROOT/bin:$PATH
-export GOPATH=$HOME
+export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 # goenv
 export GOENVTARGET=$HOME/.goenvtarget
