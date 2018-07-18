@@ -278,15 +278,15 @@ elif [ -S $agent ]; then
 fi
 
 # auto tmux attach
-export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
-export PATH=$HOME/local/bin:$PATH
 if [ -n "$(which tmux)" ]; then
   if [ $SHLVL = 1 ]; then
-    if [ $(( `ps aux | grep tmux | grep $USER | grep -v grep | wc -l` )) != 0 ]; then
-      echo -n 'Attach tmux session? [Y/n]'
-      read YN
-      [[ $YN = '' ]] && YN=y
-      [[ $YN = 'y' ]] || [[ $YN = 'Y' ]] && tmux attach -d
+    if [ -n "$SSH_TTY" ]; then
+      if [ $(( `ps aux | grep tmux | grep $USER | grep -v grep | wc -l` )) != 0 ]; then
+        echo -n 'Attach tmux session? [Y/n]'
+        read YN
+        [[ $YN = '' ]] && YN=y
+        [[ $YN = 'y' ]] || [[ $YN = 'Y' ]] && tmux attach -d
+      fi
     fi
   fi
 fi
