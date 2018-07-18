@@ -243,6 +243,8 @@ if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 if [ "$uname" = "darwin" ]; then
   # brew install go
   export GOROOT=/usr/local/opt/go/libexec
+elif [ -d "$HOME/local/go" ]; then
+  export GOROOT="$HOME/local/go"
 else
   export GOROOT=/usr/local/go
 fi
