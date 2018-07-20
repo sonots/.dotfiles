@@ -37,7 +37,7 @@ vim -c ':NeoBundleInstall!' -c ':q!' -c ':q!'
 if [ $(uname) = "Darwin" ]; then
   # logout is required to reflect
   defaults write -g KeyRepeat -int 1
-  defaults write -g InitialKeyRepeat -int 20
+  defaults write -g InitialKeyRepeat -int 15
 fi
 
 popd
