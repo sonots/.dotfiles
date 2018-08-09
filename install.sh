@@ -25,7 +25,7 @@ if [ $(uname) = "Darwin" ]; then
   fc-cache -vf
   ln -s ~/.dotfiles/.tmux.conf.darwin ~/.tmux.conf
 else
-  ln -s ~/.dotfiles/.tmux.conf.base ~/.tmux.conf
+  ln -s ~/.dotfiles/.tmux.conf.linux ~/.tmux.conf
 fi
 
 vim -c ':NeoBundleInstall!' -c ':q!' -c ':q!'

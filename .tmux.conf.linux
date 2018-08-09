@@ -1,0 +1,2 @@
+set-window-option -g utf8 on
+source-file ~/.tmux.conf.base
