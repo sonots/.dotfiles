@@ -157,11 +157,12 @@ LANG=en_US.UTF-8 vcs_info
 export LC_CTYPE=en_US.UTF-8
 export SVN_EDITOR=/bin/vi
 if [ "$uname" = "darwin" ]; then
+  # http://unicode.org/emoji/charts/full-emoji-list.html
   function check-shell-command {
     if [ $? -eq 0 ]; then
-      face='\U1F363'
+      face='\U1F37A'
     else
-      face='\U1F631'
+      face='\U1F47F'
     fi
     echo -e "${face}"
   }
