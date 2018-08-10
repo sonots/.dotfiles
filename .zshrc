@@ -157,9 +157,25 @@ LANG=en_US.UTF-8 vcs_info
 export LC_CTYPE=en_US.UTF-8
 export SVN_EDITOR=/bin/vi
 if [ "$uname" = "darwin" ]; then
-  PROMPT="%{$fg_bold[red]%}🍣  %{$reset_color%}$ "
+  function check-shell-command {
+    if [ $? -eq 0 ]; then
+      face='\U1F363'
+    else
+      face='\U1F631'
+    fi
+    echo -e "${face}"
+  }
+  PROMPT='$(check-shell-command)  $ '
 else
-  PROMPT="%{$fg_bold[green]%}%m%{$reset_color%}$ "
+  function check-shell-command {
+    if [ $? -eq 0 ]; then
+      host="%{$fg_bold[green]%}%m%{$reset_color%}"
+    else
+      host="%{$fg_bold[red]%}%m%{$reset_color%}"
+    fi
+    echo -e "${host}"
+  }
+  PROMPT='$(check-shell-command)$ '
 fi
 RPROMPT=' %~%1(v|%F{green}%1v%f|)'
 export PAGER="less -c"
