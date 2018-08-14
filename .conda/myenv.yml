@@ -1,0 +1,11 @@
+name: myenv
+channels:
+  - anaconda
+  - defaults
+dependencies:
+  - libgcc-ng=7.2.0=hdf63c60_3
+  - libgfortran-ng=7.2.0=hdf63c60_3
+  - libopenblas=0.2.20=h9ac9557_7
+  - openblas=0.2.20=4
+  - openblas-devel=0.2.20=7
+prefix: /home/sonots/miniconda3/envs/myenv
