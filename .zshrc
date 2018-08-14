@@ -255,7 +255,7 @@ if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 [[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
 [[ -d "/usr/local/opt/mysql@5.6/bin" ]] && export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 [[ -d "$HOME/google-cloud-sdk/bin" ]] && export PATH="$HOME/google-cloud-sdk/bin:$PATH"
-[[ -d "$HOME/.miniconda/bin" ]] && export PATH="$HOME/.miniconda/bin:$PATH"
+[[ -d "$HOME/miniconda3/bin" ]] && export PATH="$HOME/miniconda3/bin:$PATH"
 
 # go
 if [ "$uname" = "darwin" ]; then
@@ -343,10 +343,12 @@ if [ -d "$HOME/opt/ccache" ]; then
 fi
 
 # miniconda
-if [ -d "$HOME/.miniconda" ]; then
-  export LD_LIBRARY_PATH="$HOME/.miniconda/lib:$LD_LIBRARY_PATH"
-  export LIBRARY_PATH="$HOME/.miniconda/lib:$LIBRARY_PATH"
-  export CPATH="$HOME/.miniconda/include:$CPATH"
-  export LDFLAGS="-L$HOME/.miniconda/lib $LDFLAGS"
-  export CFLAGS="-I$HOME/.miniconda/include $CFLAGS"
+if [ -d "$HOME/miniconda3/envs/myenv" ]; then
+  CONDA_PREFIX="$HOME/miniconda3/envs/myenv"
+  # source activate myenv
+  export LD_LIBRARY_PATH="$CONDA_PREFIX/lib:$LD_LIBRARY_PATH"
+  export LIBRARY_PATH="$CONDA_PREFIX/lib:$LIBRARY_PATH"
+  export CPATH="$CONDA_PREFIX/include:$CPATH"
+  export LDFLAGS="-L$CONDA_PREFIX/lib $LDFLAGS"
+  export CFLAGS="-I$CONDA_PREFIX/include $CFLAGS"
 fi
