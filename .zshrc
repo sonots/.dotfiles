@@ -255,6 +255,7 @@ if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 [[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
 [[ -d "/usr/local/opt/mysql@5.6/bin" ]] && export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 [[ -d "$HOME/google-cloud-sdk/bin" ]] && export PATH="$HOME/google-cloud-sdk/bin:$PATH"
+[[ -d "$HOME/.miniconda/bin" ]] && export PATH="$HOME/.miniconda/bin:$PATH"
 
 # go
 if [ "$uname" = "darwin" ]; then
@@ -322,13 +323,13 @@ if [ -d "$HOME/.cudnn" ]; then
   export LD_LIBRARY_PATH="$HOME/.cudnn/active/cuda/lib64:/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"
   export LIBRARY_PATH="$HOME/.cudnn/active/cuda/lib64:/usr/lib/x86_64-linux-gnu:$LIBRARY_PATH"
   export CPATH="$HOME/.cudnn/active/cuda/include:$CPATH"
-  export LDFLAGS="-L$HOME/.cudnn/active/cuda/lib64"
-  export CFLAGS="-I$HOME/.cudnn/active/cuda/include"
+  export LDFLAGS="-L$HOME/.cudnn/active/cuda/lib64 $LDFLAGS"
+  export CFLAGS="-I$HOME/.cudnn/active/cuda/include $CFLAGS"
   export CUDNN_ROOT_DIR="$HOME/.cudnn/active/cuda"
 fi
 if [ -d "$HOME/nccl" ]; then
   export LD_LIBRARY_PATH="$HOME/nccl/build/lib:$LD_LIBRARY_PATH"
-  export LDFLAGS="-L$HOME/nccl/build/lib $CFLAGS"
+  export LDFLAGS="-L$HOME/nccl/build/lib $LDFLAGS"
   export CFLAGS="-I$HOME/nccl/build/include $CFLAGS"
 fi
 
@@ -339,4 +340,13 @@ if [ -d "$HOME/opt/ccache" ]; then
   ln -sf "$HOME/opt/ccache/bin/ccache" "$HOME/opt/ccache/bin/g++"
   ln -sf "$HOME/opt/ccache/bin/ccache" "$HOME/opt/ccache/bin/nvcc"
   export NVCC="ccache nvcc"
+fi
+
+# miniconda
+if [ -d "$HOME/.miniconda" ]; then
+  export LD_LIBRARY_PATH="$HOME/.miniconda/lib:$LD_LIBRARY_PATH"
+  export LIBRARY_PATH="$HOME/.miniconda/lib:$LIBRARY_PATH"
+  export CPATH="$HOME/.miniconda/include:$CPATH"
+  export LDFLAGS="-L$HOME/.miniconda/lib $LDFLAGS"
+  export CFLAGS="-I$HOME/.miniconda/include $CFLAGS"
 fi
