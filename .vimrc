@@ -208,7 +208,7 @@ let g:clang_format#style_options = {
 " Toggle auto formatting by Space-C
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 
-if stridx(getcwd(), 'xchainer') != -1
+if stridx(getcwd(), 'chainerx') != -1
   autocmd BufNewFile,BufRead *.cc,*cu,*cuh :ClangFormatAutoEnable
 endif
 
