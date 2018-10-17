@@ -55,12 +55,27 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'rhysd/vim-clang-format'
 NeoBundle 'rking/ag.vim'
 
-" NeoBundle 'python-mode/python-mode'
-NeoBundle 'davidhalter/jedi-vim'
-" rename用のマッピングを無効にしたため、代わりにコマンドを定義
-command! -nargs=0 JediRename :call jedi#rename()
-" pythonのrename用のマッピングがquickrunとかぶるため回避させる
-let g:jedi#rename_command = ""
+NeoBundle 'python-mode/python-mode'
+let g:pymode_python = 'python3'
+let g:pymode_options = 1
+let g:pymode_options_max_line_length = 79
+let g:pymode_options_colorcolumn = 1
+let g:pymode_indent = 1
+let g:pymode_folding = 0
+let g:pymode_lint_on_write = 1
+let g:pymode_lint_message = 1
+let g:pymode_lint_checkes = ['flake8']
+let g:pymode_rope = 0 " refactoring tool, will study later
+let g:pymode_syntax = 1
+let g:pymode_syntax_slow_sync = 0
+let g:pymode_syntax_space_errors = 0
+
+" NeoBundle 'davidhalter/jedi-vim' " Python autocompletion
+" " rename用のマッピングを無効にしたため、代わりにコマンドを定義
+" command! -nargs=0 JediRename :call jedi#rename()
+" " pythonのrename用のマッピングがquickrunとかぶるため回避させる
+" let g:jedi#rename_command = ""
+" let g:jedi#pydoc = "k"
 
 " Required:
 call neobundle#end()
