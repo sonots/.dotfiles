@@ -46,6 +46,12 @@ NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-rake'
 NeoBundle 'tpope/vim-bundler'
 NeoBundle 'vim-ruby/vim-ruby'
+" python
+NeoBundle 'python-mode/python-mode'
+" TODO: Resolve slowness of jedi-vim if possible.
+" jedi is for autocompletion in python. REQUIREMENT: pip install jedi
+"NeoBundle 'davidhalter/jedi-vim'
+
 "NeoBundle 'vim-scripts/YankRing.vim'
 "NeoBundle 'jnwhiteh/vim-golang'
 " http://mattn.kaoriya.net/software/vim/20130531000559.htm
@@ -54,10 +60,6 @@ NeoBundleLazy 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'rhysd/vim-clang-format'
 NeoBundle 'rking/ag.vim'
-
-NeoBundle 'python-mode/python-mode'
-NeoBundle 'nvie/vim-flake8'
-" NeoBundle 'davidhalter/jedi-vim' " pyautocompletion
 
 " Required:
 call neobundle#end()
@@ -192,6 +194,8 @@ autocmd BufWritePost  ~/.vimrc source ~/.vimrc
 "------------------------------------
 " Python
 "------------------------------------
+autocmd Syntax python let &colorcolumn=join(range(81,999),",")
+
 let g:pymode_python = 'python3'
 let g:pymode_options = 1
 let g:pymode_options_max_line_length = 0
@@ -203,8 +207,6 @@ let g:pymode_rope = 0 " refactoring tool, will study later
 let g:pymode_syntax = 1
 let g:pymode_syntax_slow_sync = 0
 let g:pymode_syntax_space_errors = 0
-
-autocmd Syntax python let &colorcolumn=join(range(81,999),",")
 
 "------------------------------------
 " C++ clang-format
