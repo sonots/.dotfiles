@@ -348,7 +348,20 @@ if [ -d "$HOME/miniconda3/envs/myenv" ]; then
   # source activate myenv
   export LD_LIBRARY_PATH="$CONDA_PREFIX/lib:$LD_LIBRARY_PATH"
   export LIBRARY_PATH="$CONDA_PREFIX/lib:$LIBRARY_PATH"
-  export CPATH="$CONDA_PREFIX/include:$CPATH"
   export LDFLAGS="-L$CONDA_PREFIX/lib $LDFLAGS"
+  export CPATH="$CONDA_PREFIX/include:$CPATH"
   export CFLAGS="-I$CONDA_PREFIX/include $CFLAGS"
 fi
+
+if [ -d "$HOME/local/include" ]; then
+  export CPATH="$HOME/local/include:$CPATH"
+  export CFLAGS="-I$HOME/local/include $CFLAGS"
+fi
+if [ -d "$HOME/local/lib" ]; then
+  export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
+  export LIBRARY_PATH="$HOME/local/lib:$LIBRARY_PATH"
+  export LDFLAGS="-L$HOME/local/lib $LDFLAGS"
+fi
+
+alias onnxdump="python -c 'import onnx; import sys; print(onnx.load(sys.argv[1]))'"
+
