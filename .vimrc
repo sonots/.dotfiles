@@ -56,26 +56,8 @@ NeoBundle 'rhysd/vim-clang-format'
 NeoBundle 'rking/ag.vim'
 
 NeoBundle 'python-mode/python-mode'
-let g:pymode_python = 'python3'
-let g:pymode_options = 1
-let g:pymode_options_max_line_length = 79
-let g:pymode_options_colorcolumn = 1
-let g:pymode_indent = 1
-let g:pymode_folding = 0
-let g:pymode_lint_on_write = 1
-let g:pymode_lint_message = 1
-let g:pymode_lint_checkes = ['flake8']
-let g:pymode_rope = 0 " refactoring tool, will study later
-let g:pymode_syntax = 1
-let g:pymode_syntax_slow_sync = 0
-let g:pymode_syntax_space_errors = 0
-
-" NeoBundle 'davidhalter/jedi-vim' " Python autocompletion
-" " rename用のマッピングを無効にしたため、代わりにコマンドを定義
-" command! -nargs=0 JediRename :call jedi#rename()
-" " pythonのrename用のマッピングがquickrunとかぶるため回避させる
-" let g:jedi#rename_command = ""
-" let g:jedi#pydoc = "k"
+NeoBundle 'nvie/vim-flake8'
+" NeoBundle 'davidhalter/jedi-vim' " pyautocompletion
 
 " Required:
 call neobundle#end()
@@ -187,6 +169,8 @@ set tabstop=2
 set autoindent
 " スマートインデント
 set smartindent
+" colorcolumn
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
 
 "autocmd Syntax c set softtabstop=8 | set shiftwidth=8 | set tabstop=8
 autocmd BufNewFile,BufRead *.cc,*.cu,*.cuh set filetype=cpp
@@ -204,6 +188,23 @@ autocmd BufNewFile,BufRead *.tt set softtabstop=2 | set shiftwidth=2 | set tabst
 autocmd Syntax html,xhtml set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd BufNewFile,BufReadPost *.go set filetype=go
 autocmd BufWritePost  ~/.vimrc source ~/.vimrc
+
+"------------------------------------
+" Python
+"------------------------------------
+let g:pymode_python = 'python3'
+let g:pymode_options = 1
+let g:pymode_options_max_line_length = 0
+let g:pymode_options_colorcolumn = 0
+let g:pymode_indent = 1
+let g:pymode_folding = 0
+let g:pymode_lint = 0
+let g:pymode_rope = 0 " refactoring tool, will study later
+let g:pymode_syntax = 1
+let g:pymode_syntax_slow_sync = 0
+let g:pymode_syntax_space_errors = 0
+
+autocmd Syntax python let &colorcolumn=join(range(81,999),",")
 
 "------------------------------------
 " C++ clang-format
