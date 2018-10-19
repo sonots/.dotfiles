@@ -209,8 +209,23 @@ let g:pymode_syntax_slow_sync = 0
 let g:pymode_syntax_space_errors = 0
 
 "------------------------------------
+" Jedi-vim (Python)
+"------------------------------------
+"let g:jedi#popup_select_first = 0 "1個目の候補が入力されるっていう設定を解除
+"let g:jedi#popup_on_dot = 0 " .を入力すると補完が始まるという設定を解除. Use Ctrl+Space instead
+"let g:jedi#goto_command = "<leader>d"
+"let g:jedi#goto_assignments_command = "<leader>g"
+"let g:jedi#goto_definitions_command = ""
+"let g:jedi#documentation_command = "K"
+"let g:jedi#usages_command = "<leader>n"
+"let g:jedi#rename_command = "<leader>R" "quick-runと競合しないように大文字Rに変更. READMEだと<leader>r
+"autocmd FileType python setlocal completeopt-=preview "Do not the docstring window to popup
+
+"------------------------------------
 " C++ clang-format
 "------------------------------------
+autocmd Syntax cpp let &colorcolumn=join(range(141,999),",")
+
 let g:clang_format#style_options = {
             \ "BasedOnStyle" : "Google",
             \ "AccessModifierOffset" : -4,
