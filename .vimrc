@@ -48,8 +48,8 @@ NeoBundle 'tpope/vim-bundler'
 NeoBundle 'vim-ruby/vim-ruby'
 " python
 NeoBundle 'python-mode/python-mode'
-" TODO: Resolve slowness of jedi-vim if possible.
 " jedi is for autocompletion in python. REQUIREMENT: pip install jedi
+"TODO(sonots): Fix slowness
 "NeoBundle 'davidhalter/jedi-vim'
 
 "NeoBundle 'vim-scripts/YankRing.vim'
