@@ -405,7 +405,7 @@ let g:ctrlp_match_window_reversed = 0 " Change the listing order of the files in
 let g:ctrlp_mruf_default_order = 0 " Set this to 1 to disable sorting when searching in MRU mode:
 let g:ctrlp_map = '<c-p>' " Start CtrlP by Ctrl-p
 let g:ctrlp_cmd = 'CtrlP'
-" Refresh cache: F5 while ctrlp
+" Refresh cache: ctrl-r while ctrlp
 let g:ctrlp_prompt_mappings = {
   \ 'PrtBS()':              ['<c-h>', '<bs>', '<c-]>'],
   \ 'PrtDelete()':          ['<del>'],
@@ -420,7 +420,7 @@ let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("t")': ['<c-t>', '<MiddleMouse>'],
   \ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
   \ 'ToggleFocus()':        ['<s-tab>'],
-  \ 'ToggleRegex()':        ['<c-r>'],
+  \ 'ToggleRegex()':        ['<F5>'],
   \ 'ToggleByFname()':      ['<c-d>'],
   \ 'ToggleType(1)':        ['<c-f>', '<c-up>'],
   \ 'ToggleType(-1)':       ['<c-b>', '<c-down>'],
@@ -433,7 +433,7 @@ let g:ctrlp_prompt_mappings = {
   \ 'PrtCurEnd()':          ['<c-e>'],
   \ 'PrtCurLeft()':         ['<left>', '<c-^>'],
   \ 'PrtCurRight()':        ['<c-l>', '<right>'],
-  \ 'PrtClearCache()':      ['<F5>'],
+  \ 'PrtClearCache()':      ['<c-r>'],
   \ 'PrtDeleteMRU()':       ['<F7>'],
   \ 'CreateNewFile()':      ['<c-y>'],
   \ 'MarkToOpen()':         ['<c-z>'],
