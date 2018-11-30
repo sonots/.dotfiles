@@ -47,13 +47,13 @@ brew install brew-cask
 
 # .dmg with homebrew-cask
 brew cask install google-chrome
-brew cask install firefox
-brew cask install vivaldi
+# brew cask install firefox
+# brew cask install vivaldi
 brew cask install evernote
 brew cask install dropbox
 # brew cask install skype
 brew cask install iterm2
-brew cask install limechat
+# brew cask install limechat
 # brew cask install sublime-text
 # brew cask install marked2
 # brew cask install xquartz
@@ -61,11 +61,11 @@ brew cask install limechat
 # brew cask install kobito
 brew cask install virtualbox
 brew cask install vagrant
-brew cask install karabiner
-brew cask install echofon # mycask
-brew cask install cot-editor # mycask
+# brew cask install karabiner
+# brew cask install echofon # mycask
+# brew cask install cot-editor # mycask
 brew cask install macvim-kaoriya # mycask
-brew cask install gyazo # mycask
+# brew cask install gyazo # mycask
 brew install neovim/neovim/neovim
 
 # Remove outdated versions
