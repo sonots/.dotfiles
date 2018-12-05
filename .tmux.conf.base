@@ -9,7 +9,7 @@ set-window-option -g mode-keys vi
 unbind C-b
 set -g prefix ^T
 bind t send-prefix
-bind / list-keys -t vi-copy
+# bind / list-keys -t vi-copy
 bind r source-file ~/.tmux.conf # tmux source-file ~/.tmux.conf
 bind C-r source-file ~/.tmux.conf
 
