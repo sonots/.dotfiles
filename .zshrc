@@ -239,13 +239,15 @@ export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/bin:$HOME/local/bin:$HOME/gitrepos/bin:$HOME/.dotfiles/.bin:$PATH
 export PATH="/usr/local/heroku/bin:$PATH" ### Added by the Heroku Toolbelt
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
+export EDITOR=/usr/bin/vim
 if [ -x /usr/libexec/java_home ]; then
-  export JAVA_HOME=$(/usr/libexec/java_home)
-else
+  if /usr/java/latest > /dev/null 2>&1; then
+    export JAVA_HOME=$(/usr/libexec/java_home)
+  fi
+elif [ -x /usr/java/latest/bin/java ]; then
   export JAVA_HOME=/usr/java/latest
 fi
-export ANT_HOME=/usr/java/ant
-export EDITOR=/usr/bin/vim
+[[ -d /usr/java/ant ]] && export ANT_HOME=/usr/java/ant
 [[ -d ~/.rbenv/bin ]] && export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 [[ -f "$HOME/perl5/perlbrew/etc/bashrc" ]] && source "$HOME/perl5/perlbrew/etc/bashrc"
