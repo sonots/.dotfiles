@@ -156,28 +156,15 @@ precmd () {
 LANG=en_US.UTF-8 vcs_info
 export LC_CTYPE=en_US.UTF-8
 export SVN_EDITOR=/bin/vi
-if [ "$uname" = "darwin" ]; then
-  # http://unicode.org/emoji/charts/full-emoji-list.html
-  function check-shell-command {
-    if [ $? -eq 0 ]; then
-      face='\U1F37A'
-    else
-      face='\U1F47F'
-    fi
-    echo -e "${face}"
-  }
-  PROMPT='$(check-shell-command)  $ '
-else
-  function check-shell-command {
-    if [ $? -eq 0 ]; then
-      host="%{$fg_bold[green]%}%m%{$reset_color%}"
-    else
-      host="%{$fg_bold[red]%}%m%{$reset_color%}"
-    fi
-    echo -e "${host}"
-  }
-  PROMPT='$(check-shell-command)$ '
-fi
+function check-shell-command {
+  if [ $? -eq 0 ]; then
+    host="%{$fg_bold[green]%}%m%{$reset_color%}"
+  else
+    host="%{$fg_bold[red]%}%m%{$reset_color%}"
+  fi
+  echo -e "${host}"
+}
+PROMPT='$(check-shell-command)$ '
 RPROMPT=' %~%1(v|%F{green}%1v%f|)'
 export PAGER="less -c"
 
