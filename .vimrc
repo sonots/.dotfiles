@@ -119,6 +119,14 @@ nnoremap ,9   :e #9<CR>
 " バッファ一覧
 nmap ,b :buffers<CR>
 
+" 日本語入力がオンのままでも使えるコマンド(Enterキーは必要)
+nnoremap あ a
+nnoremap い i
+nnoremap う u
+nnoremap お o
+nnoremap っd dd
+nnoremap っy yy
+
 "------------------------------------
 " status bar
 "------------------------------------
