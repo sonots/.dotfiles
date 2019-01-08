@@ -64,9 +64,9 @@ brew cask install vagrant
 # brew cask install karabiner
 # brew cask install echofon # mycask
 # brew cask install cot-editor # mycask
-brew cask install macvim-kaoriya # mycask
+# brew cask install macvim-kaoriya # mycask
 # brew cask install gyazo # mycask
-brew install neovim/neovim/neovim
+brew install neovim
 
 # Remove outdated versions
 brew cleanup
