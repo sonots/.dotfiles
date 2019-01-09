@@ -101,6 +101,9 @@ filetype plugin on
 filetype plugin indent on " required for NeoBundle
 set noundofile
 
+" Remove trailing whitespace automatically
+autocmd BufWritePre * :%s/\s\+$//e
+
 "------------------------------------
 " Buffer
 "------------------------------------
