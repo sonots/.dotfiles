@@ -95,12 +95,8 @@ set clipboard+=unnamed
 " Make a copy by selection like X
 set clipboard+=autoselect
 set hidden
-syntax on
-filetype on
-filetype indent on
-filetype plugin on
-filetype plugin indent on " required for NeoBundle
 set noundofile
+autocmd BufWritePost  ~/.vimrc source ~/.vimrc
 
 " Remove trailing whitespace automatically
 autocmd BufWritePre * :%s/\s\+$//e
@@ -171,38 +167,38 @@ set modelines=5
 "------------------------------------
 " indent
 "------------------------------------
-" Tab 文字を空白文字に置き換える (:set noet to off)
-set expandtab
-" Tab 入力時に挿入する空白文字の数
-set softtabstop=2
-" Indent 時に挿入する空白文字の数
-set shiftwidth=2
-" Tab 文字の見た目上の幅
-set tabstop=2
-" 改行時にオートインデント
-set autoindent
-" スマートインデント
-set smartindent
-" colorcolumn
+syntax on
+filetype on
+filetype indent on
+filetype plugin on
+
+set autoindent          "改行時に前の行のインデントを計測
+set smartindent         "改行時に入力された行の末尾に合わせて次の行のインデントを増減する
+set cindent             "Cプログラムファイルの自動インデントを始める
+set smarttab            "新しい行を作った時に高度な自動インデントを行う
+set expandtab           "タブ入力を複数の空白に置き換える
+
+set tabstop=2           "タブを含むファイルを開いた際, タブを何文字の空白に変換するか
+set shiftwidth=2        "自動インデントで入る空白数
+set softtabstop=2       "キーボードから入るタブの数
+
 highlight ColorColumn ctermbg=235 guibg=#2c2d27
 
-"autocmd Syntax c set softtabstop=8 | set shiftwidth=8 | set tabstop=8
 autocmd BufNewFile,BufRead *.cc,*.cu,*.cuh set filetype=cpp
-autocmd Syntax cpp set softtabstop=4 | set shiftwidth=4 | set tabstop=4
-autocmd Syntax c set softtabstop=4 | set shiftwidth=4 | set tabstop=8
-autocmd Syntax perl set softtabstop=4 | set shiftwidth=4 | set tabstop=4
-autocmd Syntax java set softtabstop=4 | set shiftwidth=4 | set tabstop=4
-autocmd Syntax ruby set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd BufNewFile,BufRead *.rb,*cr set filetype=ruby
-autocmd Syntax python set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd BufNewFile,BufRead *.pxd,*.pxi,*.pyx set filetype=python
-autocmd Syntax javascript set softtabstop=2 | set shiftwidth=2 | set tabstop=2
-autocmd Syntax yaml set softtabstop=2 | set shiftwidth=0 | set tabstop=2
 autocmd BufNewFile,BufRead *.tt set softtabstop=2 | set shiftwidth=2 | set tabstop=2
-autocmd Syntax html,xhtml set softtabstop=2 | set shiftwidth=2 | set tabstop=2
-autocmd BufNewFile,BufReadPost *.go set filetype=go
-autocmd BufWritePost  ~/.vimrc source ~/.vimrc
+autocmd BufNewFile,BufRead *.go set filetype=go
 autocmd BufNewFile,BufRead *.dig setf yaml
+autocmd Syntax cpp        set softtabstop=4 | set shiftwidth=4 | set tabstop=4
+autocmd Syntax c          set softtabstop=4 | set shiftwidth=4 | set tabstop=8
+autocmd Syntax perl       set softtabstop=4 | set shiftwidth=4 | set tabstop=4
+autocmd Syntax java       set softtabstop=4 | set shiftwidth=4 | set tabstop=4
+autocmd Syntax ruby       set softtabstop=2 | set shiftwidth=2 | set tabstop=2
+autocmd Syntax python     set softtabstop=4 | set shiftwidth=4 | set tabstop=4
+autocmd Syntax javascript set softtabstop=2 | set shiftwidth=2 | set tabstop=2
+autocmd Syntax yaml       set softtabstop=2 | set shiftwidth=0 | set tabstop=2
+autocmd Syntax html,xhtml set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 
 "------------------------------------
 " Python
