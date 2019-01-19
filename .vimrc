@@ -19,14 +19,11 @@ call neobundle#begin(expand('~/.vim/bundle'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" Let NeoBundle manage NeoBundle
-NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tpope/vim-fugitive'
 "NeoBundle 'Sixeight/unite-grep'
-"NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'sonots/ctrlp.vim'
+NeoBundle 'sonots/ctrlp.vim' "NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc', {
@@ -40,14 +37,12 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'Shougo/vimshell.git'
 NeoBundle 'Shougo/vimfiler.git'
 NeoBundle 'scrooloose/nerdtree'
-" ruby
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-rake'
 NeoBundle 'tpope/vim-bundler'
-NeoBundle 'stephpy/vim-yaml'
 NeoBundle 'vim-ruby/vim-ruby'
-" python
+NeoBundle 'stephpy/vim-yaml'
 NeoBundle 'python-mode/python-mode'
 " jedi is for autocompletion in python. REQUIREMENT: pip install jedi
 "TODO(sonots): Fix slowness
@@ -75,31 +70,19 @@ NeoBundleCheck
 "------------------------------------
 " Vim
 "------------------------------------
-" No vi compatibility
-set nocompatible
-" 行数を表示
-set number
-" ~ファイルを作らない
-set nobackup
-" swpファイルを作らない
-set noswapfile
-" スクロール時の余白確保
-set scrolloff=10
-" No beep sound
-set visualbell t_vb=
-" 前行へのバックスペース許可など
-set backspace=indent,eol,start
-" Copy to clipboard. NOTE: You need reattach-to-user-namespace on tmux on Mac.
-" See http://qiita.com/yuku_t/items/bea95b1bc6e6ca8a495b
+set nocompatible               " No vi compatibility
+set number                     " 行数を表示
+set nobackup                   " ~ファイルを作らない
+set noswapfile                 " swpファイルを作らない
+set scrolloff=10               " スクロール時の余白確保
+set visualbell t_vb=           " No beep sound
+set backspace=indent,eol,start " 前行へのバックスペース許可など
 set clipboard+=unnamed
-" Make a copy by selection like X
-set clipboard+=autoselect
+set clipboard+=autoselect      " Make a copy by selection like X
 set hidden
 set noundofile
-autocmd BufWritePost  ~/.vimrc source ~/.vimrc
-
-" Remove trailing whitespace automatically
-autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePost  ~/.vimrc source ~/.vimrc " 保存時に .vimrc を最適用
+autocmd BufWritePre * :%s/\s\+$//e " Remove trailing whitespace automatically
 
 "------------------------------------
 " Buffer
@@ -139,20 +122,13 @@ set showcmd
 "set textwidth=78
 "set columns=100
 "set lines=150
-" バッファタブにパスを省略してファイル名のみ表示する
-let g:buftabs_only_basename=1
-" バッファタブをステータスライン内に表示する
-let g:buftabs_in_statusline=1
-" 現在のバッファをハイライト
-let g:buftabs_active_highlight_group="Visual"
-" ステータスライン
-set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=\[%04l,%04v][%02p%%]
-" ステータスラインを常に表示
-set laststatus=2
-" No paren match
-let loaded_matchparen = 1
-" see tail 5 lines for `vi: set ts=4 sw=4`
-set modelines=5
+let g:buftabs_only_basename=1 " バッファタブにパスを省略してファイル名のみ表示する
+let g:buftabs_in_statusline=1 " バッファタブをステータスライン内に表示する
+let g:buftabs_active_highlight_group="Visual" " 現在のバッファをハイライト
+set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=\[%04l,%04v][%02p%%] " ステータスライン
+set laststatus=2 " ステータスラインを常に表示
+let loaded_matchparen = 1 " No paren match
+set modelines=5 " see tail 5 lines for `vi: set ts=4 sw=4`
 
 "------------------------------------
 " Highlight the current line of the active buffer
@@ -172,15 +148,15 @@ filetype on
 filetype indent on
 filetype plugin on
 
-set autoindent          "改行時に前の行のインデントを計測
-set smartindent         "改行時に入力された行の末尾に合わせて次の行のインデントを増減する
-set cindent             "Cプログラムファイルの自動インデントを始める
-set smarttab            "新しい行を作った時に高度な自動インデントを行う
-set expandtab           "タブ入力を複数の空白に置き換える
+set autoindent    "改行時に前の行のインデントを計測
+set smartindent   "改行時に入力された行の末尾に合わせて次の行のインデントを増減する
+set cindent       "Cプログラムファイルの自動インデントを始める
+set smarttab      "新しい行を作った時に高度な自動インデントを行う
+set expandtab     "タブ入力を複数の空白に置き換える
 
-set tabstop=2           "タブを含むファイルを開いた際, タブを何文字の空白に変換するか
-set shiftwidth=2        "自動インデントで入る空白数
-set softtabstop=2       "キーボードから入るタブの数
+set tabstop=2     "タブを含むファイルを開いた際, タブを何文字の空白に変換するか
+set shiftwidth=2  "自動インデントで入る空白数
+set softtabstop=2 "キーボードから入るタブの数
 
 highlight ColorColumn ctermbg=235 guibg=#2c2d27
 
