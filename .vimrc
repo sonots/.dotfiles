@@ -45,6 +45,7 @@ NeoBundle 'mileszs/ack.vim'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-rake'
 NeoBundle 'tpope/vim-bundler'
+NeoBundle 'stephpy/vim-yaml'
 NeoBundle 'vim-ruby/vim-ruby'
 " python
 NeoBundle 'python-mode/python-mode'
@@ -196,7 +197,7 @@ autocmd BufNewFile,BufRead *.rb,*cr set filetype=ruby
 autocmd Syntax python set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd BufNewFile,BufRead *.pxd,*.pxi,*.pyx set filetype=python
 autocmd Syntax javascript set softtabstop=2 | set shiftwidth=2 | set tabstop=2
-autocmd Syntax yaml set softtabstop=2 | set shiftwidth=2 | set tabstop=2
+autocmd Syntax yaml set softtabstop=2 | set shiftwidth=0 | set tabstop=2
 autocmd BufNewFile,BufRead *.tt set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd Syntax html,xhtml set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd BufNewFile,BufReadPost *.go set filetype=go
