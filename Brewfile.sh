@@ -19,10 +19,10 @@ brew install git
 brew install gist
 brew install tig
 brew install tmux
-brew install ack
 brew install ctags
 brew install nkf
 brew install lv
+brew install htop
 brew install wget
 brew install tree
 brew install pkg-config
@@ -32,10 +32,11 @@ brew install autoconf
 brew install automake
 brew install mosh
 brew install markdown
+brew install pstree
 brew install pidof # pidof
 brew install proctools # pkill, pgrep, pfind
 brew install rmtrash # `rmtrash` moves file to Trash
-brew install reattach-to-user-namespace # http://yuzuemon.hatenablog.com/entry/20120222/1329841466 # http://qiita.com/yuku_t/items/bea95b1bc6e6ca8a495b
+brew install ag
 brew install rbenv ruby-build
 brew install readline
 brew install ghq
@@ -66,7 +67,7 @@ brew cask install vagrant
 # brew cask install cot-editor # mycask
 # brew cask install macvim-kaoriya # mycask
 # brew cask install gyazo # mycask
-brew install neovim
+# brew install neovim
 
 # Remove outdated versions
 brew cleanup
