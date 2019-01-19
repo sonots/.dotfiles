@@ -225,6 +225,7 @@ export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/bin:$HOME/local/bin:$HOME/gitrepos/bin:$HOME/.dotfiles/.bin:$PATH
 export PATH="/usr/local/heroku/bin:$PATH" ### Added by the Heroku Toolbelt
+export PATH=$HOME/.local/bin:$PATH
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 export EDITOR=/usr/bin/vim
 if [ -x /usr/libexec/java_home ]; then
