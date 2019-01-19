@@ -173,7 +173,7 @@ autocmd Syntax java       set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd Syntax ruby       set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd Syntax python     set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd Syntax javascript set softtabstop=2 | set shiftwidth=2 | set tabstop=2
-autocmd Syntax yaml       set softtabstop=2 | set shiftwidth=0 | set tabstop=2
+autocmd Syntax yaml       set softtabstop=2 | set shiftwidth=0 | set tabstop=2 | setl indentkeys-=<:>
 autocmd Syntax html,xhtml set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 
 "------------------------------------
