@@ -25,7 +25,7 @@ NeoBundle 'tpope/vim-fugitive'
 "NeoBundle 'Sixeight/unite-grep'
 NeoBundle 'sonots/ctrlp.vim' "NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/unite.vim'
+"NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
       \     'windows' : 'echo "Sorry, cannot update vimproc binary file in Windows."',
@@ -42,7 +42,7 @@ NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-rake'
 NeoBundle 'tpope/vim-bundler'
 NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'stephpy/vim-yaml'
+" NeoBundle 'stephpy/vim-yaml'
 NeoBundle 'python-mode/python-mode'
 " jedi is for autocompletion in python. REQUIREMENT: pip install jedi
 "TODO(sonots): Fix slowness
@@ -165,7 +165,7 @@ autocmd BufNewFile,BufRead *.rb,*cr set filetype=ruby
 autocmd BufNewFile,BufRead *.pxd,*.pxi,*.pyx set filetype=python
 autocmd BufNewFile,BufRead *.tt set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd BufNewFile,BufRead *.go set filetype=go
-autocmd BufNewFile,BufRead *.dig setf yaml
+autocmd BufNewFile,BufRead *.dig set filetype=yaml
 autocmd Syntax cpp        set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd Syntax c          set softtabstop=4 | set shiftwidth=4 | set tabstop=8
 autocmd Syntax perl       set softtabstop=4 | set shiftwidth=4 | set tabstop=4
@@ -173,8 +173,9 @@ autocmd Syntax java       set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd Syntax ruby       set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd Syntax python     set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd Syntax javascript set softtabstop=2 | set shiftwidth=2 | set tabstop=2
-autocmd Syntax yaml       set softtabstop=2 | set shiftwidth=0 | set tabstop=2 | setl indentkeys-=<:>
+autocmd Syntax yaml       set softtabstop=2 | set shiftwidth=2 | set tabstop=2 | setl indentkeys-=<:>
 autocmd Syntax html,xhtml set softtabstop=2 | set shiftwidth=2 | set tabstop=2
+autocmd Syntax bash       set softtabstop=4 | set shiftwidth=2 | set tabstop=2
 
 "------------------------------------
 " Python
@@ -290,25 +291,25 @@ let g:rubycomplete_rails = 1
 "------------------------------------
 " unite.vim
 "------------------------------------
-" 入力モードで開始する
-let g:unite_enable_start_insert=0
-" バッファ一覧
-noremap <C-U><C-B> :Unite buffer<CR>
-" ファイル一覧
-noremap <C-U><C-F> :UniteWithBufferDir -buffer-name=files file<CR>
-" 最近使ったファイルの一覧
-noremap <C-U><C-R> :Unite file_mru<CR>
-" レジスタ一覧
-noremap <C-U><C-Y> :Unite -buffer-name=register register<CR>
-" ファイルとバッファ
-noremap <C-U><C-U> :Unite buffer file_mru<CR>
-" 全部
-noremap <C-U><C-A> :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
-" ESCキーを2回押すと終了する
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-" Unite-grep
-nnoremap <silent> ,ug :Unite grep:%:-iHRn<CR>
+" " 入力モードで開始する
+" let g:unite_enable_start_insert=0
+" " バッファ一覧
+" noremap <C-U><C-B> :Unite buffer<CR>
+" " ファイル一覧
+" noremap <C-U><C-F> :UniteWithBufferDir -buffer-name=files file<CR>
+" " 最近使ったファイルの一覧
+" noremap <C-U><C-R> :Unite file_mru<CR>
+" " レジスタ一覧
+" noremap <C-U><C-Y> :Unite -buffer-name=register register<CR>
+" " ファイルとバッファ
+" noremap <C-U><C-U> :Unite buffer file_mru<CR>
+" " 全部
+" noremap <C-U><C-A> :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+" " ESCキーを2回押すと終了する
+" au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+" au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+" " Unite-grep
+" nnoremap <silent> ,ug :Unite grep:%:-iHRn<CR>
 
 "------------------------------------
 " lightline.vim
