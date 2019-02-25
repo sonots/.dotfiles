@@ -390,6 +390,15 @@ let g:ctrlp_open_new_file       = 1 " 新規ファイル作成時にタブで開
 let g:ctrlp_open_multi          = '10t' " 複数ファイルを開く時にタブで最大10まで開く
 let g:ctrlp_match_window_reversed = 0 " Change the listing order of the files in the match window.
 let g:ctrlp_mruf_default_order = 0 " Set this to 1 to disable sorting when searching in MRU mode:
+let g:ctrlp_max_files = 0  " Unset cap of 10,000 files so we find everything
+let g:ctrlp_user_command = {
+  \ 'types': {
+    \ 1: ['.git', 'cd %s && git ls-files'],
+    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+    \ },
+  \ 'fallback': 'find %s -type f'
+  \ }
+
 let g:ctrlp_map = '<c-p>' " Start CtrlP by Ctrl-p
 let g:ctrlp_cmd = 'CtrlP'
 " Refresh cache: ctrl-r while ctrlp
