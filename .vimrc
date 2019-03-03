@@ -173,10 +173,15 @@ autocmd Syntax java       set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd Syntax ruby       set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd Syntax python     set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd Syntax javascript set softtabstop=2 | set shiftwidth=2 | set tabstop=2
-autocmd Syntax yaml       set softtabstop=2 | set shiftwidth=2 | set tabstop=2 | setl indentkeys-=<:>
+autocmd Syntax yaml       set softtabstop=2 | set shiftwidth=2 | set tabstop=2 | setl indentkeys-=<:> indentkeys-=0#
 autocmd Syntax html,xhtml set softtabstop=2 | set shiftwidth=2 | set tabstop=2
 autocmd Syntax bash,sh    set softtabstop=4 | set shiftwidth=4 | set tabstop=4
 autocmd FileType eruby    setl indentexpr=XmlIndentGet(v:lnum,1)
+
+"------------------------------------
+" Ruby
+"------------------------------------
+autocmd Syntax ruby let &colorcolumn=join(range(101,999),",")
 
 "------------------------------------
 " Python
