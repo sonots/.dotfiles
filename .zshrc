@@ -369,3 +369,21 @@ alias onnxdump="python -c 'import onnx; import sys; print(onnx.load(sys.argv[1])
 if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc ]; then
   . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 fi
+
+alias gcloud-list-projects="gcloud config configurations list"
+alias gcloud-set-project="gcloud config configurations activate"
+
+function gcloud-create-project() {
+    name="$1" # alias
+    if [ -z "$2" ]; then
+        project="$name"
+    else
+        project="$2"
+    fi
+    gcloud config configurations activate default
+    gcloud config configurations delete "$name" || true
+    gcloud config configurations create "$name"
+    gcloud config set project "$project"
+    # gcloud auth login
+    gcloud auth activate-service-account --key-file="$HOME/.secrets/${name}.json"
+}
