@@ -364,3 +364,8 @@ fi
 
 alias onnxdump="python -c 'import onnx; import sys; print(onnx.load(sys.argv[1]))'"
 
+# gcloud
+# brew cask install google-cloud-sdk
+if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc ]; then
+  . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+fi
