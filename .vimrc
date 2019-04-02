@@ -614,6 +614,7 @@ augroup END
 "------------------------------------
 " Ctrl-n でトグル
 " noremap <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeNodeDelimiter = "\u00a0"
 
 "------------------------------------
 " Shorten split window move
