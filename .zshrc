@@ -370,9 +370,12 @@ if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.
   . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 fi
 
-alias gcloud-list-projects="gcloud config configurations list"
-alias gcloud-set-project="gcloud config configurations activate"
-
+# https://qiita.com/sonots/items/906798c408132e26b41c
+function gcloud-project() {
+  line=$(gcloud config configurations list | peco)
+  project=$(echo "${line}" | awk '{print $1}')
+  gcloud config configurations activate "${project}"
+}
 function gcloud-create-project() {
     name="$1" # alias
     if [ -z "$2" ]; then
@@ -380,10 +383,19 @@ function gcloud-create-project() {
     else
         project="$2"
     fi
+    echo "gcloud config configurations activate default"
     gcloud config configurations activate default
+    echo "gcloud config configurations delete \"$name\" || true"
     gcloud config configurations delete "$name" || true
+    echo "gcloud config configurations create \"$name\""
     gcloud config configurations create "$name"
+    echo "gcloud config set project \"$project\""
     gcloud config set project "$project"
-    # gcloud auth login
-    gcloud auth activate-service-account --key-file="$HOME/.secrets/${name}.json"
+    echo "gcloud config set account \"naotoshi.seo@zozo.com\""
+    gcloud config set account "naotoshi.seo@zozo.com"
+}
+# Get real project name
+function gcloud-alias() {
+    name="$1" # alias
+    gcloud config configurations list | grep "^${name}" | head -1 | awk '{print $4}'
 }
