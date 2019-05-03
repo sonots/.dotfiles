@@ -378,14 +378,14 @@ function kubectl-context() {
   cluster=$(kubectl config get-clusters | peco)
   kubectl config use-context "${cluster}"
 }
-function gcloud-project() {
+function gcloud-config() {
   line=$(gcloud config configurations list | peco)
   project=$(echo "${line}" | awk '{print $1}')
   gcloud config configurations activate "${project}"
   cluster=$(kubectl config get-clusters | grep "${project}")
   if [ -n "${cluster}" ]; then; kubectl config use-context "${cluster}"; fi
 }
-function gcloud-create-project() {
+function gcloud-config-create() {
   name="$1" # alias
   if [ -z "$2" ]; then
     project="$name"
