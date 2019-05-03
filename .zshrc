@@ -374,10 +374,16 @@ if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.
 fi
 
 # https://qiita.com/sonots/items/906798c408132e26b41c
+function kubectl-context() {
+  cluster=$(kubectl config get-clusters | peco)
+  kubectl config use-context "${cluster}"
+}
 function gcloud-project() {
   line=$(gcloud config configurations list | peco)
   project=$(echo "${line}" | awk '{print $1}')
   gcloud config configurations activate "${project}"
+  cluster=$(kubectl config get-clusters | grep "${project}")
+  if [ -n "${cluster}" ]; then; kubectl config use-context "${cluster}"; fi
 }
 function gcloud-create-project() {
   name="$1" # alias
@@ -403,5 +409,5 @@ function gcloud-alias() {
   gcloud config configurations list | grep "^${name}" | head -1 | awk '{print $4}'
 }
 function gcloud-current() {
-  gcloud config configurations list | grep ' True ' | awk '{print $1}'
+  cat $HOME/.config/gcloud/active_config
 }
