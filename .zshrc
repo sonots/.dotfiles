@@ -374,7 +374,7 @@ if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.
 fi
 
 # https://qiita.com/sonots/items/906798c408132e26b41c
-function kubectl-context() {
+function kubectl-config() {
   cluster=$(kubectl config get-clusters | peco)
   kubectl config use-context "${cluster}"
 }
