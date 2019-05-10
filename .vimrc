@@ -57,6 +57,7 @@ NeoBundleLazy 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'rhysd/vim-clang-format'
 NeoBundle 'rking/ag.vim'
+NeoBundle 'hashivim/vim-terraform'
 
 " Required:
 call neobundle#end()
