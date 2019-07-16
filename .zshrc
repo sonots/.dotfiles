@@ -257,7 +257,7 @@ if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 [[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
 [[ -d "/usr/local/opt/mysql@5.6/bin" ]] && export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 [[ -d "$HOME/google-cloud-sdk/bin" ]] && export PATH="$HOME/google-cloud-sdk/bin:$PATH"
-[[ -d "$HOME/miniconda3/bin" ]] && export PATH="$HOME/miniconda3/bin:$PATH"
+[[ -d "$HOME/miniconda3/envs/py36/bin" ]] && export PATH="$HOME/miniconda3/envs/py36/bin:$PATH"
 
 # go
 if [ "$uname" = "darwin" ]; then
@@ -374,13 +374,6 @@ if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.
 fi
 
 # https://qiita.com/sonots/items/906798c408132e26b41c
-function gcloud-config() {
-  line=$(gcloud config configurations list | peco)
-  project=$(echo "${line}" | awk '{print $1}')
-  gcloud config configurations activate "${project}"
-  cluster=$(kubectl config get-clusters | grep "${project}")
-  if [ -n "${cluster}" ]; then; kubectl config use-context "${cluster}"; fi
-}
 function gcloud-config-create() {
   name="$1" # alias
   if [ -z "$2" ]; then
@@ -399,6 +392,28 @@ function gcloud-config-create() {
   echo "gcloud config set account \"naotoshi.seo@zozo.com\""
   gcloud config set account "naotoshi.seo@zozo.com"
 }
+
+function gcloud-config() {
+  line=$(gcloud config configurations list | peco)
+  name=$(echo "${line}" | awk '{print $1}')
+  project=$(echo "${line}" | awk '{print $4}')
+  gcloud config configurations activate "${name}"
+  if echo "${name}" | grep 'image-search' > /dev/null; then
+    gcloud container clusters get-credentials "${name}-cluster" --region=asia-east1 --project "${project}"
+  fi
+}
+
+function gcloud-config-gke() {
+  line=$(gcloud container clusters list | peco)
+  name=$(echo $line | awk '{print $1}')
+  zone_or_region=$(echo $line | awk '{print $2}')
+  if echo "${zone_or_region}" | grep '[^-]*-[^-]*-[^-]*' > /dev/null; then
+    gcloud container clusters get-credentials "${name}" --zone="${zone_or_region}"
+  else
+    gcloud container clusters get-credentials "${name}" --region="${zone_or_region}"
+  fi
+}
+
 # Get real project name
 function gcloud-alias() {
   name="$1" # alias
@@ -408,7 +423,18 @@ function gcloud-current() {
   cat $HOME/.config/gcloud/active_config
 }
 
+# k8s alises
+alias ku='kubectl'
+alias kgp='kubectl get pod -o wide'
+alias kgn='kubectl get node -o wide'
+alias kg='kubectl get'
+alias kd='kubectl describe'
+alias ka='kubectl get $(kubectl api-resources --namespaced=true --verbs=list --output=name | tr "\n" "," | sed -e "s/,$//")'
+
 # k8s tools
+function kubectl-current() {
+  kubectl config current-context
+}
 function kubectl-config() {
   cluster=$(kubectl config get-clusters | peco)
   kubectl config use-context "${cluster}"
