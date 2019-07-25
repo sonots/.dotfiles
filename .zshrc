@@ -412,13 +412,11 @@ function gx() {
   if [ -z "$name" ]; then
     line=$(gcloud config configurations list | peco)
     name=$(echo "${line}" | awk '{print $1}')
-    project=$(echo "${line}" | awk '{print $4}')
-    gcloud-activate "$name" "$project"
   else
     line=$(gcloud config configurations list | grep "$name")
-    project=$(echo "${line}" | awk '{print $4}')
-    gcloud-activate "$name" "$project"
   fi
+  project=$(echo "${line}" | awk '{print $4}')
+  gcloud-activate "${name}" "${project}"
 }
 compdef gx-complete gx
 
@@ -441,14 +439,12 @@ function kx() {
   name="$1"
   if [ -z "$name" ]; then
     line=$(gcloud container clusters list | peco)
-    name=$(echo $line | awk '{print $1}')
-    zone_or_region=$(echo $line | awk '{print $2}')
-    gke-activate "$name" "$zone_or_region"
+    name=$(echo "${line}" | awk '{print $1}')
   else
     line=$(gcloud container clusters list | grep "$name")
-    zone_or_region=$(echo $line | awk '{print $2}')
-    gke-activate "$name" "$zone_or_region"
   fi
+  zone_or_region=$(echo "${line}" | awk '{print $2}')
+  gke-activate "${name}" "${zone_or_region}"
 }
 compdef kx-complete kx
 
