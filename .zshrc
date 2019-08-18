@@ -373,78 +373,77 @@ if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.
   . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 fi
 
-# https://qiita.com/sonots/items/906798c408132e26b41c
-function gcloud-config-create() {
+# gcloud switch
+GCLOUD_CONFIG_DIR=$HOME/gcloud-config
+function gx-init() {
   name="$1" # alias
   if [ -z "$2" ]; then
     project="$name"
   else
     project="$2"
   fi
-  echo "gcloud config configurations activate default"
-  gcloud config configurations activate default
-  echo "gcloud config configurations delete \"$name\" || true"
-  gcloud config configurations delete "$name" || true
-  echo "gcloud config configurations create \"$name\""
-  gcloud config configurations create "$name"
-  echo "gcloud config set project \"$project\""
-  gcloud config set project "$project"
-  echo "gcloud config set account \"naotoshi.seo@zozo.com\""
-  gcloud config set account "naotoshi.seo@zozo.com"
+  set -x
+  gx-activate "${name}"
+  gcloud config configurations create "${name}"
+  gcloud config set project "${project}"
+  gcloud auth login
+  kx-init
+  set +x
 }
-
-# gcloud switch
-function gcloud-activate() {
+function gx-activate() {
   name="$1"
-  project="$2"
-  echo "gcloud config configurations activate \"${name}\""
-  gcloud config configurations activate "${name}"
-  if echo "${name}" | grep 'image-search' > /dev/null; then
-    echo "gcloud container clusters get-credentials \"${name}-cluster\" --region=asia-east1 --project \"${project}\""
-    gcloud container clusters get-credentials "${name}-cluster" --region=asia-east1 --project "${project}"
-  fi
+  export CLOUDSDK_CONFIG="${GCLOUD_CONFIG_DIR}/${name}"
 }
 function gx-complete() {
-  _values $(gcloud config configurations list | awk '{print $1}')
+  _values "gcloud-config" $(\ls "${GCLOUD_CONFIG_DIR}")
 }
 function gx() {
   name="$1"
-  if [ -z "$name" ]; then
-    line=$(gcloud config configurations list | peco)
-    name=$(echo "${line}" | awk '{print $1}')
-  else
-    line=$(gcloud config configurations list | grep "$name")
+  if [ -z "${name}" ]; then
+    name=$(\ls "${GCLOUD_CONFIG_DIR}" | peco)
   fi
-  project=$(echo "${line}" | awk '{print $4}')
-  gcloud-activate "${name}" "${project}"
+  gcloud-activate "${name}"
 }
 compdef gx-complete gx
 
 # kubectl switch
-function gke-activate() {
-  name="$1"
+GKE_CONFIG_DIR=$HOME/gke-config
+function gke-get-credentials() {
+  cluster="$1"
   zone_or_region="$2"
   if echo "${zone_or_region}" | grep '[^-]*-[^-]*-[^-]*' > /dev/null; then
-    echo "gcloud container clusters get-credentials \"${name}\" --zone=\"${zone_or_region}\""
-    gcloud container clusters get-credentials "${name}" --zone="${zone_or_region}"
+    echo "gcloud container clusters get-credentials \"${cluster}\" --zone=\"${zone_or_region}\""
+    gcloud container clusters get-credentials "${cluster}" --zone="${zone_or_region}"
   else
-    echo "gcloud container clusters get-credentials \"${name}\" --region=\"${zone_or_region}\""
-    gcloud container clusters get-credentials "${name}" --region="${zone_or_region}"
+    echo "gcloud container clusters get-credentials \"${cluster}\" --region=\"${zone_or_region}\""
+    gcloud container clusters get-credentials "${cluster}" --region="${zone_or_region}"
   fi
+}
+function kx-init() {
+  project=$(gcloud config get-value project)
+  gcloud container clusters list | tail -n +2 |  while read line; do
+    cluster=$(echo "${line}" | awk '{print $1}')
+    zone_or_region=$(echo "${line}" | awk '{print $2}')
+    kx-activate "${project}" "${cluster}"
+    gke-get-credentials "${cluster}" "${zone_or_region}"
+  done
+}
+function kx-activate() {
+  project="$1"
+  cluster="$2"
+  export KUBECONFIG="${GKE_CONFIG_DIR}/${project}/${cluster}"
 }
 function kx-complete() {
-  _values $(gcloud container clusters list | awk '{print $1}')
+  project=$(gcloud config get-value project)
+  _values "gke-config" $(\ls "${GKE_CONFIG_DIR}/${project}")
 }
 function kx() {
-  name="$1"
-  if [ -z "$name" ]; then
-    line=$(gcloud container clusters list | peco)
-    name=$(echo "${line}" | awk '{print $1}')
-  else
-    line=$(gcloud container clusters list | grep "$name")
+  cluster="$1"
+  project=$(gcloud config get-value project)
+  if [ -z "${cluster}" ]; then
+    cluster=$(\ls "${GKE_CONFIG_DIR}/${project}" | peco)
   fi
-  zone_or_region=$(echo "${line}" | awk '{print $2}')
-  gke-activate "${name}" "${zone_or_region}"
+  gke-activate "${project}" "${cluster}"
 }
 compdef kx-complete kx
 
