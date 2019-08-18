@@ -402,12 +402,11 @@ function gx() {
   if [ -z "${name}" ]; then
     name=$(\ls "${GCLOUD_CONFIG_DIR}" | peco)
   fi
-  gcloud-activate "${name}"
+  gx-activate "${name}"
 }
 compdef gx-complete gx
 
 # kubectl switch
-GKE_CONFIG_DIR=$HOME/gke-config
 function gke-get-credentials() {
   cluster="$1"
   zone_or_region="$2"
@@ -419,8 +418,13 @@ function gke-get-credentials() {
     gcloud container clusters get-credentials "${cluster}" --region="${zone_or_region}"
   fi
 }
+function gcloud-current() {
+  gcloud config get-value project 2>/dev/null
+}
+
+GKE_CONFIG_DIR=$HOME/gke-config
 function kx-init() {
-  project=$(gcloud config get-value project)
+  project=$(gcloud-current)
   gcloud container clusters list | tail -n +2 |  while read line; do
     cluster=$(echo "${line}" | awk '{print $1}')
     zone_or_region=$(echo "${line}" | awk '{print $2}')
@@ -434,27 +438,18 @@ function kx-activate() {
   export KUBECONFIG="${GKE_CONFIG_DIR}/${project}/${cluster}"
 }
 function kx-complete() {
-  project=$(gcloud config get-value project)
+  project=$(gcloud-current)
   _values "gke-config" $(\ls "${GKE_CONFIG_DIR}/${project}")
 }
 function kx() {
   cluster="$1"
-  project=$(gcloud config get-value project)
+  project=$(gcloud-current)
   if [ -z "${cluster}" ]; then
     cluster=$(\ls "${GKE_CONFIG_DIR}/${project}" | peco)
   fi
-  gke-activate "${project}" "${cluster}"
+  kx-activate "${project}" "${cluster}"
 }
 compdef kx-complete kx
-
-# Get real project name
-function gcloud-alias() {
-  name="$1" # alias
-  gcloud config configurations list | grep "^${name}" | head -1 | awk '{print $4}'
-}
-function gcloud-current() {
-  cat $HOME/.config/gcloud/active_config
-}
 
 # k8s alises
 alias ku='kubectl'
