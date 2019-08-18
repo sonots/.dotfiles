@@ -57,7 +57,7 @@
   current-rev = rev-parse HEAD
   remote-rev = ls-remote origin HEAD
   latest-rev = ls-remote origin HEAD
-  sync = !git checkout master && git fetch -p origin && git merge origin/master && git branch --merged | grep -v master | grep -v '*' | xargs -I % git branch -d %
+  sync = !git checkout master && git fetch -p origin && git pull origin master && git branch --merged | grep -v master | grep -v '*' | xargs -I % git branch -d %
 
 #[tig "bind"]
 #  main = B @hub browse --commit/%(commit)
