@@ -41,6 +41,7 @@ brew install rbenv ruby-build
 brew install readline
 brew install ghq
 brew install peco
+brew install direnv
 # brew install coreutils --default-names # http://takuya-1st.hatenablog.jp/entry/20111230/1325272152
 # brew install imagemagick
 # brew install packer
