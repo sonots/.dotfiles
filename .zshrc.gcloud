@@ -5,7 +5,7 @@ if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.
 fi
 
 # gcloud switch
-GX_CONFIG_DIR=$HOME/.gx-config
+export GX_CONFIG_DIR=$HOME/.gx-config
 function gx-init() {
   name="$1" # alias
   if [ -z "$1" ]; then
