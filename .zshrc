@@ -169,6 +169,7 @@ function prompt() {
 }
 PROMPT='$(prompt)'
 RPROMPT=' %~%1(v|%F{green}%1v%f|)'
+
 export PAGER="less -c"
 
 [[ $EMACS = t ]] && unsetopt zle
@@ -484,3 +485,21 @@ function kubectl-node() {
   node=$(echo "${line}" | awk '{print $1}')
   kubectl describe node "${node}"
 }
+
+# show k8s cluster on prompt
+function precmd_hook() {
+  project_and_cluster=$(echo $KUBECONFIG | sed "s|$GKE_CONFIG_DIR/||")
+  local left=""
+  if [ -n "${project_and_cluster}" ]; then
+    local right="${project_and_cluster}"
+  else
+    project=$(echo $CLOUDSDK_CONFIG | awk -F/ '{print $NF}')
+    if [ -n "${project}" ]; then
+      local right="${project}"
+    fi
+  fi
+  print -P $left${(r:($COLUMNS-${#left}-${#right}):: :)}$right
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd precmd_hook
+
