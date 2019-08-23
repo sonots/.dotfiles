@@ -62,7 +62,7 @@ function gcloud-current-project() {
 }
 
 # kubectl switch
-GKX_CONFIG_DIR=$HOME/.gkx-config
+export GKX_CONFIG_DIR=$HOME/.gkx-config
 function gkx-init() {
   project=$(gcloud-current-project)
   gcloud container clusters list | tail -n +2 |  while read line; do

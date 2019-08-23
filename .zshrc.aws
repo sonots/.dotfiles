@@ -33,7 +33,7 @@ function awx() {
 compdef awx-complete awx
 
 # kubectl switch
-EKX_CONFIG_DIR=$HOME/.ekx-config
+export EKX_CONFIG_DIR=$HOME/.ekx-config
 function ekx-init() {
   profile=$(awx-current)
   aws eks list-clusters | jq -r '.clusters[]' |  while read cluster; do
