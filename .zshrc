@@ -394,6 +394,8 @@ function gx-init() {
 function gx-activate() {
   name="$1"
   export CLOUDSDK_CONFIG="${GCLOUD_CONFIG_DIR}/${name}"
+  project=$(gcloud-current)
+  kx-activate-default "${project}"
 }
 function gx-complete() {
   _values "gcloud-config" $(\ls "${GCLOUD_CONFIG_DIR}")
@@ -432,6 +434,11 @@ function kx-init() {
     kx-activate "${project}" "${cluster}"
     gke-get-credentials "${cluster}" "${zone_or_region}"
   done
+}
+function kx-activate-default() {
+  project="$1"
+  cluster=$(\ls "${GKE_CONFIG_DIR}/${project}" | head -n 1)
+  export KUBECONFIG="${GKE_CONFIG_DIR}/${project}/${cluster}"
 }
 function kx-activate() {
   project="$1"
