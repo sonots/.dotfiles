@@ -412,7 +412,7 @@ function prompt() {
     local project="gcp:$(gcloud-current-project)"
   fi
   if [ -n "$AWS_CONFIG_FILE" ]; then
-    local profile="aws:$(ax-current)"
+    local profile="aws:$(awx-current)"
   fi
   if [ -n "$KUBECONFIG" ]; then
     if echo "$KUBECONFIG" | grep "$GKX_CONFIG_DIR" > /dev/null; then
