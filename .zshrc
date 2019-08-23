@@ -378,6 +378,10 @@ fi
 GX_CONFIG_DIR=$HOME/.gx-config
 function gx-init() {
   name="$1" # alias
+  if [ -z "$1" ]; then
+    echo "gx-init <name> [project]"
+    return 1
+  fi
   if [ -z "$2" ]; then
     project="$name"
   else
