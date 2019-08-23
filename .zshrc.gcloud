@@ -157,11 +157,11 @@ function prompt() {
   if [ -n "$KUBECONFIG" ]; then
     cluster=$(gkx-current)
     project=$(gcloud-current-project)
-    local left="${project}/${cluster}"
+    local left="(${project}/${cluster})"
   elif [ -n "$CLOUDSDK_CONFIG" ]; then
     project=$(gcloud-current-project)
-    local left="${project}"
+    local left="(${project})"
   fi
-  echo -e "$(check-shell-command)($left)$ "
+  echo -e "$(check-shell-command)$left$ "
 }
 PROMPT='$(prompt)'
