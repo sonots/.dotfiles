@@ -1,49 +1,48 @@
 # aws switch
-export AX_CONFIG_DIR=$HOME/.ax-config
-function ax-init() {
+export AWX_CONFIG_DIR=$HOME/.awx-config
+function awx-init() {
   profile="$1" # alias
   if [ -z "$1" ]; then
-    echo "ax-init <profile>"
+    echo "awx-init <profile>"
     return 1
   fi
-  ax-activate "${profile}"
+  awx-activate "${profile}"
   aws configure
   ekx-init
 }
-function ax-activate() {
+function awx-activate() {
   profile="$1"
-  export AWS_CONFIG_FILE="${AX_CONFIG_DIR}/${profile}/config"
-  export AWS_SHARED_CREDENTIALS_FILE="${AX_CONFIG_DIR}/${profile}/credentials"
+  export AWS_CONFIG_FILE="${AWX_CONFIG_DIR}/${profile}/config"
+  export AWS_SHARED_CREDENTIALS_FILE="${AWX_CONFIG_DIR}/${profile}/credentials"
 }
-function ax-current() {
-  echo $AWS_CONFIG_FILE | sed -e "s|^$AX_CONFIG_DIR/||" -e "s|/config||"
+function awx-current() {
+  echo $AWS_CONFIG_FILE | sed -e "s|^$AWX_CONFIG_DIR/||" -e "s|/config||"
 }
-function ax-complete() {
-  _values "ax-complete" $(\ls "${AX_CONFIG_DIR}")
+function awx-complete() {
+  _values "awx-complete" $(\ls "${AWX_CONFIG_DIR}")
 }
-function ax() {
+function awx() {
   profile="$1"
   if [ -z "${profile}" ]; then
-    profile=$(\ls "${AX_CONFIG_DIR}" | peco)
+    profile=$(\ls "${AWX_CONFIG_DIR}" | peco)
   fi
   if [ -z "${profile}" ]; then return 1; fi
-  ax-activate "${profile}"
+  awx-activate "${profile}"
   ekx-activate-default
 }
-compdef ax-complete ax
-
+compdef awx-complete awx
 
 # kubectl switch
 EKX_CONFIG_DIR=$HOME/.ekx-config
 function ekx-init() {
-  profile=$(ax-current)
+  profile=$(awx-current)
   aws eks list-clusters | jq -r '.clusters[]' |  while read cluster; do
     ekx-activate "${profile}" "${cluster}"
     aws eks update-kubeconfig --name "${cluster}"
   done
 }
 function ekx-activate-default() {
-  profile=$(ax-current)
+  profile=$(awx-current)
   if [ -d "${EKX_CONFIG_DIR}/${profile}" ]; then
     cluster=$(\ls "${EKX_CONFIG_DIR}/${profile}" | head -n 1)
     export KUBECONFIG="${EKX_CONFIG_DIR}/${profile}/${cluster}"
@@ -60,12 +59,12 @@ function ekx-current() {
   echo $KUBECONFIG | awk -F/ '{print $NF}'
 }
 function ekx-complete() {
-  profile=$(ax-current)
+  profile=$(awx-current)
   _values "ekx-complete" $(\ls "${EKX_CONFIG_DIR}/${profile}")
 }
 function ekx() {
   cluster="$1"
-  profile=$(ax-current)
+  profile=$(awx-current)
   if [ -z "${cluster}" ]; then
     cluster=$(\ls "${EKX_CONFIG_DIR}/${profile}" | peco)
   fi
