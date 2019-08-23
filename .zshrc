@@ -375,7 +375,7 @@ if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.
 fi
 
 # gcloud switch
-GCLOUD_CONFIG_DIR=$HOME/gcloud-config
+GX_CONFIG_DIR=$HOME/.gx-config
 function gx-init() {
   name="$1" # alias
   if [ -z "$2" ]; then
@@ -388,28 +388,29 @@ function gx-init() {
   gcloud config configurations create "${name}"
   gcloud config set project "${project}"
   gcloud auth login
-  kx-init
+  gkx-init
   set +x
 }
 function gx-activate() {
   name="$1"
-  export CLOUDSDK_CONFIG="${GCLOUD_CONFIG_DIR}/${name}"
-  project=$(gcloud-current)
-  kx-activate-default "${project}"
+  export CLOUDSDK_CONFIG="${GX_CONFIG_DIR}/${name}"
+}
+function gx-current() {
+  echo $CLOUDSDK_CONFIG | sed "s|$GX_CONFIG_DIR/||"
 }
 function gx-complete() {
-  _values "gcloud-config" $(\ls "${GCLOUD_CONFIG_DIR}")
+  _values "gcloud-config" $(\ls "${GX_CONFIG_DIR}")
 }
 function gx() {
   name="$1"
   if [ -z "${name}" ]; then
-    name=$(\ls "${GCLOUD_CONFIG_DIR}" | peco)
+    name=$(\ls "${GX_CONFIG_DIR}" | peco)
   fi
   gx-activate "${name}"
+  gkx-activate-default
 }
 compdef gx-complete gx
 
-# kubectl switch
 function gke-get-credentials() {
   cluster="$1"
   zone_or_region="$2"
@@ -421,43 +422,51 @@ function gke-get-credentials() {
     gcloud container clusters get-credentials "${cluster}" --region="${zone_or_region}"
   fi
 }
-function gcloud-current() {
+function gcloud-current-project() {
   gcloud config get-value project 2>/dev/null
 }
 
-GKE_CONFIG_DIR=$HOME/gke-config
-function kx-init() {
-  project=$(gcloud-current)
+# kubectl switch
+GKX_CONFIG_DIR=$HOME/.gkx-config
+function gkx-init() {
+  project=$(gcloud-current-project)
   gcloud container clusters list | tail -n +2 |  while read line; do
     cluster=$(echo "${line}" | awk '{print $1}')
     zone_or_region=$(echo "${line}" | awk '{print $2}')
-    kx-activate "${project}" "${cluster}"
+    gkx-activate "${project}" "${cluster}"
     gke-get-credentials "${cluster}" "${zone_or_region}"
   done
 }
-function kx-activate-default() {
-  project="$1"
-  cluster=$(\ls "${GKE_CONFIG_DIR}/${project}" | head -n 1)
-  export KUBECONFIG="${GKE_CONFIG_DIR}/${project}/${cluster}"
+function gkx-activate-default() {
+  project=$(gcloud-current-project)
+  if [ -d "${GKX_CONFIG_DIR}/${project}" ]; then
+    cluster=$(\ls "${GKX_CONFIG_DIR}/${project}" | head -n 1)
+    export KUBECONFIG="${GKX_CONFIG_DIR}/${project}/${cluster}"
+  else
+    unset KUBECONFIG
+  fi
 }
-function kx-activate() {
+function gkx-activate() {
   project="$1"
   cluster="$2"
-  export KUBECONFIG="${GKE_CONFIG_DIR}/${project}/${cluster}"
+  export KUBECONFIG="${GKX_CONFIG_DIR}/${project}/${cluster}"
 }
-function kx-complete() {
-  project=$(gcloud-current)
-  _values "gke-config" $(\ls "${GKE_CONFIG_DIR}/${project}")
+function gkx-current() {
+  echo $KUBECONFIG | awk -F/ '{print $NF}'
 }
-function kx() {
+function gkx-complete() {
+  project=$(gcloud-current-project)
+  _values "gke-config" $(\ls "${GKX_CONFIG_DIR}/${project}")
+}
+function gkx() {
   cluster="$1"
-  project=$(gcloud-current)
+  project=$(gcloud-current-project)
   if [ -z "${cluster}" ]; then
-    cluster=$(\ls "${GKE_CONFIG_DIR}/${project}" | peco)
+    cluster=$(\ls "${GKX_CONFIG_DIR}/${project}" | peco)
   fi
-  kx-activate "${project}" "${cluster}"
+  gkx-activate "${project}" "${cluster}"
 }
-compdef kx-complete kx
+compdef gkx-complete gkx
 
 # k8s alises
 alias ku='kubectl'
@@ -495,15 +504,15 @@ function kubectl-node() {
 
 # show k8s cluster on prompt
 function precmd_hook() {
-  project_and_cluster=$(echo $KUBECONFIG | sed "s|$GKE_CONFIG_DIR/||")
   local left=""
-  if [ -n "${project_and_cluster}" ]; then
-    local right="${project_and_cluster}"
-  else
-    project=$(echo $CLOUDSDK_CONFIG | awk -F/ '{print $NF}')
-    if [ -n "${project}" ]; then
-      local right="${project}"
-    fi
+  local right=""
+  if [ -n "$KUBECONFIG" ]; then
+    cluster=$(gkx-current)
+    project=$(gcloud-current-project)
+    local right="${project}/${cluster}"
+  elif [ -n "$CLOUDSDK_CONFIG" ]; then
+    project=$(gcloud-current-project)
+    local right="${project}"
   fi
   print -P $left${(r:($COLUMNS-${#left}-${#right}):: :)}$right
 }
