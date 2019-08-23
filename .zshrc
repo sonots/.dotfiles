@@ -259,6 +259,7 @@ if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 [[ -d "/usr/local/opt/mysql@5.6/bin" ]] && export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 [[ -d "$HOME/google-cloud-sdk/bin" ]] && export PATH="$HOME/google-cloud-sdk/bin:$PATH"
 [[ -d "$HOME/miniconda3/envs/py36/bin" ]] && export PATH="$HOME/miniconda3/envs/py36/bin:$PATH"
+if which direnv > /dev/null 2>&1; then eval "$(direnv hook zsh)"; fi
 
 # go
 if [ "$uname" = "darwin" ]; then
