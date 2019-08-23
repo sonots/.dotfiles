@@ -8,6 +8,7 @@ function ax-init() {
   fi
   ax-activate "${profile}"
   aws configure
+  ekx-init
 }
 function ax-activate() {
   profile="$1"
@@ -27,6 +28,7 @@ function ax() {
   fi
   if [ -z "${profile}" ]; then return 1; fi
   ax-activate "${profile}"
+  ekx-activate-default
 }
 compdef ax-complete ax
 
