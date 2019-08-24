@@ -386,32 +386,6 @@ alias kg='kubectl get'
 alias kd='kubectl describe'
 alias ka='kubectl get $(kubectl api-resources --namespaced=true --verbs=list --output=name | tr "\n" "," | sed -e "s/,$//")'
 
-# k8s tools
-function kubectl-current() {
-  kubectl config current-context
-}
-function kubectl-config() {
-  cluster=$(kubectl config get-clusters | peco)
-  kubectl config use-context "${cluster}"
-}
-function kubectl-pod() {
-  line=$(kubectl get pods -A -o=wide| peco)
-  namespace=$(echo "${line}" | awk '{print $1}')
-  pod=$(echo "${line}" | awk '{print $2}')
-  kubectl describe pod "${pod}" -n "${namespace}"
-}
-function kubectl-exec() {
-  line=$(kubectl get pods -A -o=wide| peco)
-  namespace=$(echo "${line}" | awk '{print $1}')
-  pod=$(echo "${line}" | awk '{print $2}')
-  kubectl exec -n "${namespace}" -it "${pod}" /bin/bash
-}
-function kubectl-node() {
-  line=$(kubectl get nodes | peco)
-  node=$(echo "${line}" | awk '{print $1}')
-  kubectl describe node "${node}"
-}
-
 function prompt() {
   local head=$(check-shell-command)
   if [ -n "$CLOUDSDK_CONFIG" ]; then
