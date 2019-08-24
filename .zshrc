@@ -382,9 +382,9 @@ fi
 alias ku='kubectl'
 alias kgp='kubectl get pod -o wide'
 alias kgn='kubectl get node -o wide'
+alias kga='kubectl get all --all-namespaces'
 alias kg='kubectl get'
 alias kd='kubectl describe'
-alias ka='kubectl get $(kubectl api-resources --namespaced=true --verbs=list --output=name | tr "\n" "," | sed -e "s/,$//")'
 
 function prompt() {
   local head=$(check-shell-command)
