@@ -16,7 +16,8 @@ function awx-activate() {
   export AWS_SHARED_CREDENTIALS_FILE="${AWX_CONFIG_DIR}/${profile}/credentials"
 }
 function awx-current() {
-  echo $AWS_CONFIG_FILE | sed -e "s|^$AWX_CONFIG_DIR/||" -e "s|/config||"
+  local dirname="${AWS_CONFIG_FILE%/config}"
+  echo "${dirname##*/}"
 }
 function awx-complete() {
   _values "awx-complete" $(\ls "${AWX_CONFIG_DIR}")

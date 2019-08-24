@@ -24,7 +24,7 @@ function gx-activate() {
   export CLOUDSDK_CONFIG="${GX_CONFIG_DIR}/${name}"
 }
 function gx-current() {
-  echo $CLOUDSDK_CONFIG | sed "s|$GX_CONFIG_DIR/||"
+  echo ${CLOUDSDK_CONFIG##*/}
 }
 function gx-complete() {
   _values "gcloud-config" $(\ls "${GX_CONFIG_DIR}")
