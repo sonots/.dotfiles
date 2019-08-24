@@ -81,7 +81,7 @@ function gkx-activate() {
   export KUBECONFIG="${GKX_CONFIG_DIR}/${project}/${cluster}"
 }
 function gkx-current() {
-  echo $KUBECONFIG | awk -F/ '{print $NF}'
+  echo ${KUBECONFIG##*/}
 }
 function gkx-complete() {
   project=$(gcloud-current-project)

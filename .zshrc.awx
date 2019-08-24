@@ -56,7 +56,7 @@ function ekx-activate() {
   export KUBECONFIG="${EKX_CONFIG_DIR}/${profile}/${cluster}"
 }
 function ekx-current() {
-  echo $KUBECONFIG | awk -F/ '{print $NF}'
+  echo ${KUBECONFIG##*/}
 }
 function ekx-complete() {
   profile=$(awx-current)
