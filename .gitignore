@@ -14,3 +14,4 @@ auto-save-list/
 ruby-head
 .kernel_cache
 .tmux/resurrect
+.envrc
