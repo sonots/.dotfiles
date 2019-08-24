@@ -1,9 +1,3 @@
-# gcloud
-# brew cask install google-cloud-sdk
-if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc ]; then
-  . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
-fi
-
 # gcloud switch
 export GX_CONFIG_DIR=$HOME/.gx-config
 function gx-init() {

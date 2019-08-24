@@ -369,8 +369,14 @@ fi
 
 alias onnxdump="python -c 'import onnx; import sys; print(onnx.load(sys.argv[1]))'"
 
-[ -f "$HOME/.zshrc.gcloud" ] && source "$HOME/.zshrc.gcloud"
-[ -f "$HOME/.zshrc.aws" ] && source "$HOME/.zshrc.aws"
+[ -f "$HOME/.zshrc.gx" ] && source "$HOME/.zshrc.gx"
+[ -f "$HOME/.zshrc.awx" ] && source "$HOME/.zshrc.awx"
+
+# gcloud
+# brew cask install google-cloud-sdk
+if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc ]; then
+  . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+fi
 
 # k8s alises
 alias ku='kubectl'
@@ -409,16 +415,16 @@ function kubectl-node() {
 function prompt() {
   local head=$(check-shell-command)
   if [ -n "$CLOUDSDK_CONFIG" ]; then
-    local project="gcp:$(gcloud-current-project)"
+    local project="gcp:%F{green}$(gcloud-current-project)%f"
   fi
   if [ -n "$AWS_CONFIG_FILE" ]; then
-    local profile="aws:$(awx-current)"
+    local profile="aws:%F{green}$(awx-current)%f"
   fi
   if [ -n "$KUBECONFIG" ]; then
     if echo "$KUBECONFIG" | grep "$GKX_CONFIG_DIR" > /dev/null; then
-      local cluster="gke:$(gkx-current)"
+      local cluster="gke:%F{green}$(gkx-current)%f"
     else # eks
-      local cluster="eks:$(ekx-current)"
+      local cluster="eks:%F{green}$(ekx-current)%f"
     fi
   fi
   local appendix=($project $profile $cluster)
