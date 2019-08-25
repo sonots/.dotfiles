@@ -58,41 +58,41 @@ function gcloud-current-project() {
 # kubectl switch
 export GKX_CONFIG_DIR=$HOME/.gkx-config
 function gkx-init() {
-  project=$(gcloud-current-project)
+  name=$(gx-current)
   gcloud container clusters list | tail -n +2 |  while read line; do
     cluster=$(echo "${line}" | awk '{print $1}')
     zone_or_region=$(echo "${line}" | awk '{print $2}')
-    gkx-activate "${project}" "${cluster}"
+    gkx-activate "${name}" "${cluster}"
     gke-get-credentials "${cluster}" "${zone_or_region}"
   done
 }
 function gkx-activate-default() {
-  project=$(gcloud-current-project)
-  if [ -d "${GKX_CONFIG_DIR}/${project}" ]; then
-    cluster=$(\ls "${GKX_CONFIG_DIR}/${project}" | head -n 1)
-    export KUBECONFIG="${GKX_CONFIG_DIR}/${project}/${cluster}"
+  name=$(gx-current)
+  if [ -d "${GKX_CONFIG_DIR}/${name}" ]; then
+    cluster=$(\ls "${GKX_CONFIG_DIR}/${name}" | head -n 1)
+    export KUBECONFIG="${GKX_CONFIG_DIR}/${name}/${cluster}"
   else
     unset KUBECONFIG
   fi
 }
 function gkx-activate() {
-  project="$1"
+  name="$1"
   cluster="$2"
-  export KUBECONFIG="${GKX_CONFIG_DIR}/${project}/${cluster}"
+  export KUBECONFIG="${GKX_CONFIG_DIR}/${name}/${cluster}"
 }
 function gkx-current() {
   echo ${KUBECONFIG##*/}
 }
 function gkx-complete() {
-  project=$(gcloud-current-project)
-  _values "gke-config" $(\ls "${GKX_CONFIG_DIR}/${project}")
+  name=$(gx-current)
+  _values "gke-config" $(\ls "${GKX_CONFIG_DIR}/${name}")
 }
 function gkx() {
   cluster="$1"
-  project=$(gcloud-current-project)
+  name=$(gx-current)
   if [ -z "${cluster}" ]; then
-    cluster=$(\ls "${GKX_CONFIG_DIR}/${project}" | peco)
+    cluster=$(\ls "${GKX_CONFIG_DIR}/${name}" | peco)
   fi
-  gkx-activate "${project}" "${cluster}"
+  gkx-activate "${name}" "${cluster}"
 }
 compdef gkx-complete gkx
