@@ -387,6 +387,9 @@ alias kg='kubectl get'
 alias kd='kubectl describe'
 
 function prompt() {
+  unset project
+  unset profile
+  unset cluster
   local head=$(check-shell-command)
   if [ -n "$CLOUDSDK_CONFIG" ]; then
     local project="gcp:%F{green}$(gcloud-current-project)%f"
