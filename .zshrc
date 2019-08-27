@@ -156,7 +156,7 @@ precmd () {
 LANG=en_US.UTF-8 vcs_info
 export LC_CTYPE=en_US.UTF-8
 export SVN_EDITOR=/bin/vi
-function check-shell-command {
+function check-shell-command() {
   if [ $? -eq 0 ]; then
     host="%{$fg_bold[green]%}%m%{$reset_color%}"
   else
@@ -167,8 +167,14 @@ function check-shell-command {
 function prompt() {
   echo -e "$(check-shell-command)$ "
 }
+function git-rprompt() {
+  echo -e '%~%1(v|%F{green}%1v%f|)'
+}
+function rprompt() {
+  echo -e " $(git-rprompt)"
+}
 PROMPT='$(prompt)'
-RPROMPT=' %~%1(v|%F{green}%1v%f|)'
+RPROMPT='$(rprompt)'
 
 export PAGER="less -c"
 
@@ -386,11 +392,10 @@ alias kga='kubectl get all --all-namespaces'
 alias kg='kubectl get'
 alias kd='kubectl describe'
 
-function prompt() {
+function cloud-rprompt() {
   unset project
   unset profile
   unset cluster
-  local head=$(check-shell-command)
   if [ -n "$CLOUDSDK_CONFIG" ]; then
     local project="gcp:%F{green}$(gcloud-current-project)%f"
   fi
@@ -404,11 +409,12 @@ function prompt() {
       local cluster="eks:%F{green}$(ekx-current)%f"
     fi
   fi
-  local appendix=($project $profile $cluster)
-  if [ -n "$(echo -e $appendix)" ]; then
-    echo -e "$head($appendix)$ "
-  else
-    echo -e "$head$ "
+  rprompt=($project $profile $cluster)
+  if [ -n "$(echo -e $rprompt)" ]; then
+    echo -e "[$rprompt]"
   fi
 }
-PROMPT='$(prompt)'
+function rprompt() {
+  echo -e " $(git-rprompt)$(cloud-rprompt)"
+}
+RPROMPT='$(rprompt)'
