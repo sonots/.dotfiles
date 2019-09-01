@@ -29,6 +29,7 @@ else
   apt install -y vim
   apt install -y zsh
   apt install -y tmux
+  apt install -y silversearcher-ag
   ln -s ~/.dotfiles/.tmux.conf.linux ~/.tmux.conf
 fi
 
