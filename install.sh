@@ -25,6 +25,10 @@ if [ $(uname) = "Darwin" ]; then
   fc-cache -vf
   ln -s ~/.dotfiles/.tmux.conf.darwin ~/.tmux.conf
 else
+  apt install -y git
+  apt install -y vim
+  apt install -y zsh
+  apt install -y tmux
   ln -s ~/.dotfiles/.tmux.conf.linux ~/.tmux.conf
 fi
 
