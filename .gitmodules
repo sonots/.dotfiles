@@ -16,6 +16,15 @@
 [submodule ".tmux/tmux-resurrect"]
 	path = .tmux/tmux-resurrect
 	url = https://github.com/tmux-plugins/tmux-resurrect
+[submodule ".tmux/plugins/tmux-resurrect"]
+	path = .tmux/plugins/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect
+[submodule ".tmux/plugins/tmux-continuum"]
+  path = .tmux/plugins/tmux-continuum
+  url = https://github.com/tmux-plugins/tmux-continuum
+[submodule ".tmux/plugins/tpm"]
+  path = .tmux/plugins/tpm
+  url = https://github.com/tmux-plugins/tpm
 [submodule ".peco/plugins/cool-peco"]
 	path = .peco/plugins/cool-peco
 	url = https://github.com/ryoppy/cool-peco
