@@ -399,7 +399,7 @@ function cloud-prompt() {
   if [ -n "$CLOUDSDK_CONFIG" ]; then
     local project="gcp:%F{green}$(gcloud-current-project)%f"
   fi
-  if [ -n "$AWS_CONFIG_FILE" ]; then
+  if [ -n "$AWS_PROFILE" ]; then
     local profile="aws:%F{green}$(awx-current)%f"
   fi
   if [ -n "$KUBECONFIG" ]; then
@@ -415,6 +415,12 @@ function cloud-prompt() {
   fi
 }
 function prompt() {
-  echo -e "$(cloud-prompt)\n$(check-shell-command)$ "
+  check_shell_command=$(check-shell-command)
+  cloud_prompt=$(cloud-prompt)
+  if [ -n "${cloud_prompt}" ]; then
+    echo -e "${cloud_prompt}\n${check_shell_command}$ "
+  else
+    echo -e "${check_shell_command}$ "
+  fi
 }
 PROMPT='$(prompt)'
