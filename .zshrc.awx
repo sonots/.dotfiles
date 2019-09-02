@@ -1,31 +1,35 @@
 # aws switch
-export AWX_CONFIG_DIR=$HOME/.awx-config
+export AWS_CONFIG_FILE=$HOME/.aws/config
+# export AWS_SHARED_CREDENTIALS_FILE=$HOME/.aws/credentials
+function aws-profiles() {
+  cat "${AWS_CONFIG_FILE}" | sed -n "s/^\[profile \(.*\)\]$/\1/p"
+}
 function awx-init() {
-  profile="$1" # alias
+  profile="$1"
   if [ -z "$1" ]; then
     echo "awx-init <profile>"
     return 1
   fi
-  awx-activate "${profile}"
-  aws configure
+  unset AWS_DEFAULT_PROFILE
+  unset AWS_PROFILE
+  aws configure --profile "${profile}"
   ekx-init
 }
 function awx-activate() {
   profile="$1"
-  export AWS_CONFIG_FILE="${AWX_CONFIG_DIR}/${profile}/config"
-  export AWS_SHARED_CREDENTIALS_FILE="${AWX_CONFIG_DIR}/${profile}/credentials"
+  export AWS_DEFAULT_PROFILE="${profile}"
+  export AWS_PROFILE="${profile}"
 }
 function awx-current() {
-  local dirname="${AWS_CONFIG_FILE%/config}"
-  echo "${dirname##*/}"
+  echo "${AWS_PROFILE}"
 }
 function awx-complete() {
-  _values "awx-complete" $(\ls "${AWX_CONFIG_DIR}")
+  _values "awx-complete" $(aws-profiles)
 }
 function awx() {
   profile="$1"
   if [ -z "${profile}" ]; then
-    profile=$(\ls "${AWX_CONFIG_DIR}" | peco)
+    profile=$(aws-profiles | peco)
   fi
   if [ -z "${profile}" ]; then return 1; fi
   awx-activate "${profile}"
