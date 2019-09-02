@@ -392,7 +392,7 @@ alias kga='kubectl get all --all-namespaces'
 alias kg='kubectl get'
 alias kd='kubectl describe'
 
-function cloud-rprompt() {
+function cloud-prompt() {
   unset project
   unset profile
   unset cluster
@@ -409,12 +409,12 @@ function cloud-rprompt() {
       local cluster="eks:%F{green}$(ekx-current)%f"
     fi
   fi
-  rprompt=($project $profile $cluster)
-  if [ -n "$(echo -e $rprompt)" ]; then
-    echo -e "[$rprompt]"
+  cloud_prompt=($project $profile $cluster)
+  if [ -n "$(echo -e $cloud_prompt)" ]; then
+    echo -e "[$cloud_prompt]"
   fi
 }
-function rprompt() {
-  echo -e " $(git-rprompt)$(cloud-rprompt)"
+function prompt() {
+  echo -e "$(cloud-prompt)\n$(check-shell-command)$ "
 }
-RPROMPT='$(rprompt)'
+PROMPT='$(prompt)'
