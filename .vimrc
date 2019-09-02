@@ -242,7 +242,7 @@ endif
 "------------------------------------
 " golang
 "------------------------------------
-autocmd FileType go setlocal noexpandtab tabstop=2 shiftwidth=2
+autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
 " Need go
