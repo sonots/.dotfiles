@@ -397,10 +397,10 @@ function cloud-prompt() {
   unset profile
   unset cluster
   if [ -n "$CLOUDSDK_CONFIG" ]; then
-    local project="gcp:%F{green}$(gcloud-current-project)%f"
+    local project="gcp:%F{cyan}$(gcloud-current-project)%f"
   fi
   if [ -n "$AWS_PROFILE" ]; then
-    local profile="aws:%F{green}$(awx-current)%f"
+    local profile="aws:%F{yellow}$(awx-current)%f"
   fi
   if [ -n "$KUBECONFIG" ]; then
     if echo "$KUBECONFIG" | grep "$GKX_CONFIG_DIR" > /dev/null; then
