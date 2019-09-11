@@ -397,7 +397,7 @@ function cloud-prompt() {
   unset profile
   unset cluster
   if [ -n "$CLOUDSDK_CONFIG" ]; then
-    local project="gcp:%F{cyan}$(gcloud-current-project)%f"
+    local project="gcp:%F{cyan}$(gx-current)%f"
   fi
   if [ -n "$AWS_PROFILE" ]; then
     local profile="aws:%F{yellow}$(awx-current)%f"
