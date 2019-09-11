@@ -59,6 +59,7 @@ function gcloud-current-project() {
 export GKX_CONFIG_DIR=$HOME/.gkx-config
 function gkx-init() {
   name=$(gx-current)
+  rm -r "${GKX_CONFIG_DIR}/${name}"
   gcloud container clusters list | tail -n +2 |  while read line; do
     cluster=$(echo "${line}" | awk '{print $1}')
     zone_or_region=$(echo "${line}" | awk '{print $2}')

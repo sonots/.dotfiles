@@ -41,6 +41,7 @@ compdef awx-complete awx
 export EKX_CONFIG_DIR=$HOME/.ekx-config
 function ekx-init() {
   profile=$(awx-current)
+  rm -r "${EKX_CONFIG_DIR}/${profile}"
   aws eks list-clusters | jq -r '.clusters[]' |  while read cluster; do
     ekx-activate "${profile}" "${cluster}"
     aws eks update-kubeconfig --name "${cluster}"
