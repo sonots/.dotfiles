@@ -9,7 +9,6 @@ set-window-option -g mode-keys vi
 unbind C-b
 set -g prefix ^T
 bind t send-prefix
-# bind / list-keys -t vi-copy
 bind r source-file ~/.tmux.conf # tmux source-file ~/.tmux.conf
 bind C-r source-file ~/.tmux.conf
 
@@ -111,3 +110,15 @@ set -g @continuum-save-interval '60'
 set -g @continuum-restore 'on'
 
 run-shell '~/.tmux/plugins/tmux-continuum/continuum.tmux'
+
+# copy-mode-vi
+bind-key -Tcopy-mode-vi 'v' send -X begin-selection
+bind-key -Tcopy-mode-vi 'V' send -X select-line
+bind-key -Tcopy-mode-vi 'C-v' send -X rectangle-toggle
+bind-key -Tcopy-mode-vi 'y' send -X copy-selection
+bind-key -Tcopy-mode-vi 'Y' send -X copy-line
+#TODO: Find ways to make them work
+#bind -Tcopy-mode-vi 'C-h' send -X cursor-left
+#bind -Tcopy-mode-vi 'C-j' send -X cursor-down
+#bind -Tcopy-mode-vi 'C-k' send -X cursor-up
+#bind -Tcopy-mode-vi 'C-l' send -X cursor-right
