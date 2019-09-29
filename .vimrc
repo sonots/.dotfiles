@@ -542,10 +542,6 @@ highlight PmenuSbar ctermbg=4
 " Insert mode like emacs
 "------------------------------------
 ""inoremap <tab> <C-o>==<End> " Use <tab> to indent
-"inoremap <C-p> <Up>
-"inoremap <C-n> <Down>
-"inoremap <C-b> <Left>
-"inoremap <C-f> <Right>
 "inoremap <C-e> <End>
 "inoremap <C-a> <Home>
 "inoremap <C-h> <Backspace>
@@ -687,3 +683,9 @@ autocmd QuickFixCmdPost make,grep,grepadd,vimgrep,vimgrepadd cwin
 set grepprg=internal
 
 nnoremap <C-]> g<C-]>
+
+" Movement by hjkl are slow. Use Ctrl-hjkl instead. TODO: Find reasons.
+noremap <C-h> <Left>
+noremap <C-j> <Down>
+noremap <C-k> <Up>
+noremap <C-l> <Right>
