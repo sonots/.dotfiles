@@ -100,3 +100,14 @@ set-option -g display-panes-colour red #orange
 
 # clock
 set-window-option -g clock-mode-colour green #green
+
+# resurrect
+run-shell '~/.tmux/plugins/tpm/tpm'
+
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+
+set -g @continuum-save-interval '60'
+set -g @continuum-restore 'on'
+
+run-shell '~/.tmux/plugins/tmux-continuum/continuum.tmux'
