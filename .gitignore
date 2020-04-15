@@ -1,5 +1,11 @@
+credentials.json
+.env
+.cbtrc
+env.*
+.java-version
 .DS_Store
 .bundle
+.ruby-version
 db/*.sqlite3
 log/*.log
 tmp/
@@ -15,3 +21,4 @@ ruby-head
 .kernel_cache
 .tmux/resurrect
 .envrc
+vendor/
