@@ -4,51 +4,51 @@ export AWS_CONFIG_FILE=$HOME/.aws/config
 function aws-profiles() {
   cat "${AWS_CONFIG_FILE}" | sed -n "s/^\[profile \(.*\)\]$/\1/p"
 }
-function awx-init() {
+function ex-init() {
   profile="$1"
   if [ -z "$1" ]; then
-    echo "awx-init <profile>"
+    echo "ex-init <profile>"
     return 1
   fi
   unset AWS_DEFAULT_PROFILE
   unset AWS_PROFILE
-  aws configure --profile "${profile}"
+  ex-activate "${profile}"
   ekx-init
 }
-function awx-activate() {
+function ex-activate() {
   profile="$1"
   export AWS_DEFAULT_PROFILE="${profile}"
   export AWS_PROFILE="${profile}"
 }
-function awx-current() {
+function ex-current() {
   echo "${AWS_PROFILE}"
 }
-function awx-complete() {
-  _values "awx-complete" $(aws-profiles)
+function ex-complete() {
+  _values "ex-complete" $(aws-profiles)
 }
-function awx() {
+function ex() {
   profile="$1"
   if [ -z "${profile}" ]; then
     profile=$(aws-profiles | peco)
   fi
   if [ -z "${profile}" ]; then return 1; fi
-  awx-activate "${profile}"
+  ex-activate "${profile}"
   ekx-activate-default
 }
-compdef awx-complete awx
+compdef ex-complete ex
 
 # kubectl switch
 export EKX_CONFIG_DIR=$HOME/.ekx-config
 function ekx-init() {
-  profile=$(awx-current)
-  rm -r "${EKX_CONFIG_DIR}/${profile}"
+  profile=$(ex-current)
+  rm -rf "${EKX_CONFIG_DIR}/${profile}"
   aws eks list-clusters | jq -r '.clusters[]' |  while read cluster; do
     ekx-activate "${profile}" "${cluster}"
     aws eks update-kubeconfig --name "${cluster}"
   done
 }
 function ekx-activate-default() {
-  profile=$(awx-current)
+  profile=$(ex-current)
   if [ -d "${EKX_CONFIG_DIR}/${profile}" ]; then
     cluster=$(\ls "${EKX_CONFIG_DIR}/${profile}" | head -n 1)
     export KUBECONFIG="${EKX_CONFIG_DIR}/${profile}/${cluster}"
@@ -65,12 +65,12 @@ function ekx-current() {
   echo ${KUBECONFIG##*/}
 }
 function ekx-complete() {
-  profile=$(awx-current)
+  profile=$(ex-current)
   _values "ekx-complete" $(\ls "${EKX_CONFIG_DIR}/${profile}")
 }
 function ekx() {
   cluster="$1"
-  profile=$(awx-current)
+  profile=$(ex-current)
   if [ -z "${cluster}" ]; then
     cluster=$(\ls "${EKX_CONFIG_DIR}/${profile}" | peco)
   fi

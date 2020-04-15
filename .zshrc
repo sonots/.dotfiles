@@ -226,6 +226,7 @@ alias gfpull='git pull --rebase fork `git current-branch`'
 alias gfpush='git push fork `git current-branch`'
 alias gsts='git stash save'
 alias gstp='git stash pop'
+alias ggc='git commit -a -m'
 alias ctags="ctags -f .tags -R ."
 alias gotags="gotags -f .tags -R ."
 if which ack > /dev/null 2>&1; then; else; alias ack="find . \( -name 'vendor' -o -name '.git' -o -name 'log' -o -name '.tags' \) -prune -o -type f -print0 | xargs -0 grep -n"; fi
@@ -376,7 +377,7 @@ fi
 alias onnxdump="python -c 'import onnx; import sys; print(onnx.load(sys.argv[1]))'"
 
 [ -f "$HOME/.zshrc.gx" ] && source "$HOME/.zshrc.gx"
-[ -f "$HOME/.zshrc.awx" ] && source "$HOME/.zshrc.awx"
+[ -f "$HOME/.zshrc.ex" ] && source "$HOME/.zshrc.ex"
 
 # gcloud
 # brew cask install google-cloud-sdk
@@ -385,7 +386,7 @@ if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.
 fi
 
 # k8s alises
-alias ku='kubectl'
+alias k='kubectl'
 alias kgp='kubectl get pod -o wide'
 alias kgn='kubectl get node -o wide'
 alias kga='kubectl get all --all-namespaces'
@@ -400,7 +401,7 @@ function cloud-prompt() {
     local project="gcp:%F{cyan}$(gx-current)%f"
   fi
   if [ -n "$AWS_PROFILE" ]; then
-    local profile="aws:%F{yellow}$(awx-current)%f"
+    local profile="aws:%F{yellow}$(ex-current)%f"
   fi
   if [ -n "$KUBECONFIG" ]; then
     if echo "$KUBECONFIG" | grep "$GKX_CONFIG_DIR" > /dev/null; then
