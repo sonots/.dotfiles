@@ -180,15 +180,6 @@ export PAGER="less -c"
 
 [[ $EMACS = t ]] && unsetopt zle
 
-if which tmux > /dev/null; then
-  show-current-dir-as-window-name() {
-      tmux set-window-option window-status-format " #I ${PWD:t} " > /dev/null
-      tmux set-window-option window-status-current-format " #I ${PWD:t} " > /dev/null
-  }
-  show-current-dir-as-window-name
-  add-zsh-hook chpwd show-current-dir-as-window-name
-fi
-
 #### plugins ####
 # z - jump around https://github.com/rupa/z
 source ~/.zsh/z/z.sh
@@ -321,6 +312,19 @@ if [ -n "$(which tmux)" ]; then
     fi
   fi
 fi
+
+# tmux: show pwd as window name
+if which tmux > /dev/null; then
+  show-current-dir-as-window-name() {
+      if tmux info &> /dev/null; then
+          tmux set-window-option window-status-format " #I ${PWD:t} " > /dev/null
+          tmux set-window-option window-status-current-format " #I ${PWD:t} " > /dev/null
+      fi
+  }
+  show-current-dir-as-window-name
+  add-zsh-hook chpwd show-current-dir-as-window-name
+fi
+
 
 # for chainer
 if [ -d /usr/local/cuda ]; then
