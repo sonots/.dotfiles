@@ -221,6 +221,7 @@ alias ggc='git commit -a -m'
 alias ctags="ctags -f .tags -R ."
 alias gotags="gotags -f .tags -R ."
 if which ack > /dev/null 2>&1; then; else; alias ack="find . \( -name 'vendor' -o -name '.git' -o -name 'log' -o -name '.tags' \) -prune -o -type f -print0 | xargs -0 grep -n"; fi
+alias ag='ag --hidden --ignore-dir .git'
 
 # noautocorrect
 unset GREP_OPTIONS
