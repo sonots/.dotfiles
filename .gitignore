@@ -22,3 +22,4 @@ ruby-head
 .tmux/resurrect
 .envrc
 vendor/
+.terraform/
