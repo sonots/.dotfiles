@@ -53,7 +53,8 @@ NeoBundle 'python-mode/python-mode'
 "NeoBundle 'jnwhiteh/vim-golang'
 " http://mattn.kaoriya.net/software/vim/20130531000559.htm
 " http://qiita.com/todogzm/items/3c281da10287f7383487
-NeoBundleLazy 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}
+"NeoBundleLazy 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}
+NeoBundle 'fatih/vim-go'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'rhysd/vim-clang-format'
 NeoBundle 'rking/ag.vim'
