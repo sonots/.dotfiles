@@ -69,29 +69,23 @@ bind M command-prompt -p man: "split-window -p 65 'exec man %%'"
 #### COLOUR (Solarized light)
 
 # default statusbar colors
-set-option -g status-fg cyan #yellow
-set-option -g status-bg black #base2
-set-option -g status-attr default
+set-option -g status-style fg=cyan,bg=black,default
 
 # default window title colors
-set-window-option -g window-status-fg cyan #base00
-set-window-option -g window-status-bg default
+set-window-option -g window-status-style fg=cyan,bg=default
 #set-window-option -g window-status-attr dim
 #set-window-option -g window-status-format "#I: #W"  # see .zshrc
 
 # active window title colors
-set-window-option -g window-status-current-fg black
-set-window-option -g window-status-current-bg cyan
-set-window-option -g window-status-current-attr underscore
+set-window-option -g window-status-current-style fg=black,bg=cyan,underscore
 #set-window-option -g window-status-current-format "#I: #W"  # see .zshrc
 
 # pane border
-set-option -g pane-border-fg white #base2
-set-option -g pane-active-border-fg cyan #base1
+set-option -g pane-border-style fg=white
+set-option -g pane-active-border-style fg=cyan
 
 # message text
-set-option -g message-bg white #base2
-set-option -g message-fg red #orange
+set-option -g message-style bg=white,fg=red
 
 # pane number display
 set-option -g display-panes-active-colour blue #blue
