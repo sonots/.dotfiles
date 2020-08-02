@@ -255,7 +255,7 @@ exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
 " Auto Fmt on save
-auto BufWritePre *.go Fmt
+auto BufWritePre *.go GoFmt
 
 "------------------------------------
 " search
