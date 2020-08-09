@@ -285,11 +285,6 @@ export GOENVGOROOT=$HOME/.goenvs
 export GOENVTARGET=$HOME/bin
 export GOENVHOME=$HOME/workspace
 
-# .zshrc extension
-[ -f "$HOME/.zsh/function.zsh" ] && source "$HOME/.zsh/function.zsh"
-[ -f "$HOME/.zshrc.$uname" ] && source "$HOME/.zshrc.$uname" # os dependents such as .zshrc.darwn, .zshrc.linux
-[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
-
 # keep SSH_AUTH_SOCK on tmux
 agent="$HOME/.ssh/agent"
 if [ -S "$SSH_AUTH_SOCK" ]; then
@@ -399,6 +394,10 @@ alias kga='kubectl get all --all-namespaces'
 alias kg='kubectl get'
 alias kd='kubectl describe'
 
+# .zshrc extension
+[ -f "$HOME/.zsh/myfunctions.zsh" ] && source "$HOME/.zsh/myfunctions.zsh"
+[ -f "$HOME/.zshrc.$uname" ] && source "$HOME/.zshrc.$uname" # os dependents such as .zshrc.darwn, .zshrc.linux
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 [ -f "$HOME/.zshrc.gx" ] && source "$HOME/.zshrc.gx"
 [ -f "$HOME/.zshrc.ex" ] && source "$HOME/.zshrc.ex"
 

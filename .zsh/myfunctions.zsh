@@ -13,6 +13,12 @@ source $ROOT_DIR/peco.zsh
 #  fi
 #}
 
+function gcloud-open() {
+  project=$(gcloud-current-project)
+  url="https://console.cloud.google.com/home/dashboard?project=${project}"
+  open "$url"
+}
+
 function be () {
   if [ -e /tmp/$(pwd)/Gemfile ]; then
     BUNDLE_GEMFILE=/tmp/$(pwd)/Gemfile RUBYOPT="-r pry" bundle exec $@
