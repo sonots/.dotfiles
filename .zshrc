@@ -262,6 +262,14 @@ export EDITOR=/usr/bin/vim
 #[[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
 #[[ -d "/usr/local/opt/mysql@5.6/bin" ]] && export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 
+# java
+[[ -d ~/.jenv/bin ]] && export PATH="$HOME/.jenv/bin:$PATH"
+# lazy initialization of jenv because it is slow
+function jenv() {
+  eval "$(/usr/local/bin/jenv init --no-rehash - zsh)"
+  /usr/local/bin/jenv "$@"
+}
+
 # ruby
 [[ -d ~/.rbenv/bin ]] && export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init --no-rehash - zsh)"; fi
