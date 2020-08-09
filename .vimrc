@@ -690,6 +690,3 @@ noremap <C-h> <Left>
 noremap <C-j> <Down>
 noremap <C-k> <Up>
 noremap <C-l> <Right>
-
-" I accidently type Shift-j. Ignore it.
-noremap <S-j> <nop>
