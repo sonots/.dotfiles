@@ -401,6 +401,7 @@ alias kgn='kubectl get node -o wide'
 alias kga='kubectl get all --all-namespaces'
 alias kg='kubectl get'
 alias kd='kubectl describe'
+[[ -d "$HOME/.krew" ]] && export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # .zshrc extension
 [ -f "$HOME/.zsh/myfunctions.zsh" ] && source "$HOME/.zsh/myfunctions.zsh"
