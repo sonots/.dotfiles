@@ -230,35 +230,41 @@ alias grep="nocorrect grep"
 
 #### export ####
 # export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cert.pem
-export PATH=/usr/java/latest/bin:$PATH
-export PATH=/usr/java/ant/bin:$PATH
 export PATH=/usr/sbin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/bin:$HOME/local/bin:$HOME/gitrepos/bin:$HOME/.dotfiles/.bin:$PATH
-export PATH="/usr/local/heroku/bin:$PATH" ### Added by the Heroku Toolbelt
+#export PATH="/usr/local/heroku/bin:$PATH" ### Added by the Heroku Toolbelt
 export PATH=$HOME/.local/bin:$PATH
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 export EDITOR=/usr/bin/vim
-if [ -x /usr/libexec/java_home ]; then
-  if /usr/java/latest > /dev/null 2>&1; then
-    export JAVA_HOME=$(/usr/libexec/java_home)
-  fi
-elif [ -x /usr/java/latest/bin/java ]; then
-  export JAVA_HOME=/usr/java/latest
-fi
-[[ -d /usr/java/ant ]] && export ANT_HOME=/usr/java/ant
+
+# java
+#export PATH=/usr/java/latest/bin:$PATH
+#export PATH=/usr/java/ant/bin:$PATH
+#if [ -x /usr/libexec/java_home ]; then
+#  if /usr/java/latest > /dev/null 2>&1; then
+#    export JAVA_HOME=$(/usr/libexec/java_home)
+#  fi
+#elif [ -x /usr/java/latest/bin/java ]; then
+#  export JAVA_HOME=/usr/java/latest
+#fi
+#[[ -d /usr/java/ant ]] && export ANT_HOME=/usr/java/ant
+
+# llvm and cmake
+#[[ -d $HOME/opt/llvm/bin ]] && export PATH=$HOME/opt/llvm/bin:$PATH
+#[[ -d $HOME/opt/cmake/bin ]] && export PATH=$HOME/opt/cmake/bin:$PATH
+
+#[[ -f "$HOME/perl5/perlbrew/etc/bashrc" ]] && source "$HOME/perl5/perlbrew/etc/bashrc"
+#[[ -d "$HOME/.nodebrew/current/bin" ]] && export PATH=$HOME/.nodebrew/current/bin:$PATH
+#[[ -d "$HOME/.pyenv/bin" ]] && export PATH="$HOME/.pyenv/bin:$PATH" && eval "$(pyenv init -)"
+#[[ -d "$HOME/.plenv/bin" ]] && export PATH="$HOME/.plenv/bin:$PATH" && eval "$(plenv init - zsh)"
+#[[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
+#[[ -d "/usr/local/opt/mysql@5.6/bin" ]] && export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
+
+# ruby
 [[ -d ~/.rbenv/bin ]] && export PATH="$HOME/.rbenv/bin:$PATH"
-if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
-[[ -f "$HOME/perl5/perlbrew/etc/bashrc" ]] && source "$HOME/perl5/perlbrew/etc/bashrc"
-[[ -d "$HOME/.nodebrew/current/bin" ]] && export PATH=$HOME/.nodebrew/current/bin:$PATH
-[[ -d "$HOME/.pyenv/bin" ]] && export PATH="$HOME/.pyenv/bin:$PATH" && eval "$(pyenv init -)"
-[[ -d "$HOME/.plenv/bin" ]] && export PATH="$HOME/.plenv/bin:$PATH" && eval "$(plenv init - zsh)"
-[[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
-[[ -d "/usr/local/opt/mysql@5.6/bin" ]] && export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
-[[ -d "$HOME/google-cloud-sdk/bin" ]] && export PATH="$HOME/google-cloud-sdk/bin:$PATH"
-[[ -d "$HOME/miniconda3/envs/py36/bin" ]] && export PATH="$HOME/miniconda3/envs/py36/bin:$PATH"
-if which direnv > /dev/null 2>&1; then eval "$(direnv hook zsh)"; fi
+if which rbenv > /dev/null 2>&1; then eval "$(rbenv init --no-rehash - zsh)"; fi
 
 # go
 if [ "$uname" = "darwin" ]; then
@@ -279,14 +285,9 @@ export GOENVGOROOT=$HOME/.goenvs
 export GOENVTARGET=$HOME/bin
 export GOENVHOME=$HOME/workspace
 
-# llvm and cmake
-[[ -d $HOME/opt/llvm/bin ]] && export PATH=$HOME/opt/llvm/bin:$PATH
-[[ -d $HOME/opt/cmake/bin ]] && export PATH=$HOME/opt/cmake/bin:$PATH
-
+# .zshrc extension
 [ -f "$HOME/.zsh/function.zsh" ] && source "$HOME/.zsh/function.zsh"
-
-# load OS dependent zshrc such as .zshrc.darwn, .zshrc.linux
-[ -f "$HOME/.zshrc.$uname" ] && source "$HOME/.zshrc.$uname"
+[ -f "$HOME/.zshrc.$uname" ] && source "$HOME/.zshrc.$uname" # os dependents such as .zshrc.darwn, .zshrc.linux
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
 # keep SSH_AUTH_SOCK on tmux
@@ -328,64 +329,64 @@ fi
 
 
 # for chainer
-if [ -d /usr/local/cuda ]; then
-  export CUDA_PATH="/usr/local/cuda"
-  export CPATH="$CUDA_PATH/include:$CPATH"
-  export LD_LIBRARY_PATH="$CUDA_PATH/lib64:$CUDA_PATH/lib:$LD_LIBRARY_PATH"
-  export PATH="$CUDA_PATH/bin:$PATH"
-  export LIBRARY_PATH="$CUDA_PATH/lib64:$CUDA_PATH/lib:$LIBRARY_PATH"
-fi
-if [ -d "$HOME/.cudnn" ]; then
-  export LD_LIBRARY_PATH="$HOME/.cudnn/active/cuda/lib64:/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"
-  export LIBRARY_PATH="$HOME/.cudnn/active/cuda/lib64:/usr/lib/x86_64-linux-gnu:$LIBRARY_PATH"
-  export CPATH="$HOME/.cudnn/active/cuda/include:$CPATH"
-  export LDFLAGS="-L$HOME/.cudnn/active/cuda/lib64 $LDFLAGS"
-  export CFLAGS="-I$HOME/.cudnn/active/cuda/include $CFLAGS"
-  export CUDNN_ROOT_DIR="$HOME/.cudnn/active/cuda"
-fi
-if [ -d "$HOME/nccl" ]; then
-  export LD_LIBRARY_PATH="$HOME/nccl/build/lib:$LD_LIBRARY_PATH"
-  export LDFLAGS="-L$HOME/nccl/build/lib $LDFLAGS"
-  export CFLAGS="-I$HOME/nccl/build/include $CFLAGS"
-fi
-
-# ccache
-if [ -d "$HOME/opt/ccache" ]; then
-  export PATH="$HOME/opt/ccache/bin:$PATH"
-  ln -sf "$HOME/opt/ccache/bin/ccache" "$HOME/opt/ccache/bin/gcc"
-  ln -sf "$HOME/opt/ccache/bin/ccache" "$HOME/opt/ccache/bin/g++"
-  ln -sf "$HOME/opt/ccache/bin/ccache" "$HOME/opt/ccache/bin/nvcc"
-  export NVCC="ccache nvcc"
-fi
+#if [ -d /usr/local/cuda ]; then
+#  export CUDA_PATH="/usr/local/cuda"
+#  export CPATH="$CUDA_PATH/include:$CPATH"
+#  export LD_LIBRARY_PATH="$CUDA_PATH/lib64:$CUDA_PATH/lib:$LD_LIBRARY_PATH"
+#  export PATH="$CUDA_PATH/bin:$PATH"
+#  export LIBRARY_PATH="$CUDA_PATH/lib64:$CUDA_PATH/lib:$LIBRARY_PATH"
+#fi
+#if [ -d "$HOME/.cudnn" ]; then
+#  export LD_LIBRARY_PATH="$HOME/.cudnn/active/cuda/lib64:/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"
+#  export LIBRARY_PATH="$HOME/.cudnn/active/cuda/lib64:/usr/lib/x86_64-linux-gnu:$LIBRARY_PATH"
+#  export CPATH="$HOME/.cudnn/active/cuda/include:$CPATH"
+#  export LDFLAGS="-L$HOME/.cudnn/active/cuda/lib64 $LDFLAGS"
+#  export CFLAGS="-I$HOME/.cudnn/active/cuda/include $CFLAGS"
+#  export CUDNN_ROOT_DIR="$HOME/.cudnn/active/cuda"
+#fi
+#if [ -d "$HOME/nccl" ]; then
+#  export LD_LIBRARY_PATH="$HOME/nccl/build/lib:$LD_LIBRARY_PATH"
+#  export LDFLAGS="-L$HOME/nccl/build/lib $LDFLAGS"
+#  export CFLAGS="-I$HOME/nccl/build/include $CFLAGS"
+#fi
+#
+## ccache
+#if [ -d "$HOME/opt/ccache" ]; then
+#  export PATH="$HOME/opt/ccache/bin:$PATH"
+#  ln -sf "$HOME/opt/ccache/bin/ccache" "$HOME/opt/ccache/bin/gcc"
+#  ln -sf "$HOME/opt/ccache/bin/ccache" "$HOME/opt/ccache/bin/g++"
+#  ln -sf "$HOME/opt/ccache/bin/ccache" "$HOME/opt/ccache/bin/nvcc"
+#  export NVCC="ccache nvcc"
+#fi
 
 # miniconda
-if [ -d "$HOME/miniconda3/envs/myenv" ]; then
-  CONDA_PREFIX="$HOME/miniconda3/envs/myenv"
-  # source activate myenv
-  export LD_LIBRARY_PATH="$CONDA_PREFIX/lib:$LD_LIBRARY_PATH"
-  export LIBRARY_PATH="$CONDA_PREFIX/lib:$LIBRARY_PATH"
-  export LDFLAGS="-L$CONDA_PREFIX/lib $LDFLAGS"
-  export CPATH="$CONDA_PREFIX/include:$CPATH"
-  export CFLAGS="-I$CONDA_PREFIX/include $CFLAGS"
-fi
+# if [ -d "$HOME/miniconda3/envs/myenv" ]; then
+#   CONDA_PREFIX="$HOME/miniconda3/envs/myenv"
+#   # source activate myenv
+#   export LD_LIBRARY_PATH="$CONDA_PREFIX/lib:$LD_LIBRARY_PATH"
+#   export LIBRARY_PATH="$CONDA_PREFIX/lib:$LIBRARY_PATH"
+#   export LDFLAGS="-L$CONDA_PREFIX/lib $LDFLAGS"
+#   export CPATH="$CONDA_PREFIX/include:$CPATH"
+#   export CFLAGS="-I$CONDA_PREFIX/include $CFLAGS"
+# fi
+#
+# if [ -d "$HOME/local/include" ]; then
+#   export CPATH="$HOME/local/include:$CPATH"
+#   export CFLAGS="-I$HOME/local/include $CFLAGS"
+# fi
+# if [ -d "$HOME/local/lib" ]; then
+#   export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
+#   export LIBRARY_PATH="$HOME/local/lib:$LIBRARY_PATH"
+#   export LDFLAGS="-L$HOME/local/lib $LDFLAGS"
+# fi
+#
+# alias onnxdump="python -c 'import onnx; import sys; print(onnx.load(sys.argv[1]))'"
+#
 
-if [ -d "$HOME/local/include" ]; then
-  export CPATH="$HOME/local/include:$CPATH"
-  export CFLAGS="-I$HOME/local/include $CFLAGS"
-fi
-if [ -d "$HOME/local/lib" ]; then
-  export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
-  export LIBRARY_PATH="$HOME/local/lib:$LIBRARY_PATH"
-  export LDFLAGS="-L$HOME/local/lib $LDFLAGS"
-fi
+# gcloud $ brew cask install google-cloud-sdk
+[[ -d "$HOME/google-cloud-sdk/bin" ]] && export PATH="$HOME/google-cloud-sdk/bin:$PATH"
+if which direnv > /dev/null 2>&1; then eval "$(direnv hook zsh)"; fi
 
-alias onnxdump="python -c 'import onnx; import sys; print(onnx.load(sys.argv[1]))'"
-
-[ -f "$HOME/.zshrc.gx" ] && source "$HOME/.zshrc.gx"
-[ -f "$HOME/.zshrc.ex" ] && source "$HOME/.zshrc.ex"
-
-# gcloud
-# brew cask install google-cloud-sdk
 if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc ]; then
   . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 fi
@@ -397,6 +398,9 @@ alias kgn='kubectl get node -o wide'
 alias kga='kubectl get all --all-namespaces'
 alias kg='kubectl get'
 alias kd='kubectl describe'
+
+[ -f "$HOME/.zshrc.gx" ] && source "$HOME/.zshrc.gx"
+[ -f "$HOME/.zshrc.ex" ] && source "$HOME/.zshrc.ex"
 
 function cloud-prompt() {
   unset project
