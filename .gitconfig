@@ -28,6 +28,8 @@
   ci = commit
   ca = commit -a
   co = checkout
+  sw = switch
+  rs = restore
   d = diff
   dc = diff --cached
   di = diff
