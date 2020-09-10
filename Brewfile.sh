@@ -43,6 +43,7 @@ brew install readline
 brew install ghq
 brew install peco
 brew install direnv
+brew install jq
 # kubernetes
 brew install kubectl
 brew install krew
