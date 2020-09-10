@@ -38,11 +38,7 @@ fi
 
 vim -c ':NeoBundleInstall!' -c ':q!' -c ':q!'
 # Require recent golang, GOROOT=/usr/local/go and GOPATH=$HOME/go
-# vim -c ':GoInstallBinaries' -c ':q!' -c ':q!'
-
-# install go from pkg http://golang.org/dl/
-# go get github.com/peco/peco/cmd/peco
-# go get github.com/motemen/ghq
+vim -c ':GoInstallBinaries' -c ':q!' -c ':q!'
 
 if [ $(uname) = "Darwin" ]; then
   # logout is required to reflect
