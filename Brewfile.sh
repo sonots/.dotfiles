@@ -1,9 +1,10 @@
 #!/bin/bash
-# Make sure using latest Homebrew
+
+which brew || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 brew update
 
 # Update already-installed formula (takes too much time, I will do it manually later)
-# upgrade
+# brew upgrade
 
 # Add Repository
 # brew tap homebrew/versions || true
@@ -42,6 +43,11 @@ brew install readline
 brew install ghq
 brew install peco
 brew install direnv
+# kubernetes
+brew install kubectl
+brew install krew
+brew install kustomize
+brew install k9s
 # brew install coreutils --default-names # http://takuya-1st.hatenablog.jp/entry/20111230/1325272152
 # brew install imagemagick
 # brew install packer
