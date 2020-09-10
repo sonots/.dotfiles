@@ -18,13 +18,15 @@ do
 done
 
 if [ $(uname) = "Darwin" ]; then
-  # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   ./Brewfile.sh
   brew tap sanemat/font
   brew install ricty
   cp -f /usr/local/Cellar/ricty/3.2.2/share/fonts/Ricty*.ttf ~/Library/Fonts/
   fc-cache -vf
   ln -s ~/.dotfiles/.tmux.conf.darwin ~/.tmux.conf
+  # curl https://sdk.cloud.google.com | bash
+  # curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "/tmp/AWSCLIV2.pkg"
+  # sudo installer -pkg /tmp/AWSCLIV2.pkg -target / # /usr/local/bin/aws
 else
   apt install -y git
   apt install -y vim
@@ -46,6 +48,8 @@ if [ $(uname) = "Darwin" ]; then
   # logout is required to reflect
   defaults write -g KeyRepeat -int 1
   defaults write -g InitialKeyRepeat -int 15
+  # Show hidden files on Finder
+  defaults write com.apple.finder AppleShowAllFiles TRUE
 fi
 
 # krew
