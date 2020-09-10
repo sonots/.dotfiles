@@ -44,6 +44,10 @@ brew install ghq
 brew install peco
 brew install direnv
 brew install jq
+# brew install coreutils --default-names # http://takuya-1st.hatenablog.jp/entry/20111230/1325272152
+# brew install imagemagick
+# brew install packer
+brew install brew-cask
 # kubernetes
 brew install kubectl
 brew install krew
@@ -51,12 +55,10 @@ brew install kustomize
 brew install k9s
 # golang
 brew install golang
-go get github.com/peco/peco/cmd/peco
-go get github.com/motemen/ghq
-# brew install coreutils --default-names # http://takuya-1st.hatenablog.jp/entry/20111230/1325272152
-# brew install imagemagick
-# brew install packer
-brew install brew-cask
+# go get github.com/peco/peco/cmd/peco
+# go get github.com/motemen/ghq
+# java
+brew install jenv
 
 # .dmg with homebrew-cask
 brew cask install google-chrome
