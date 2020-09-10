@@ -18,6 +18,7 @@ do
 done
 
 if [ $(uname) = "Darwin" ]; then
+  # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   ./Brewfile.sh
   brew tap sanemat/font
   brew install ricty
