@@ -404,6 +404,22 @@ alias kg='kubectl get'
 alias kd='kubectl describe'
 [[ -d "$HOME/.krew" ]] && export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
+# aws cli aliases
+function ec2-list-instances() {
+  aws ec2 describe-instances | jq '.Reservations[].Instances[] | {InstanceId, PrivateIpAddress, InstanceName: (.Tags[] | select(.Key=="Name").Value)}'
+}
+function ec2-instance-id() {
+  local instance_name=$1
+  aws ec2 describe-instances --filter "Name=tag:Name,Values=${instance_name}" | jq -r '.Reservations[].Instances[].InstanceId'
+}
+function ec2-list-nodes() {
+  aws ec2 describe-instances | jq '.Reservations[].Instances[] | {InstanceId, PrivateIpAddress, PrivateDnsName}'
+}
+function ec2-instance-id-of-node() {
+  local instance_name=$1
+  aws ec2 describe-instances --filter "Name=private-dns-name,Values=${instance_name}" | jq -r '.Reservations[].Instances[].InstanceId'
+}
+
 # .zshrc extension
 [ -f "$HOME/.zsh/myfunctions.zsh" ] && source "$HOME/.zsh/myfunctions.zsh"
 [ -f "$HOME/.zshrc.$uname" ] && source "$HOME/.zshrc.$uname" # os dependents such as .zshrc.darwn, .zshrc.linux
