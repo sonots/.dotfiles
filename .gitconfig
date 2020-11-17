@@ -49,8 +49,8 @@
   su = submodule update
   sha = rev-parse HEAD
   # http://qiita.com/items/10a57a4f1d2806e3a3b8
-  branch-local-clean = !git branch --merged | grep -v '*' | grep -v master | xargs -I % git branch -d %
-  branch-remote-clean = !git branch -a --merged | grep -v master | grep -v HEAD | grep 'remotes/origin' | sed 's!remotes/origin/!!' | xargs -I % git push origin :%
+  branch-local-clean = !git branch --merged | grep -v '*' | grep -v master | grep -v main | xargs -I % git branch -d %
+  branch-remote-clean = !git branch -a --merged | grep -v master | grep -v main | grep -v HEAD | grep 'remotes/origin' | sed 's!remotes/origin/!!' | xargs -I % git push origin :%
   current-branch = rev-parse --abbrev-ref HEAD
   pull-dry-run  = !"git fetch origin; git diff --stat --summary master..origin/master"
   fetch-pulls = fetch origin '+refs/pull/*:refs/remotes/pull/*'
@@ -60,6 +60,7 @@
   remote-rev = ls-remote origin HEAD
   latest-rev = ls-remote origin HEAD
   sync = !git checkout master && git fetch -p origin && git pull origin master && git branch --merged | grep -v master | grep -v '*' | xargs -I % git branch -d %
+	default-branch = "!f() { git ls-remote --symref $(git remote get-url origin) HEAD | grep 'refs/heads' | awk '$0=$2' | sed 's/refs\\/heads\\///'; }; f"
 
 #[tig "bind"]
 #  main = B @hub browse --commit/%(commit)
