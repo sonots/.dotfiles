@@ -406,18 +406,12 @@ alias kd='kubectl describe'
 
 # aws cli aliases
 function ec2-list-instances() {
-  aws ec2 describe-instances | jq '.Reservations[].Instances[] | {InstanceId, PrivateIpAddress, InstanceName: (.Tags[] | select(.Key=="Name").Value)}'
+  aws ec2 describe-instances | jq '.Reservations[].Instances[] | {InstanceId, PrivateIpAddress, PrivateDnsName, InstanceName: (.Tags[] | select(.Key=="Name").Value)}'
 }
 function ec2-instance-id() {
-  local instance_name=$1
-  aws ec2 describe-instances --filter "Name=tag:Name,Values=${instance_name}" | jq -r '.Reservations[].Instances[].InstanceId'
-}
-function ec2-list-nodes() {
-  aws ec2 describe-instances | jq '.Reservations[].Instances[] | {InstanceId, PrivateIpAddress, PrivateDnsName}'
-}
-function ec2-instance-id-of-node() {
-  local instance_name=$1
-  aws ec2 describe-instances --filter "Name=private-dns-name,Values=${instance_name}" | jq -r '.Reservations[].Instances[].InstanceId'
+  local name="$1"
+  aws ec2 describe-instances --filter "Name=tag:Name,Values=${name}" | jq -r '.Reservations[].Instances[].InstanceId'
+  aws ec2 describe-instances --filter "Name=private-dns-name,Values=${name}" | jq -r '.Reservations[].Instances[].InstanceId'
 }
 
 # .zshrc extension
