@@ -418,8 +418,8 @@ function ec2-instance-id() {
 [ -f "$HOME/.zsh/myfunctions.zsh" ] && source "$HOME/.zsh/myfunctions.zsh"
 [ -f "$HOME/.zshrc.$uname" ] && source "$HOME/.zshrc.$uname" # os dependents such as .zshrc.darwn, .zshrc.linux
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
-[ -f "$HOME/.zshrc.gx" ] && source "$HOME/.zshrc.gx"
-[ -f "$HOME/.zshrc.ex" ] && source "$HOME/.zshrc.ex"
+[ -f "$HOME/.zsh/gcp.zsh" ] && source "$HOME/.zsh/gcp.zsh"
+[ -f "$HOME/.zsh/aws.zsh" ] && source "$HOME/.zsh/aws.zsh"
 
 function cloud-prompt() {
   unset project
