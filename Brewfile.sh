@@ -10,7 +10,6 @@ brew update
 # brew tap homebrew/versions || true
 # brew tap homebrew/binary || true
 # brew tap sonots/mycask || true
-brew tap phinze/homebrew-cask || true
 
 # Packages
 
@@ -42,47 +41,37 @@ brew install rbenv ruby-build
 brew install readline
 brew install ghq
 brew install peco
+brew install fzf
 brew install direnv
 brew install jq
+brew install coreutils # gdate, gsed
 # brew install coreutils --default-names # http://takuya-1st.hatenablog.jp/entry/20111230/1325272152
 # brew install imagemagick
 # brew install packer
-brew install brew-cask
 # kubernetes
 brew install kubectl
 brew install krew
 brew install kustomize
 brew install k9s
+brew install --cask lens
 # golang
 brew install golang
-# go get github.com/peco/peco/cmd/peco
-# go get github.com/motemen/ghq
 # java
 brew install jenv
 
-# .dmg with homebrew-cask
-brew cask install google-chrome
-# brew cask install firefox
-# brew cask install vivaldi
-# brew cask install evernote
-# brew cask install dropbox
-# brew cask install skype
-brew cask install iterm2
-# brew cask install limechat
-# brew cask install sublime-text
-# brew cask install marked2
-# brew cask install xquartz
-# brew cask install wireshark
-# brew cask install kobito
-# brew cask install virtualbox
-# brew cask install vagrant
-# brew cask install karabiner
-# brew cask install echofon # mycask
-# brew cask install cot-editor # mycask
-# brew cask install macvim-kaoriya # mycask
-# brew cask install gyazo # mycask
-# brew install neovim
-brew cask install visual-studio-code
+# Install .dmg by homebrew-cask
+brew install --cask google-chrome
+# brew install --cask firefox
+brew install --cask  iterm2
+# brew install --cask  xquartz
+# brew install --cask  wireshark
+# brew install --cask  virtualbox
+# brew install --cask  vagrant
+brew install --cask visual-studio-code
+brew install --cask skitch
+brew install --cask discord
+brew install --cask slack
+brew install --cask kindle
 
 # Remove outdated versions
 brew cleanup
