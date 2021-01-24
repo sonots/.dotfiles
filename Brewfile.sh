@@ -60,6 +60,7 @@ brew install golang
 brew install jenv
 
 # Install .dmg by homebrew-cask
+brew install --cask karabiner-elements
 brew install --cask google-chrome
 # brew install --cask firefox
 brew install --cask  iterm2
