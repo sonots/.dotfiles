@@ -13,4 +13,4 @@ $ ./install.sh
 
 # Manual Setup for macOS
 
-[./MANUAL_SETUP_MACOS.md]
+[MANUAL_SETUP_MACOS.md](./MANUAL_SETUP_MACOS.md)
