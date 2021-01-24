@@ -1,5 +1,7 @@
 #!/bin/bash
 
+uname=`uname | tr A-Z a-z`
+
 [[ -e ~/.dotfiles ]] || git clone https://github.com/sonots/.dotfiles.git ~/.dotfiles
 pushd ~/.dotfiles
 
@@ -17,7 +19,7 @@ do
   ln -s ~/.dotfiles/$i ~/
 done
 
-if [ $(uname) = "Darwin" ]; then
+if [ "${uname}" = "darwin" ]; then
   ./Brewfile.sh
   brew tap sanemat/font
   brew install ricty
@@ -40,12 +42,6 @@ vim -c ':NeoBundleInstall!' -c ':q!' -c ':q!'
 # Require recent golang, GOROOT=/usr/local/go and GOPATH=$HOME/go
 vim -c ':GoInstallBinaries' -c ':q!' -c ':q!'
 
-if [ $(uname) = "Darwin" ]; then
-  # logout is required to reflect
-  defaults write -g KeyRepeat -int 1
-  defaults write -g InitialKeyRepeat -int 15
-  # Show hidden files on Finder
-  defaults write com.apple.finder AppleShowAllFiles TRUE
-fi
+./"post_install_${uname}.sh"
 
 popd
