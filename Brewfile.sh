@@ -54,10 +54,9 @@ brew install krew
 brew install kustomize
 brew install k9s
 brew install --cask lens
-# golang
 brew install golang
-# java
-brew install jenv
+brew install jenv # java
+brew install tfenv # terraform
 
 # Install .dmg by homebrew-cask
 brew install --cask karabiner-elements
