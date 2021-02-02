@@ -15,8 +15,7 @@
   # from 1.7.6
   ff = false
 [pull]
-  # from 1.7.9
-  rebase = true
+  rebase = merges # from 2.22
 [alias]
   # http://oli.jp/2012/git-powerup/
   # http://blog.blindgaenger.net/advanced_git_aliases.html

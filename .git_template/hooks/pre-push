@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+readonly PROTECTED_BRANCHES=(
+master
+main
+release
+)
+readonly PROTECTED_BRANCH_REGEXP='^.*release.*$'
+
+while read local_ref local_sha1 remote_ref remote_sha1; do
+  for pb in ${PROTECTED_BRANCHES[@]}; do
+    if [[ "${remote_ref##refs/heads/}" = ${pb} ]]; then
+      echo -e "Do not push to ${pb} branch"
+      exit 1
+    fi
+  done
+  if [[ "${remote_ref##refs/heads/}" =~ ${PROTECTED_BRANCH_REGEXP} ]]; then
+      echo -e "Do not push to the branch matching the rule: ${PROTECTED_BRANCH_REGEXP}"
+    exit 1
+  fi
+done
