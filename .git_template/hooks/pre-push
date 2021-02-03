@@ -15,7 +15,7 @@ while read local_ref local_sha1 remote_ref remote_sha1; do
     fi
   done
   if [[ "${remote_ref##refs/heads/}" =~ ${PROTECTED_BRANCH_REGEXP} ]]; then
-      echo -e "Do not push to the branch matching the rule: ${PROTECTED_BRANCH_REGEXP}"
+    echo -e "Do not push to the branch matching the rule: ${PROTECTED_BRANCH_REGEXP}"
     exit 1
   fi
 done
