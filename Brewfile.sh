@@ -6,11 +6,6 @@ brew update
 # Update already-installed formula (takes too much time, I will do it manually later)
 # brew upgrade
 
-# Add Repository
-# brew tap homebrew/versions || true
-# brew tap homebrew/binary || true
-# brew tap sonots/mycask || true
-
 # Packages
 
 brew install vim
