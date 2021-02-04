@@ -30,21 +30,20 @@ brew install libtool
 brew install cmake
 brew install autoconf
 brew install automake
-brew install mosh
-brew install markdown
 brew install pstree
 brew install pidof # pidof
 brew install proctools # pkill, pgrep, pfind
 brew install rmtrash # `rmtrash` moves file to Trash
-brew install ag
-brew install ripgrep # Either of ag or rg (ripgrep) should be enough
 brew install rbenv ruby-build
 brew install readline
 brew install ghq
 brew install peco
 brew install fzf # Either of peco or fzf should be ehough
+brew install ag
+brew install ripgrep # Either of ag or rg (ripgrep) should be enough
 brew install direnv
 brew install jq
+brew install python-yq
 brew install coreutils # gdate, gsed
 # brew install coreutils --default-names # http://takuya-1st.hatenablog.jp/entry/20111230/1325272152
 # brew install imagemagick
