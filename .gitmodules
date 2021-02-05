@@ -28,3 +28,6 @@
 [submodule ".peco/plugins/cool-peco"]
 	path = .peco/plugins/cool-peco
 	url = https://github.com/ryoppy/cool-peco
+[submodule ".vim/Vundle.vim"]
+	path = .vim/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim.git
