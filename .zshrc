@@ -294,6 +294,11 @@ export GOENVGOROOT=$HOME/.goenvs
 export GOENVTARGET=$HOME/bin
 export GOENVHOME=$HOME/workspace
 
+# rust
+if [ -d "$HOME/.cargo/rust" ]; then
+  export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
 # keep SSH_AUTH_SOCK on tmux
 agent="$HOME/.ssh/agent"
 if [ -S "$SSH_AUTH_SOCK" ]; then
