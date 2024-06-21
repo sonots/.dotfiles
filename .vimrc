@@ -111,6 +111,9 @@ set clipboard+=unnamed
 set clipboard+=autoselect      " Make a copy by selection like X
 set hidden
 set noundofile
+set encoding=utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileformats=unix,dos,mac
 autocmd BufWritePost  ~/.vimrc source ~/.vimrc " 保存時に .vimrc を最適用
 autocmd BufWritePre * :%s/\s\+$//e " Remove trailing whitespace automatically
 
