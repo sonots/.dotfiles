@@ -27,7 +27,6 @@ brew install autoconf
 brew install automake
 brew install pstree
 brew install pidof # pidof
-brew install proctools # pkill, pgrep, pfind
 brew install rmtrash # `rmtrash` moves file to Trash
 brew install rbenv ruby-build
 brew install readline
