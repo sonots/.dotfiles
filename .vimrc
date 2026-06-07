@@ -90,7 +90,7 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'zxqfl/tabnine-vim'
+"Plugin 'zxqfl/tabnine-vim'
 
 " Put your non-Plugin stuff after this line
 " All of your Plugins must be added before the following line
