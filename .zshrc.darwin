@@ -2,7 +2,7 @@ export PATH=/Users/seo.naotoshi/.rbenv/shims:$PATH
 
 #### options ####
 setopt auto_cd
-function chpwd(){ls -F -G}
+function chpwd(){ [[ -n $CLAUDECODE ]] && return; ls -F -G }
 
 #### plugins ####
 # z - jump around https://github.com/rupa/z
