@@ -70,6 +70,7 @@
 	root = ~/src
 [init]
 	templatedir = ~/.git_template
+	defaultBranch = main
 [core]
 	excludesfile = ~/.gitignore
 [filter "lfs"]
