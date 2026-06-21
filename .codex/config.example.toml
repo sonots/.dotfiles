@@ -1,0 +1,19 @@
+# Public baseline for Codex.
+# Keep machine-specific sections local in .codex/config.toml:
+# [projects.*], [marketplaces.*], [mcp_servers.*], [sandbox_workspace_write], [hooks.state].
+
+model = "gpt-5.5"
+personality = "pragmatic"
+model_reasoning_effort = "xhigh"
+approval_policy = "on-request"
+approvals_reviewer = "auto_review"
+sandbox_mode = "workspace-write"
+
+[plugins."sites@openai-bundled"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[features]
+js_repl = false

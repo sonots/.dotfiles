@@ -1,0 +1,13 @@
+# Public baseline rules loaded by Codex for this trusted project.
+# Keep machine-specific or one-off approvals in ignored .codex/rules/default.rules.
+
+prefix_rule(pattern=["gh", "pr", "merge"], decision="prompt", justification="Ask before merging pull requests")
+prefix_rule(pattern=["gh", "merge"], decision="prompt", justification="Ask before GitHub merge operations")
+prefix_rule(pattern=["gh", "pr", "list"], decision="allow", justification="Allow read-only pull request listing")
+prefix_rule(pattern=["gh", "pr", "view"], decision="allow", justification="Allow read-only pull request inspection")
+prefix_rule(pattern=["gh", "pr", "diff"], decision="allow", justification="Allow read-only pull request diff inspection")
+prefix_rule(pattern=["gh", "run", "list"], decision="allow", justification="Allow read-only GitHub Actions run listing")
+prefix_rule(pattern=["gh", "run", "view"], decision="allow", justification="Allow read-only GitHub Actions run inspection")
+prefix_rule(pattern=["git", "fetch", "origin", "main"], decision="allow", justification="Allow refreshing origin/main")
+prefix_rule(pattern=["git", "merge", "--ff-only", "origin/main"], decision="allow", justification="Allow fast-forwarding the current branch to origin/main")
+prefix_rule(pattern=["git", "worktree", "add"], decision="allow", justification="Allow creating Git worktrees")

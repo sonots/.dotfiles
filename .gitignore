@@ -23,3 +23,11 @@ ruby-head
 .envrc
 vendor/
 .terraform/
+
+# Codex local state
+.codex/*
+!.codex/AGENTS.md
+!.codex/config.example.toml
+!.codex/rules/
+.codex/rules/*
+!.codex/rules/base.rules
