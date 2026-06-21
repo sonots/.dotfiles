@@ -31,3 +31,9 @@ vendor/
 !.codex/rules/
 .codex/rules/*
 !.codex/rules/base.rules
+
+# Claude local state
+.claude/*
+!.claude/commands/
+!.claude/commands/agmsg.md
+!.claude/settings.example.json
