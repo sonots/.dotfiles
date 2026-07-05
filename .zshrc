@@ -134,12 +134,6 @@ export LC_CTYPE="en_US.UTF-8"
 # autoload -U colors
 #colors
 
-# for screen, tmux, iterm2
-preexec() {
-  # mycmd=(${(s: :)${1}})
-  # echo -ne "\ek$(hostname|awk 'BEGIN{FS="."}{print $1}'):$mycmd[1]\e\\"
-  echo -ne "\ek${PWD:t}\e\\"
-}
 # vcs_info
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' formats '(%b)'
@@ -149,9 +143,6 @@ precmd () {
   psvar=()
   LANG=en_US.UTF-8 vcs_info
   [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-  # for screen, tmux, itemr2
-  # echo -ne "\ek$(hostname|awk 'BEGIN{FS="."}{print $1}'):idle\e\\"
-  echo -ne "\ek${PWD:t}\e\\"
 }
 LANG=en_US.UTF-8 vcs_info
 export LC_CTYPE=en_US.UTF-8
@@ -323,19 +314,6 @@ if [ -n "$(which tmux)" ]; then
     fi
   fi
 fi
-
-# tmux: show pwd as window name
-if which tmux > /dev/null; then
-  show-current-dir-as-window-name() {
-      if tmux info &> /dev/null; then
-          tmux set-window-option window-status-format " #I ${PWD:t} " > /dev/null
-          tmux set-window-option window-status-current-format " #I ${PWD:t} " > /dev/null
-      fi
-  }
-  show-current-dir-as-window-name
-  add-zsh-hook chpwd show-current-dir-as-window-name
-fi
-
 
 # for chainer
 #if [ -d /usr/local/cuda ]; then
