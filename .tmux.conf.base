@@ -98,10 +98,16 @@ set-window-option -g clock-mode-colour green #green
 # resurrect / continuum: 再起動後も tmux セッションを自動復元する
 run-shell '~/.tmux/plugins/tmux-resurrect/resurrect.tmux'
 
+# 未設定だとレイアウトと cwd しか保存されず、復元した pane は空になる
+set -g @resurrect-capture-pane-contents 'on'
+# 既定の復元対象(vim, less 等)に claude を足す。`->` 以降が実行コマンドに置き換わり、
+# 保存時の引数ではなく --continue で直前の会話を引き継いで起動する
+set -g @resurrect-processes '"~claude->claude --continue"'
+
 set -g @continuum-save-interval '15'
 set -g @continuum-restore 'on'
-set -g @continuum-boot 'on'
-set -g @continuum-boot-options 'iterm'
+# ログイン時の自動起動は使わない。ログイン後に `tmux` を打つとサーバ起動時に復元が走る
+set -g @continuum-boot 'off'
 
 run-shell '~/.tmux/plugins/tmux-continuum/continuum.tmux'
 

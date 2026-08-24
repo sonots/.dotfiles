@@ -11,6 +11,9 @@ function chpwd(){ [[ -n $CLAUDECODE ]] && return; ls -F -G }
 #### alias ####
 alias ls='ls -G'
 alias tmux='tmux -f ~/.tmux.conf.darwin'
+# 復元済みセッションに確実に入る。素の tmux だと、tmux-continuum の復元が先にセッション 0 を
+# 作り終えていた場合にセッション 1 が新規作成され、復元されたウィンドウが見えない
+alias tm='tmux -f ~/.tmux.conf.darwin new -A -s 0'
 # alias ctags="`brew --prefix`/bin/ctags"
 
 if [ -d /Applications/MacVim.app ]; then
