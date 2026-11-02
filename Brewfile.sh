@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Homebrew はインストールプランの確認プロンプト (ask mode) がデフォルトに
+# なったため、スクリプト実行では無効化する ("Invalid input. Please press 'y'
+# to proceed" で止まる対策)
+export HOMEBREW_NO_ASK=1
+# Homebrew 自体のインストーラも非対話にする
+export NONINTERACTIVE=1
+
 which brew || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 brew update
 
