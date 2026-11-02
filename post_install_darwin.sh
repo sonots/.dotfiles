@@ -27,7 +27,18 @@ EOF
 fi
 
 # change default shell to zsh
-if ! grep -q /usr/local/bin/zsh /etc/shells; then
-  echo /usr/local/bin/zsh | sudo tee -a /etc/shells
+# Prefer homebrew zsh (Apple Silicon: /opt/homebrew, Intel: /usr/local),
+# fall back to the system zsh.
+if [ -x /opt/homebrew/bin/zsh ]; then
+  zsh_path=/opt/homebrew/bin/zsh
+elif [ -x /usr/local/bin/zsh ]; then
+  zsh_path=/usr/local/bin/zsh
+else
+  zsh_path=/bin/zsh
 fi
-chsh -s /usr/local/bin/zsh
+if ! grep -qx "$zsh_path" /etc/shells; then
+  echo "$zsh_path" | sudo tee -a /etc/shells
+fi
+if [ "$SHELL" != "$zsh_path" ]; then
+  chsh -s "$zsh_path"
+fi
