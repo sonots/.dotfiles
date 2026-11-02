@@ -487,6 +487,11 @@ let g:ctrlp_prompt_mappings = {
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
+" Workaround for Vim 9.x: neocomplcache 同梱の古い vital は :scriptnames の
+" 'A' フラグ行 (vim9 autoload import) を解析できず SID 推測がずれて
+" E716: Key not present in Dictionary: "set_dictionary_helper" になる。
+" A フラグ行が現れる前 (vimrc 時点) に vital モジュールを初期化しておく。
+silent! call neocomplcache#util#set_dictionary_helper({}, '_', '_')
 " Use smartcase.
 let g:neocomplcache_enable_smart_case = 1
 " Use camel case completion. (This feature may be too slow)
