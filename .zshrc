@@ -270,14 +270,18 @@ fi
 
 # go
 if [ "$uname" = "darwin" ]; then
-  # brew install go
-  export GOROOT=/usr/local/opt/go/libexec
+  # brew install go (Apple Silicon: /opt/homebrew, Intel: /usr/local)
+  if [ -d /opt/homebrew/opt/go/libexec ]; then
+    export GOROOT=/opt/homebrew/opt/go/libexec
+  elif [ -d /usr/local/opt/go/libexec ]; then
+    export GOROOT=/usr/local/opt/go/libexec
+  fi
 elif [ -d "$HOME/local/go" ]; then
   export GOROOT="$HOME/local/go"
 else
   export GOROOT=/usr/local/go
 fi
-export PATH=$GOROOT/bin:$PATH
+[ -n "$GOROOT" ] && export PATH=$GOROOT/bin:$PATH
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 # goenv
