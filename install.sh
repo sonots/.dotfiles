@@ -2,6 +2,16 @@
 
 uname=`uname | tr A-Z a-z`
 
+# Command Line Tools が無いと git を呼ぶたびに GUI のインストールダイアログが
+# 出てしまうので、先にインストールして完了を待つ
+if [ "${uname}" = "darwin" ] && ! xcode-select -p >/dev/null 2>&1; then
+  xcode-select --install
+  echo "Waiting for Command Line Tools installation to complete..."
+  until xcode-select -p >/dev/null 2>&1; do
+    sleep 10
+  done
+fi
+
 [[ -e ~/.dotfiles ]] || git clone https://github.com/sonots/.dotfiles.git ~/.dotfiles
 pushd ~/.dotfiles
 
