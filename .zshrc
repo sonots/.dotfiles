@@ -255,16 +255,18 @@ export EDITOR=/usr/bin/vim
 #[[ -d "/usr/local/opt/mysql@5.6/bin" ]] && export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 
 # java
-[[ -d ~/.jenv/bin ]] && export PATH="$HOME/.jenv/bin:$PATH"
-# lazy initialization of jenv because it is slow
-function jenv() {
-  eval "$(/usr/local/bin/jenv init --no-rehash - zsh)"
-  /usr/local/bin/jenv "$@"
-}
+if [ -d "/opt/homebrew/opt/openjdk@21" ]; then
+  export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
+  export JAVA_HOME="/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
+fi
 
 # ruby
 [[ -d ~/.rbenv/bin ]] && export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init --no-rehash - zsh)"; fi
+if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
+  export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+  export PATH="/opt/homebrew/lib/ruby/gems/3.4.0/bin:$PATH"
+fi
 
 # go
 if [ "$uname" = "darwin" ]; then
@@ -288,6 +290,11 @@ export GOENVHOME=$HOME/workspace
 # rust
 if [ -d "$HOME/.cargo/rust" ]; then
   export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+# flutter
+if [ -d "$HOME/development/flutter" ]; then
+  export PATH=$HOME/development/flutter/bin:$PATH
 fi
 
 # keep SSH_AUTH_SOCK on tmux
