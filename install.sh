@@ -43,6 +43,21 @@ vim -c ':PluginInstall!' -c ':q!' -c ':q!'
 # Require recent golang, GOROOT=/usr/local/go and GOPATH=$HOME/go
 vim -c ':GoInstallBinaries' -c ':q!' -c ':q!'
 
+# Install language servers (same as :LspInstallServer of mattn/vim-lsp-settings,
+# but run the installer scripts directly so it works non-interactively).
+# :LspInstallServer installs are async (term_start), so headless vim can't wait for them.
+# Note: ruby (solargraph / ruby-lsp) is excluded: native gems do not build on ruby 4.x yet.
+[ -n "$GOROOT" ] && [ ! -d "$GOROOT" ] && unset GOROOT  # stale GOROOT breaks go install
+lsp_installer_dir=~/.dotfiles/.vim/bundle/vim-lsp-settings/installer
+lsp_servers_dir=${XDG_DATA_HOME:-~/.local/share}/vim-lsp-settings/servers
+for server in bash-language-server gopls pyright-langserver terraform-ls typescript-language-server vim-language-server; do
+  if [ ! -d "$lsp_servers_dir/$server" ]; then
+    echo "Installing language server: $server"
+    mkdir -p "$lsp_servers_dir/$server"
+    (cd "$lsp_servers_dir/$server" && sh "$lsp_installer_dir/install-$server.sh") || echo "WARN: failed to install $server"
+  fi
+done
+
 ./"post_install_${uname}.sh"
 
 popd
