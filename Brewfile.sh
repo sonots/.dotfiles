@@ -52,6 +52,16 @@ brew install golang
 brew install jenv # java
 brew install tfenv # terraform
 
+# AI
+brew install --cask claude # Claude Desktop, not the CLI
+brew install --cask claude-code@latest # the `claude-code` cask pins an older version
+brew install --cask codex
+brew install --cask chatgpt
+brew install --cask grok-bot
+brew install --cask cursor
+brew install --cask antigravity-cli # installs as `agy`
+brew install --cask google-gemini # the `gemini` cask is MacPaw's disk cleaner; needs arm64 and macOS 15+
+
 # Install .dmg by homebrew-cask
 brew install --cask karabiner-elements
 brew install --cask google-chrome
