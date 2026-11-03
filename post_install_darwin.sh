@@ -30,11 +30,7 @@ defaults write -g com.apple.sound.uiaudio.enabled -int 0
 # 起動音を消す。これは defaults ではなく NVRAM に入っている
 sudo nvram StartupMute=%01
 
-# 修飾キーのリマップ。ByHost の .GlobalPreferences に
-# com.apple.keyboard.modifiermapping.<VendorID>-<ProductID>-0 として入る
-# （0-0-0 は内部キーボード）。値は HID usage に 0x700000000 を足したもの。
-# デバイス固有なので、キーボードを買い替えると ProductID が変わって効かなくなる。
-# 反映には再ログインが必要。
+# 修飾キーのリマップ。値は HID usage に 0x700000000 を足したもの。
 caps_lock=30064771129
 left_option=30064771298
 left_command=30064771299
@@ -43,6 +39,9 @@ right_option=30064771302
 right_command=30064771303
 
 # modmap <VendorID>-<ProductID>-0 <src> <dst> [<src> <dst> ...]
+# 第1引数は ByHost の .GlobalPreferences に入るキー名
+# com.apple.keyboard.modifiermapping.<VendorID>-<ProductID>-0 の末尾部分。
+# 反映には再ログインが必要。
 modmap() {
   local device=$1; shift
   local xml='<array>'
@@ -54,9 +53,10 @@ modmap() {
   defaults -currentHost write -g "com.apple.keyboard.modifiermapping.${device}" "${xml}</array>"
 }
 
-# 内部キーボード: CapsLock -> Control
+# 内部キーボードは 0-0-0。CapsLock -> Control
 modmap 0-0-0 "$caps_lock" "$left_control"
-# Realforce 87: CapsLock -> Control、左右とも Option <-> Command を入れ替え
+# Realforce 87。VendorID/ProductID 固有なので、キーボードを買い替えると効かなくなる。
+# CapsLock -> Control、左右とも Option <-> Command を入れ替え
 modmap 2131-273-0 \
   "$caps_lock" "$left_control" \
   "$left_option" "$left_command" \
