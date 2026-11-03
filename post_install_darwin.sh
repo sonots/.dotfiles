@@ -1,22 +1,33 @@
 #!/bin/bash
 
 # logout is required to reflect
+# システム設定 > キーボード > 「キーのリピート速度」「リピート入力認識までの時間」
 defaults write -g KeyRepeat -int 1
 defaults write -g InitialKeyRepeat -int 15
 # Show hidden files on Finder
+# 環境設定には無い。Finder で Shift-Command-. を押しても切り替わる
 defaults write com.apple.finder AppleShowAllFiles TRUE
 
 # Trackpad: ナチュラルなスクロールを OFF
+# システム設定 > トラックパッド > スクロールとズーム > 「ナチュラルなスクロール」
 defaults write -g com.apple.swipescrolldirection -bool false
 # F1, F2 などを標準のファンクションキーとして使う（F7 でカタカナ変換したいため）
+# システム設定 > キーボード > キーボードショートカット > ファンクションキー >
+#   「F1、F2などのキーを標準のファンクションキーとして使用」
 defaults write -g com.apple.keyboard.fnState -bool true
 # 通知音と UI サウンドエフェクトを消す
+# システム設定 > サウンド > 「通知音の音量」「ユーザインターフェースのサウンド
+#   エフェクトを再生」
 defaults write -g com.apple.sound.beep.volume -float 0
 defaults write -g com.apple.sound.uiaudio.enabled -int 0
 # 起動音を消す。これは defaults ではなく NVRAM に入っている
+# システム設定 > サウンド > 「起動時にサウンドを再生」
 sudo nvram StartupMute=%01
 
 # 修飾キーのリマップ。値は HID usage に 0x700000000 を足したもの。
+# システム設定 > キーボード > キーボードショートカット > 修飾キー
+#   右上でデバイスを選んでから各キーの割り当てを変える。UI の「Control」には
+#   左右の区別が無く、選ぶと RightControl (0xE4) が書かれる。
 caps_lock=30064771129
 left_option=30064771298
 left_command=30064771299
@@ -57,6 +68,9 @@ modmap 2131-273-0 \
 # 入力ソースが2つなら 60 と 61 は同じトグル動作になるので、60 の Control+Space を
 # 残したまま 61 に Command+Space を割り当てる。
 # Spotlight が Command+Space を握っていると競合するので先に無効化する。
+# システム設定 > キーボード > キーボードショートカット >
+#   Spotlight > 「Spotlight検索を表示」のチェックを外す
+#   入力ソース > 「入力メニューの次のソースを選択」に Command+Space を割り当てる
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 \
   "<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>65535</integer><integer>49</integer><integer>1048576</integer></array><key>type</key><string>standard</string></dict></dict>"
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 61 \
