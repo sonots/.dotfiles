@@ -50,10 +50,13 @@ else
   run ln -sfn ~/.dotfiles/.tmux.conf.linux ~/.tmux.conf
 fi
 
-run vim -c ':NeoBundleInstall!' -c ':q!' -c ':q!'
-run vim -c ':PluginInstall!' -c ':q!' -c ':q!'
+# set nomore が無いと出力が多いときに -- More -- で止まり、端末から切り離して
+# 実行したときに "Error reading input" で落ちる。--cmd ではなく -c で渡す
+# （--cmd は vimrc より前に走る）。
+run vim -c 'set nomore' -c ':NeoBundleInstall!' -c ':q!' -c ':q!'
+run vim -c 'set nomore' -c ':PluginInstall!' -c ':q!' -c ':q!'
 # Require recent golang, GOROOT=/usr/local/go and GOPATH=$HOME/go
-run vim -c ':GoInstallBinaries' -c ':q!' -c ':q!'
+run vim -c 'set nomore' -c ':GoInstallBinaries' -c ':q!' -c ':q!'
 
 # Install language servers (same as :LspInstallServer of mattn/vim-lsp-settings,
 # but run the installer scripts directly so it works non-interactively).

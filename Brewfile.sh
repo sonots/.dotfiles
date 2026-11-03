@@ -83,7 +83,6 @@ run brew install --cask visual-studio-code
 # brew install --cask skitch
 # brew install --cask discord
 run brew install --cask slack
-run brew install --cask kindle
 
 # Mac App Store (Homebrew cask に無いもの)
 # App Store にサインインしていて、購入履歴に入っているものしか入らない

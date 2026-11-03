@@ -1,3 +1,9 @@
+# Homebrew の bin を /usr/bin より前に置く。これが無いと brew install した vim や
+# git ではなく Apple のシステム側が使われる。システム vim は platform binary なので
+# 署名されていない .so を dlopen できず、vimproc のようなネイティブ拡張が動かない。
+# .zshrc の PATH 設定より後に読まれるので、ここで前に出せば勝つ。
+[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
 export PATH=/Users/seo.naotoshi/.rbenv/shims:$PATH
 
 #### options ####
