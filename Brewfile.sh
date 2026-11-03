@@ -70,7 +70,6 @@ brew install --cask antigravity-cli # installs as `agy`
 brew install --cask google-gemini # the `gemini` cask is MacPaw's disk cleaner; needs arm64 and macOS 15+
 
 # Install .dmg by homebrew-cask
-brew install --cask karabiner-elements
 brew install --cask google-chrome
 # brew install --cask firefox
 brew install --cask  iterm2
@@ -83,6 +82,11 @@ brew install --cask visual-studio-code
 # brew install --cask discord
 brew install --cask slack
 brew install --cask kindle
+
+# Mac App Store (Homebrew cask に無いもの)
+# App Store にサインインしていて、購入履歴に入っているものしか入らない
+brew install mas
+mas install 1407015686 # Paste Plain Text
 
 # Remove outdated versions
 brew cleanup
