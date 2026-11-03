@@ -1,33 +1,26 @@
 #!/bin/bash
 
-# logout is required to reflect
+# Finder で隠しファイルを表示する。環境設定には無い。
+defaults write com.apple.finder AppleShowAllFiles TRUE
+
 # システム設定 > キーボード > 「キーのリピート速度」「リピート入力認識までの時間」
 defaults write -g KeyRepeat -int 1
 defaults write -g InitialKeyRepeat -int 15
-# Show hidden files on Finder
-# 環境設定には無い。Finder で Shift-Command-. を押しても切り替わる
-defaults write com.apple.finder AppleShowAllFiles TRUE
 
-# Trackpad: ナチュラルなスクロールを OFF
-# システム設定 > トラックパッド > スクロールとズーム > 「ナチュラルなスクロール」
+# システム設定 > トラックパッド > スクロールとズーム > 「ナチュラルなスクロール」をOFF
 defaults write -g com.apple.swipescrolldirection -bool false
-# F1, F2 などを標準のファンクションキーとして使う（F7 でカタカナ変換したいため）
 # システム設定 > キーボード > キーボードショートカット > ファンクションキー >
-#   「F1、F2などのキーを標準のファンクションキーとして使用」
+#   「F1、F2などのキーを標準のファンクションキーとして使用」（F7 でカタカナ変換したいため）
 defaults write -g com.apple.keyboard.fnState -bool true
-# 通知音と UI サウンドエフェクトを消す
-# システム設定 > サウンド > 「通知音の音量」「ユーザインターフェースのサウンド
-#   エフェクトを再生」
+# 通知音、UI サウンドエフェクトと起動音を消す
+# システム設定 > サウンド > 「通知音の音量」を0に。「ユーザインターフェースのサウンドエフェクトを再生」をOFF
 defaults write -g com.apple.sound.beep.volume -float 0
 defaults write -g com.apple.sound.uiaudio.enabled -int 0
-# 起動音を消す。これは defaults ではなく NVRAM に入っている
 # システム設定 > サウンド > 「起動時にサウンドを再生」
+# これは defaults ではなく NVRAM に入っている
 sudo nvram StartupMute=%01
 
 # 修飾キーのリマップ。値は HID usage に 0x700000000 を足したもの。
-# システム設定 > キーボード > キーボードショートカット > 修飾キー
-#   右上でデバイスを選んでから各キーの割り当てを変える。UI の「Control」には
-#   左右の区別が無く、選ぶと RightControl (0xE4) が書かれる。
 caps_lock=30064771129
 left_option=30064771298
 left_command=30064771299
@@ -50,10 +43,13 @@ modmap() {
   defaults -currentHost write -g "com.apple.keyboard.modifiermapping.${device}" "${xml}</array>"
 }
 
-# 内部キーボードは 0-0-0。CapsLock -> Control
+# システム設定 > キーボード > キーボードショートカット > 修飾キー > 内部キーボード
+# CapsLock -> Control
+# 内部キーボードは 0-0-0
 modmap 0-0-0 "$caps_lock" "$left_control"
-# Realforce 87。VendorID/ProductID 固有なので、キーボードを買い替えると効かなくなる。
+# システム設定 > キーボード > キーボードショートカット > 修飾キー > Realforce 87
 # CapsLock -> Control、左右とも Option <-> Command を入れ替え
+# Realforce 87。VendorID/ProductID 固有なので、キーボードを買い替えると効かなくなる。
 modmap 2131-273-0 \
   "$caps_lock" "$left_control" \
   "$left_option" "$left_command" \
@@ -62,11 +58,9 @@ modmap 2131-273-0 \
   "$right_command" "$right_option"
 
 # Command+Space でも入力ソースを切り替える（Control+Space は標準のまま残す）
-# AppleSymbolicHotKeys はアクションごとの数値 ID がキー。
-#   60=前の入力ソースを選択 / 61=入力メニューの次のソースを選択 / 64=Spotlight検索
+# AppleSymbolicHotKeys はアクションごとの数値 ID がキー。60=前の入力ソースを選択 / 61=入力メニューの次のソースを選択 / 64=Spotlight検索
 # parameters は [文字コード, キーコード, 修飾キーのビットマスク]。1048576 が Command。
-# 入力ソースが2つなら 60 と 61 は同じトグル動作になるので、60 の Control+Space を
-# 残したまま 61 に Command+Space を割り当てる。
+# 入力ソースが2つなら 60 と 61 は同じトグル動作になるので、60 の Control+Space を残したまま 61 に Command+Space を割り当てる。
 # Spotlight が Command+Space を握っていると競合するので先に無効化する。
 # システム設定 > キーボード > キーボードショートカット >
 #   Spotlight > 「Spotlight検索を表示」のチェックを外す
@@ -114,3 +108,19 @@ fi
 if [ "$SHELL" != "$zsh_path" ]; then
   chsh -s "$zsh_path"
 fi
+
+# iTerm2 の設定は iterm2/com.googlecode.iterm2.plist で管理する。カラー・透過・
+# ダークモード・Option キーの扱いなど、プロファイルの設定が全部ここに入っている。
+# iTerm2 は終了時に設定を plist へ書き戻すので、起動中に書いても消される。
+if pgrep -xq iTerm2; then
+  echo "WARN: iTerm2 が起動中のため設定の読み込み先を変更できません。iTerm2 を終了してから実行してください。" >&2
+else
+  defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$HOME/.dotfiles/iterm2"
+  defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+fi
+
+# ここまでの defaults は書き込んだだけでは反映されないものがある。システム設定の
+# GUI から変えた場合はその場で反映されるが、plist を直接書いた場合は、設定を
+# 読み込むプロセス（loginwindow, Finder, HID のサービス）が起動時に読むため。
+echo
+echo "値を変更した場合は、ログアウトして再ログイン（確実にするなら再起動）してください。"

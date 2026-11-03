@@ -2,6 +2,13 @@
 
 uname=`uname | tr A-Z a-z`
 
+# 失敗しても止めずに最後まで走らせ、何が失敗したかを最後にまとめて出す。
+# 独立した手順が多く1つコケても残りは進めたいので set -e は使わない。
+failed=()
+run() {
+  "$@" || failed+=("$*")
+}
+
 # Command Line Tools が無いと git を呼ぶたびに GUI のインストールダイアログが
 # 出てしまうので、先にインストールして完了を待つ
 if [ "${uname}" = "darwin" ] && ! xcode-select -p >/dev/null 2>&1; then
@@ -15,8 +22,8 @@ fi
 [[ -e ~/.dotfiles ]] || git clone https://github.com/sonots/.dotfiles.git ~/.dotfiles
 pushd ~/.dotfiles
 
-git submodule init
-git submodule update
+run git submodule init
+run git submodule update
 
 for i in `ls -a`
 do
@@ -26,34 +33,35 @@ do
   [ $i = "README.md" ] && continue
   [ $i = "install.sh" ] && continue
   [ $i = "Brewfile.sh" ] && continue
+  [ $i = "iterm2" ] && continue # iTerm2 が読む設定。~ には置かない
   # -f で張り直し、-n でシンボリックリンクのディレクトリを辿らせない（再実行時に
   # リンク先の中へ入れ子のリンクを作らないため）
-  ln -sfn ~/.dotfiles/$i ~/
+  run ln -sfn ~/.dotfiles/$i ~/
 done
 
 if [ "${uname}" = "darwin" ]; then
-  ./Brewfile.sh
-  brew tap sanemat/font
-  brew install ricty
-  cp -f /usr/local/Cellar/ricty/3.2.2/share/fonts/Ricty*.ttf ~/Library/Fonts/
-  fc-cache -vf
-  ln -sfn ~/.dotfiles/.tmux.conf.darwin ~/.tmux.conf
+  run ./Brewfile.sh
+  run brew tap sanemat/font
+  run brew install ricty
+  run cp -f /usr/local/Cellar/ricty/3.2.2/share/fonts/Ricty*.ttf ~/Library/Fonts/
+  run fc-cache -vf
+  run ln -sfn ~/.dotfiles/.tmux.conf.darwin ~/.tmux.conf
   # curl https://sdk.cloud.google.com | bash
   # curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "/tmp/AWSCLIV2.pkg"
   # sudo installer -pkg /tmp/AWSCLIV2.pkg -target / # /usr/local/bin/aws
 else
-  apt install -y git
-  apt install -y vim
-  apt install -y zsh
-  apt install -y tmux
-  apt install -y silversearcher-ag
-  ln -sfn ~/.dotfiles/.tmux.conf.linux ~/.tmux.conf
+  run apt install -y git
+  run apt install -y vim
+  run apt install -y zsh
+  run apt install -y tmux
+  run apt install -y silversearcher-ag
+  run ln -sfn ~/.dotfiles/.tmux.conf.linux ~/.tmux.conf
 fi
 
-vim -c ':NeoBundleInstall!' -c ':q!' -c ':q!'
-vim -c ':PluginInstall!' -c ':q!' -c ':q!'
+run vim -c ':NeoBundleInstall!' -c ':q!' -c ':q!'
+run vim -c ':PluginInstall!' -c ':q!' -c ':q!'
 # Require recent golang, GOROOT=/usr/local/go and GOPATH=$HOME/go
-vim -c ':GoInstallBinaries' -c ':q!' -c ':q!'
+run vim -c ':GoInstallBinaries' -c ':q!' -c ':q!'
 
 # Install language servers (same as :LspInstallServer of mattn/vim-lsp-settings,
 # but run the installer scripts directly so it works non-interactively).
@@ -66,10 +74,17 @@ for server in bash-language-server gopls pyright-langserver terraform-ls typescr
   if [ ! -d "$lsp_servers_dir/$server" ]; then
     echo "Installing language server: $server"
     mkdir -p "$lsp_servers_dir/$server"
-    (cd "$lsp_servers_dir/$server" && sh "$lsp_installer_dir/install-$server.sh") || echo "WARN: failed to install $server"
+    (cd "$lsp_servers_dir/$server" && sh "$lsp_installer_dir/install-$server.sh") || failed+=("install-$server.sh")
   fi
 done
 
-./"post_install_${uname}.sh"
+run ./"post_install_${uname}.sh"
 
 popd
+
+if [ ${#failed[@]} -gt 0 ]; then
+  echo >&2
+  echo "以下が失敗しました:" >&2
+  printf '  %s\n' "${failed[@]}" >&2
+  exit 1
+fi
