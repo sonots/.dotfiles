@@ -7,45 +7,47 @@ export HOMEBREW_NO_ASK=1
 # Homebrew 自体のインストーラも非対話にする
 export NONINTERACTIVE=1
 
+. ~/.dotfiles/_run.sh
+
 which brew || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-brew update
+run brew update
 
 # Update already-installed formula (takes too much time, I will do it manually later)
 # brew upgrade
 
 # Packages
 
-brew install vim
-brew install zsh
-brew install git
+run brew install vim
+run brew install zsh
+run brew install git
 # brew install gist
-brew install tig
-brew install tmux
-brew install ctags
-brew install nkf
+run brew install tig
+run brew install tmux
+run brew install ctags
+run brew install nkf
 # brew install lv
 # brew install htop
-brew install wget
-brew install tree
-brew install pkg-config
-brew install libtool
-brew install cmake
-brew install autoconf
-brew install automake
-brew install pstree
+run brew install wget
+run brew install tree
+run brew install pkg-config
+run brew install libtool
+run brew install cmake
+run brew install autoconf
+run brew install automake
+run brew install pstree
 # brew install pidof # pidof
 # brew install rmtrash # `rmtrash` moves file to Trash
-brew install rbenv ruby-build
-brew install readline
-brew install ghq
-brew install peco
+run brew install rbenv ruby-build
+run brew install readline
+run brew install ghq
+run brew install peco
 # brew install fzf # Either of peco or fzf should be ehough
-brew install ag
+run brew install ag
 # brew install ripgrep # Either of ag or rg (ripgrep) should be enough
-brew install direnv
-brew install jq
-brew install python-yq
-brew install coreutils # gdate, gsed
+run brew install direnv
+run brew install jq
+run brew install python-yq
+run brew install coreutils # gdate, gsed
 # brew install coreutils --default-names # http://takuya-1st.hatenablog.jp/entry/20111230/1325272152
 # brew install imagemagick
 # brew install packer
@@ -55,38 +57,38 @@ brew install coreutils # gdate, gsed
 # brew install kustomize
 # brew install k9s
 # brew install --cask lens
-brew install golang
+run brew install golang
 # brew install jenv # java
 # brew install tfenv # terraform
 
 # AI
-brew install --cask claude # Claude Desktop, not the CLI
-brew install --cask claude-code@latest # the `claude-code` cask pins an older version
-brew install --cask codex
-brew install --cask chatgpt
-brew install --cask grok-bot
-brew install --cask cursor
-brew install --cask antigravity-cli # installs as `agy`
-brew install --cask google-gemini # the `gemini` cask is MacPaw's disk cleaner; needs arm64 and macOS 15+
+run brew install --cask claude # Claude Desktop, not the CLI
+run brew install --cask claude-code@latest # the `claude-code` cask pins an older version
+run brew install --cask codex
+run brew install --cask chatgpt
+run brew install --cask grok-bot
+run brew install --cask cursor
+run brew install --cask antigravity-cli # installs as `agy`
+run brew install --cask google-gemini # the `gemini` cask is MacPaw's disk cleaner; needs arm64 and macOS 15+
 
 # Install .dmg by homebrew-cask
-brew install --cask google-chrome
+run brew install --cask google-chrome
 # brew install --cask firefox
-brew install --cask  iterm2
+run brew install --cask  iterm2
 # brew install --cask  xquartz
 # brew install --cask  wireshark
 # brew install --cask  virtualbox
 # brew install --cask  vagrant
-brew install --cask visual-studio-code
+run brew install --cask visual-studio-code
 # brew install --cask skitch
 # brew install --cask discord
-brew install --cask slack
-brew install --cask kindle
+run brew install --cask slack
+run brew install --cask kindle
 
 # Mac App Store (Homebrew cask に無いもの)
 # App Store にサインインしていて、購入履歴に入っているものしか入らない
-brew install mas
-mas install 1407015686 # Paste Plain Text
+run brew install mas
+run mas install 1407015686 # Paste Plain Text
 
 # Remove outdated versions
-brew cleanup
+run brew cleanup

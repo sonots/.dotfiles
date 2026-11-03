@@ -2,13 +2,6 @@
 
 uname=`uname | tr A-Z a-z`
 
-# 失敗しても止めずに最後まで走らせ、何が失敗したかを最後にまとめて出す。
-# 独立した手順が多く1つコケても残りは進めたいので set -e は使わない。
-failed=()
-run() {
-  "$@" || failed+=("$*")
-}
-
 # Command Line Tools が無いと git を呼ぶたびに GUI のインストールダイアログが
 # 出てしまうので、先にインストールして完了を待つ
 if [ "${uname}" = "darwin" ] && ! xcode-select -p >/dev/null 2>&1; then
@@ -22,6 +15,8 @@ fi
 [[ -e ~/.dotfiles ]] || git clone https://github.com/sonots/.dotfiles.git ~/.dotfiles
 pushd ~/.dotfiles
 
+. ~/.dotfiles/_run.sh
+
 run git submodule init
 run git submodule update
 
@@ -34,6 +29,7 @@ do
   [ $i = "install.sh" ] && continue
   [ $i = "Brewfile.sh" ] && continue
   [ $i = "iterm2" ] && continue # iTerm2 が読む設定。~ には置かない
+  [ $i = "_run.sh" ] && continue
   # -f で張り直し、-n でシンボリックリンクのディレクトリを辿らせない（再実行時に
   # リンク先の中へ入れ子のリンクを作らないため）
   run ln -sfn ~/.dotfiles/$i ~/
@@ -74,17 +70,11 @@ for server in bash-language-server gopls pyright-langserver terraform-ls typescr
   if [ ! -d "$lsp_servers_dir/$server" ]; then
     echo "Installing language server: $server"
     mkdir -p "$lsp_servers_dir/$server"
-    (cd "$lsp_servers_dir/$server" && sh "$lsp_installer_dir/install-$server.sh") || failed+=("install-$server.sh")
+    (cd "$lsp_servers_dir/$server" && sh "$lsp_installer_dir/install-$server.sh") \
+      || echo "install-$server.sh" >> "$DOTFILES_FAILED_LOG"
   fi
 done
 
 run ./"post_install_${uname}.sh"
 
 popd
-
-if [ ${#failed[@]} -gt 0 ]; then
-  echo >&2
-  echo "以下が失敗しました:" >&2
-  printf '  %s\n' "${failed[@]}" >&2
-  exit 1
-fi

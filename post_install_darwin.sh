@@ -1,5 +1,36 @@
 #!/bin/bash
 
+. ~/.dotfiles/_run.sh
+
+# 書き込む値を前後で読み比べて、変わったときだけ最後に再ログインを促す。
+# defaults write は同じ値を書いても中身は変わらないので、再実行では何も出ない。
+# snap は「読めたら 値、読めなければ (未設定)」を一行で出す。defaults の
+# エラー出力には時刻と PID が入るため、そのまま拾うと毎回差分になる。
+snap() {
+  local out
+  if out=$("$@" 2>/dev/null); then
+    printf '%s = %s\n' "$*" "$out"
+  else
+    printf '%s = (未設定)\n' "$*"
+  fi
+}
+settings_snapshot() {
+  snap defaults read com.apple.finder AppleShowAllFiles
+  snap defaults read -g KeyRepeat
+  snap defaults read -g InitialKeyRepeat
+  snap defaults read -g com.apple.swipescrolldirection
+  snap defaults read -g com.apple.keyboard.fnState
+  snap defaults read -g com.apple.sound.beep.volume
+  snap defaults read -g com.apple.sound.uiaudio.enabled
+  snap nvram StartupMute
+  snap defaults -currentHost read -g com.apple.keyboard.modifiermapping.0-0-0
+  snap defaults -currentHost read -g com.apple.keyboard.modifiermapping.2131-273-0
+  snap defaults read com.apple.symbolichotkeys AppleSymbolicHotKeys
+  snap defaults read com.googlecode.iterm2 PrefsCustomFolder
+  snap defaults read com.googlecode.iterm2 LoadPrefsFromCustomFolder
+}
+settings_before=$(settings_snapshot)
+
 # Finder で隠しファイルを表示する。環境設定には無い。
 defaults write com.apple.finder AppleShowAllFiles TRUE
 
@@ -18,7 +49,8 @@ defaults write -g com.apple.sound.beep.volume -float 0
 defaults write -g com.apple.sound.uiaudio.enabled -int 0
 # システム設定 > サウンド > 「起動時にサウンドを再生」
 # これは defaults ではなく NVRAM に入っている
-sudo nvram StartupMute=%01
+[ "$(nvram StartupMute 2>/dev/null | awk '{print $2}')" = "%01" ] \
+  || run sudo nvram StartupMute=%01
 
 # 修飾キーのリマップ。値は HID usage に 0x700000000 を足したもの。
 caps_lock=30064771129
@@ -31,7 +63,6 @@ right_command=30064771303
 # modmap <VendorID>-<ProductID>-0 <src> <dst> [<src> <dst> ...]
 # 第1引数は ByHost の .GlobalPreferences に入るキー名
 # com.apple.keyboard.modifiermapping.<VendorID>-<ProductID>-0 の末尾部分。
-# 反映には再ログインが必要。
 modmap() {
   local device=$1; shift
   local xml='<array>'
@@ -46,11 +77,11 @@ modmap() {
 # システム設定 > キーボード > キーボードショートカット > 修飾キー > 内部キーボード
 # CapsLock -> Control
 # 内部キーボードは 0-0-0
-modmap 0-0-0 "$caps_lock" "$left_control"
+run modmap 0-0-0 "$caps_lock" "$left_control"
 # システム設定 > キーボード > キーボードショートカット > 修飾キー > Realforce 87
 # CapsLock -> Control、左右とも Option <-> Command を入れ替え
 # Realforce 87。VendorID/ProductID 固有なので、キーボードを買い替えると効かなくなる。
-modmap 2131-273-0 \
+run modmap 2131-273-0 \
   "$caps_lock" "$left_control" \
   "$left_option" "$left_command" \
   "$left_command" "$left_option" \
@@ -103,24 +134,30 @@ else
   zsh_path=/bin/zsh
 fi
 if ! grep -qx "$zsh_path" /etc/shells; then
-  echo "$zsh_path" | sudo tee -a /etc/shells
+  echo "$zsh_path" | run sudo tee -a /etc/shells
 fi
 if [ "$SHELL" != "$zsh_path" ]; then
-  chsh -s "$zsh_path"
+  run chsh -s "$zsh_path"
 fi
 
-# iTerm2 の設定は iterm2/com.googlecode.iterm2.plist で管理する。カラー・透過・
-# ダークモード・Option キーの扱いなど、プロファイルの設定が全部ここに入っている。
-# iTerm2 は終了時に設定を plist へ書き戻すので、起動中に書いても消される。
-if pgrep -xq iTerm2; then
+# iTerm2 の設定は iterm2/com.googlecode.iterm2.plist から読ませる。プロファイルの
+# 設定（カラー、透過、Option キーの扱いなど）がそこに入っている。
+# iTerm2 は終了時に設定を plist へ書き戻すため、起動中に読み込み先を変えても戻る
+# 可能性がある。そのため起動中は変更せず警告だけ出す。
+iterm2_prefs_dir="$HOME/.dotfiles/iterm2"
+if [ "$(defaults read com.googlecode.iterm2 PrefsCustomFolder 2>/dev/null)" = "$iterm2_prefs_dir" ] \
+   && [ "$(defaults read com.googlecode.iterm2 LoadPrefsFromCustomFolder 2>/dev/null)" = "1" ]; then
+  : # 設定済み
+elif pgrep -xq iTerm2; then
   echo "WARN: iTerm2 が起動中のため設定の読み込み先を変更できません。iTerm2 を終了してから実行してください。" >&2
 else
-  defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$HOME/.dotfiles/iterm2"
+  defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$iterm2_prefs_dir"
   defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
 fi
 
-# ここまでの defaults は書き込んだだけでは反映されないものがある。システム設定の
-# GUI から変えた場合はその場で反映されるが、plist を直接書いた場合は、設定を
-# 読み込むプロセス（loginwindow, Finder, HID のサービス）が起動時に読むため。
-echo
-echo "値を変更した場合は、ログアウトして再ログイン（確実にするなら再起動）してください。"
+# システム設定の GUI から変えた場合はその場で反映されるが、plist を直接書いた
+# 場合は反映されないものがある（KeyRepeat で確認済み）。
+if [ "$(settings_snapshot)" != "$settings_before" ]; then
+  echo
+  echo "設定値が変わりました。反映のためログアウトして再ログインしてください。"
+fi
