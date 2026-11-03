@@ -4,8 +4,6 @@
 # .zshrc の PATH 設定より後に読まれるので、ここで前に出せば勝つ。
 [ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
-export PATH=/Users/seo.naotoshi/.rbenv/shims:$PATH
-
 #### options ####
 setopt auto_cd
 function chpwd(){ [[ -n $CLAUDECODE ]] && return; ls -F -G }
@@ -22,11 +20,6 @@ alias tmux='tmux -f ~/.tmux.conf.darwin'
 alias tm='tmux -f ~/.tmux.conf.darwin new -A -s 0'
 # alias ctags="`brew --prefix`/bin/ctags"
 
-if [ -d /Applications/MacVim.app ]; then
-  export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
-  alias vim='env PATH=/usr/bin:$PATH /Applications/MacVim.app/Contents/MacOS/Vim'
-  alias vi='vim'
-fi
 [ -d /Applications/Sublime\ Text\ 2.app ] && alias sublime='/Applications/Sublime\ Text\ 2.app/Contents/MacOS/Sublime\ Text\ 2'
 [ -d /Applications/Sublime\ Text.app ] && alias sublime='/Applications/Sublime\ Text.app/Contents/MacOS/Sublime\ Text'
 [ -d /Applications/CotEditor.app ] && alias cot='/Applications/CotEditor.app/Contents/MacOS/CotEditor'

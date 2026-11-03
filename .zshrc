@@ -229,7 +229,8 @@ export PATH=$HOME/bin:$HOME/local/bin:$HOME/gitrepos/bin:$HOME/.dotfiles/.bin:$P
 #export PATH="/usr/local/heroku/bin:$PATH" ### Added by the Heroku Toolbelt
 export PATH=$HOME/.local/bin:$PATH
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
-export EDITOR=/usr/bin/vim
+# PATH 解決に任せる。絶対パスで書くと Apple のシステム vim に固定されてしまう
+export EDITOR=vim
 
 # java
 #export PATH=/usr/java/latest/bin:$PATH
