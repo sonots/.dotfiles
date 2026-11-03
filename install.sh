@@ -37,10 +37,6 @@ done
 
 if [ "${uname}" = "darwin" ]; then
   run ./Brewfile.sh
-  run brew tap sanemat/font
-  run brew install ricty
-  run cp -f /usr/local/Cellar/ricty/3.2.2/share/fonts/Ricty*.ttf ~/Library/Fonts/
-  run fc-cache -vf
   run ln -sfn ~/.dotfiles/.tmux.conf.darwin ~/.tmux.conf
   # curl https://sdk.cloud.google.com | bash
   # curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "/tmp/AWSCLIV2.pkg"
