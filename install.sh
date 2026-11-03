@@ -26,7 +26,9 @@ do
   [ $i = "README.md" ] && continue
   [ $i = "install.sh" ] && continue
   [ $i = "Brewfile.sh" ] && continue
-  ln -s ~/.dotfiles/$i ~/
+  # -f で張り直し、-n でシンボリックリンクのディレクトリを辿らせない（再実行時に
+  # リンク先の中へ入れ子のリンクを作らないため）
+  ln -sfn ~/.dotfiles/$i ~/
 done
 
 if [ "${uname}" = "darwin" ]; then
@@ -35,7 +37,7 @@ if [ "${uname}" = "darwin" ]; then
   brew install ricty
   cp -f /usr/local/Cellar/ricty/3.2.2/share/fonts/Ricty*.ttf ~/Library/Fonts/
   fc-cache -vf
-  ln -s ~/.dotfiles/.tmux.conf.darwin ~/.tmux.conf
+  ln -sfn ~/.dotfiles/.tmux.conf.darwin ~/.tmux.conf
   # curl https://sdk.cloud.google.com | bash
   # curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "/tmp/AWSCLIV2.pkg"
   # sudo installer -pkg /tmp/AWSCLIV2.pkg -target / # /usr/local/bin/aws
@@ -45,7 +47,7 @@ else
   apt install -y zsh
   apt install -y tmux
   apt install -y silversearcher-ag
-  ln -s ~/.dotfiles/.tmux.conf.linux ~/.tmux.conf
+  ln -sfn ~/.dotfiles/.tmux.conf.linux ~/.tmux.conf
 fi
 
 vim -c ':NeoBundleInstall!' -c ':q!' -c ':q!'
