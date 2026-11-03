@@ -6,20 +6,6 @@ defaults write -g InitialKeyRepeat -int 15
 # Show hidden files on Finder
 defaults write com.apple.finder AppleShowAllFiles TRUE
 
-# Command+Space でも入力ソースを切り替える（Control+Space は標準のまま残す）
-# AppleSymbolicHotKeys はアクションごとの数値 ID がキー。
-#   60=前の入力ソースを選択 / 61=入力メニューの次のソースを選択 / 64=Spotlight検索
-# parameters は [文字コード, キーコード, 修飾キーのビットマスク]。1048576 が Command。
-# 入力ソースが2つなら 60 と 61 は同じトグル動作になるので、60 の Control+Space を
-# 残したまま 61 に Command+Space を割り当てる。
-# Spotlight が Command+Space を握っていると競合するので先に無効化する。
-defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 \
-  "<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>65535</integer><integer>49</integer><integer>1048576</integer></array><key>type</key><string>standard</string></dict></dict>"
-defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 61 \
-  "<dict><key>enabled</key><true/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>1048576</integer></array><key>type</key><string>standard</string></dict></dict>"
-# これを呼ばないとログアウトまで反映されない
-/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-
 # Trackpad: ナチュラルなスクロールを OFF
 defaults write -g com.apple.swipescrolldirection -bool false
 # F1, F2 などを標準のファンクションキーとして使う（F7 でカタカナ変換したいため）
@@ -63,6 +49,20 @@ modmap 2131-273-0 \
   "$left_command" "$left_option" \
   "$right_option" "$right_command" \
   "$right_command" "$right_option"
+
+# Command+Space でも入力ソースを切り替える（Control+Space は標準のまま残す）
+# AppleSymbolicHotKeys はアクションごとの数値 ID がキー。
+#   60=前の入力ソースを選択 / 61=入力メニューの次のソースを選択 / 64=Spotlight検索
+# parameters は [文字コード, キーコード, 修飾キーのビットマスク]。1048576 が Command。
+# 入力ソースが2つなら 60 と 61 は同じトグル動作になるので、60 の Control+Space を
+# 残したまま 61 に Command+Space を割り当てる。
+# Spotlight が Command+Space を握っていると競合するので先に無効化する。
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 \
+  "<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>65535</integer><integer>49</integer><integer>1048576</integer></array><key>type</key><string>standard</string></dict></dict>"
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 61 \
+  "<dict><key>enabled</key><true/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>1048576</integer></array><key>type</key><string>standard</string></dict></dict>"
+# これを呼ばないとログアウトまで反映されない
+/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 
 # .ssh/config
 if ! grep -q '^# .dotfiles/install.sh' $HOME/.ssh/config; then
