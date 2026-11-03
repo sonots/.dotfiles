@@ -38,7 +38,7 @@ sudo nvram StartupMute=%01
 caps_lock=30064771129
 left_option=30064771298
 left_command=30064771299
-right_control=30064771300
+left_control=30064771296
 right_option=30064771302
 right_command=30064771303
 
@@ -55,10 +55,10 @@ modmap() {
 }
 
 # 内部キーボード: CapsLock -> Control
-modmap 0-0-0 "$caps_lock" "$right_control"
+modmap 0-0-0 "$caps_lock" "$left_control"
 # Realforce 87: CapsLock -> Control、左右とも Option <-> Command を入れ替え
 modmap 2131-273-0 \
-  "$caps_lock" "$right_control" \
+  "$caps_lock" "$left_control" \
   "$left_option" "$left_command" \
   "$left_command" "$left_option" \
   "$right_option" "$right_command" \
